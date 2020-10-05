@@ -10,10 +10,10 @@
   <title>Travel to JN</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="/resources/css/small-business.css" rel="stylesheet">
+  <link href="./resources/css/small-business.css" rel="stylesheet">
 
 </head>
 
@@ -62,7 +62,7 @@
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
       <div class="col-lg-7">
-        <img id="namdo" class="img-fluid rounded mb-4 mb-lg-0" src="/resources/img/namdo.png" alt="">
+        <img id="namdo" class="img-fluid rounded mb-4 mb-lg-0" src="./resources/img/namdo.png" alt="">
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
@@ -135,8 +135,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./resources/vendor/jquery/jquery.min.js"></script>
+  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
