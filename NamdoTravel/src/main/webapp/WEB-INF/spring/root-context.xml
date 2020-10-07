@@ -17,10 +17,11 @@
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="url"
-            value="jdbc:google:mysql://tactical-coder-291607:asia-northeast3:namdo?useSSL=false&amp;serverTimezone=UTC">
+            value="jdbc:google:mysql://tactical-coder-291607:asia-northeast3:namdoproject?useSSL=false&amp;serverTimezone=UTC">
         </property>
-        <property name="username" value="namdo"></property>
+        <property name="username" value="root"></property>
         <property name="password" value="12345"></property>
     </bean> 
+    
 
 </beans>
