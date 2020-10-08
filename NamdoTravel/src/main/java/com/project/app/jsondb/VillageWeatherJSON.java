@@ -20,10 +20,11 @@ public class VillageWeatherJSON {
 	// baseDate : 기준날짜, baseTime : 기준시간, x : 경도, y : 위도 참고문서를 확인하세요
 	public VillageWeather getVillageWeather(String baseDate, String baseTime, int x, int y) {
 		// JSON데이터를 요청하는 URLstr을 만듭니다.
-		String urlStr = "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst?"
+		String urlStr = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?"
 				+ "serviceKey=" + serviceKey + "&base_date=" + baseDate + "&base_time=" + baseTime + "&nx=" + x + "&ny="
-				+ y + "&_type=json";
+				+ y + "&dataType=JSON";
 		VillageWeather vl = new VillageWeather();
+		System.out.println(urlStr);
 		// 결과 데이터를 저장할 동내기상객체를 만듭니다.
 		try {
 			URL url = new URL(urlStr);
