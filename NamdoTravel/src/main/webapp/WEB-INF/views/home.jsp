@@ -72,6 +72,7 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
       <div class="card-body">
+        <p>지도api되는지 실험용 바꿀예정</p>
         <jsp:include page="map.jsp"></jsp:include>
       </div>
     </div>
@@ -81,8 +82,8 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">Card One</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+            <h2 class="card-title">오늘날씨 둘화면/h2>
+            <p class="card-text">api에서 db로 해서 데이터 가져오는 방식 사용 날씨 이미지들 필요 온도랑 강수확률정도들어갈것</p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>
@@ -93,8 +94,8 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">Card Two</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+            <h2 class="card-title">내일날씨둘 화면</h2>
+            <p class="card-text">api에서 db로 해서 데이터 가져오는 방식 사용 날씨 이미지들 필요 온도랑 강수확률정도들어갈것</p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>
@@ -105,8 +106,8 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">Card Three</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+            <h2 class="card-title">3일뒤날씨화면</h2>
+            <p class="card-text">api에서 db로 해서 데이터 가져오는 방식 사용 날씨 이미지들 필요 온도랑 강수확률정도들어갈것</p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>
