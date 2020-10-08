@@ -17,11 +17,28 @@
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="url"
-            value="jdbc:google:mysql://tactical-coder-291607:asia-northeast3:namdoproject?useSSL=false&amp;serverTimezone=UTC">
+            value="jdbc:google:mysql://tactical-coder-291607:asia-northeast3:namdo8?useSSL=false&amp;serverTimezone=UTC">
         </property>
         <property name="username" value="root"></property>
         <property name="password" value="12345"></property>
-    </bean> 
+    </bean>
     
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource" />
+		<property value="classpath:mybatis-config.xml"
+			name="configLocation" />
+		<property value="classpath:/mapper/*Mapper.xml"
+			name="mapperLocations" />
+	</bean>
+    
+    <bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory"></constructor-arg>
+	</bean>
 
+		<context:component-scan
+		base-package="com.project.app.dao"></context:component-scan>
 </beans>

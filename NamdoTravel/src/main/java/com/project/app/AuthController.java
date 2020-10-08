@@ -1,22 +1,29 @@
 package com.project.app;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.project.app.service.AccountService;
+import com.project.app.vo.AccountVO;
 
 /**
  * Handles requests for the application home page.
  */
-@RequestMapping(value="/auth")
+
 @Controller
+@RequestMapping(value="/auth")
 public class AuthController {
+	
+	@Autowired
+	@Qualifier("accountServiceImpl")
+	AccountService accountService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -30,4 +37,10 @@ public class AuthController {
 		return "register";
 	}
 	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registerAccount(@ModelAttribute AccountVO account, Model model) {
+		accountService.addAccount(account);
+				
+		return "login";
+	}
 }

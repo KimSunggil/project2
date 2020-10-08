@@ -10,7 +10,7 @@
 		<intercept-url pattern="/customers/**" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
 		<intercept-url pattern="/admin*" access="hasRole('ROLE_ADMIN')" />
 
-		<form-login login-page="/login" default-target-url="/customers/all"
+		<form-login login-page="/auth/login" default-target-url="/home"
 			authentication-failure-url="/loginError" />
 		<logout logout-success-url="/logouts" logout-url="/logout" />
 		<csrf disabled="true" />
