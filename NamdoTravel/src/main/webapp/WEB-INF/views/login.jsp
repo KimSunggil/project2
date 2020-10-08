@@ -1,4 +1,6 @@
-<%@ page contentType = "text/html;charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -29,11 +31,13 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form name="loginForm" action="<c:url value="/j_spring_security_check"/>" method="POST" class="login100-form validate-form flex-sb flex-w">
+					
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
 					<span class="login100-form-title p-b-32">
 						Account Login
 					</span>
@@ -53,7 +57,7 @@
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass" >
+						<input class="input100" type="password" name="password" >
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -84,10 +88,8 @@
 							<button class="login100-form-btn">
 								Login
 							</button>
-						</div>
-						
+						</div>	
 					</div>
-
 				</form>
 			</div>
 		</div>
