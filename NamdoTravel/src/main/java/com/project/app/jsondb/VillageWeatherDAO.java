@@ -12,7 +12,7 @@ import java.util.Enumeration;
 public class VillageWeatherDAO {
 	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 // jdbc 드라이버 주소
-	static final String DB_URL = "jdbc:mysql://34.64.121.100:3306/?useSSL=false";
+	static final String DB_URL = "jdbc:mysql://34.64.121.100:3306/NAMDODB?useSSL=false";
 // DB 접속 주소 
 //localhost는 접속하려는 데이터베이스 주소를 입력하시면 됩니다. localhost를 사용하면 됩니다. 
 //3306은 데이터베이스에 접속할때 사용하는 포터번호입니다. 설치할때 설정한 포트번호를 사용합니다. 
@@ -27,7 +27,7 @@ public class VillageWeatherDAO {
 
 // VillageWeather객체를 입력받으면 객체안의 속성에 초기화된 데이터들을 데이터베이스에 인설트하는 메소드입니다. 
 	public void intertVillageWeather(int id, VillageWeather v) {
-		String query = "INSERT INTO  NAMDODB.Village_Weather" + " VALUE(" + id + ",'" + v.getBaseDate() + "','"
+		String query = "INSERT INTO VILLAGE_WEATHER" + " VALUE(" + id + ",'" + v.getBaseDate() + "','"
 				+ v.getBaseTime() + "','" + v.getPop() + "','" + v.getPty() + "','" + v.getR06() + "','" + v.getReh()
 				+ "','" + v.getS06() + "','" + v.getSky() + "','" + v.getT3h() + "','" + v.getTmn() + "','" + v.getTmx()
 				+ "','" + v.getUuu() + "','" + v.getVvv() + "','" + v.getWav() + "','" + v.getVec() + "','" + v.getWsd()

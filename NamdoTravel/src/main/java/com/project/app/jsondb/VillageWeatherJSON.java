@@ -24,7 +24,6 @@ public class VillageWeatherJSON {
 				+ "serviceKey=" + serviceKey + "&base_date=" + baseDate + "&base_time=" + baseTime + "&nx=" + x + "&ny="
 				+ y + "&dataType=JSON";
 		VillageWeather vl = new VillageWeather();
-		System.out.println(urlStr);
 		// 결과 데이터를 저장할 동내기상객체를 만듭니다.
 		try {
 			URL url = new URL(urlStr);
