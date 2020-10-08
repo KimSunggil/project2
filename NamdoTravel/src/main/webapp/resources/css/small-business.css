@@ -5,6 +5,7 @@
  */
 body {
   padding-top: 56px;
+  background: -webkit-linear-gradient(top, #E3F4EA 40%, #3CB371 100% );
 }
 #namdo{
     width:700px;

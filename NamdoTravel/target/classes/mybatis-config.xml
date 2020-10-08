@@ -9,6 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias alias="AccountVO" type="com.project.app.vo.AccountVO"/>
+		<typeAlias alias="VillageWeather" type="com.project.app.jsondb.VillageWeather"/>
 	</typeAliases>
 	
 </configuration>

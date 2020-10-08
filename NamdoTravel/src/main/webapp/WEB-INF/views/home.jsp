@@ -20,36 +20,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Travel to JN</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">지역별 추천 숙박</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">지역별 추천 관광지</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">여행지역 날씨</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">관광 안내소</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">리뷰/신규 여행지추천</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">자유게시판</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 
   <!-- Page Content -->
   <div class="container">
@@ -61,9 +32,9 @@
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
-        <h1 class="font-weight-light">전라남도 숙박 여행정보 모음</h1>
+        <h1 class="font-weight-light">전라남도 숙박 여행정보</h1>
         <p></p>
-        <a class="btn btn-primary" href="#">최근리뷰들</a>
+        <a class="btn btn-primary" href="#">찾아보기</a>
       </div>
       <!-- /.col-md-4 -->
     </div>
@@ -72,8 +43,8 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
       <div class="card-body">
-        <p>지도api되는지 실험용 바꿀예정</p>
-        <jsp:include page="map.jsp"></jsp:include>
+        <p>지도api되는지 실험용 바꿀예정 추천관광지 아니면 다른게 들어갈 에정 (회의해봐야)</p>
+        <jsp:include page="includejsp/map.jsp"></jsp:include>
       </div>
     </div>
 
@@ -82,8 +53,8 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">오늘날씨 둘화면/h2>
-            <p class="card-text">api에서 db로 해서 데이터 가져오는 방식 사용 날씨 이미지들 필요 온도랑 강수확률정도들어갈것</p>
+            <h2 class="card-title"></h2>
+            <p class="card-text"></p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>
@@ -94,8 +65,8 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">내일날씨둘 화면</h2>
-            <p class="card-text">api에서 db로 해서 데이터 가져오는 방식 사용 날씨 이미지들 필요 온도랑 강수확률정도들어갈것</p>
+            <h2 class="card-title"></h2>
+            <p class="card-text"></p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>
@@ -106,8 +77,8 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">3일뒤날씨화면</h2>
-            <p class="card-text">api에서 db로 해서 데이터 가져오는 방식 사용 날씨 이미지들 필요 온도랑 강수확률정도들어갈것</p>
+            <h2 class="card-title"></h2>
+            <p class="card-text"></p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>

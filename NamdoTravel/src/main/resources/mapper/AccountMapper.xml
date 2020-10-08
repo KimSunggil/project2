@@ -13,4 +13,8 @@
 		    1
 		)
 	</insert>
+	<select id="getVillageWeather" parameterType="VillageWeather">
+		SELECT * FROM NAMDODB.VILLAGE_WEATHER;
+	</select>
+		
 </mapper>
