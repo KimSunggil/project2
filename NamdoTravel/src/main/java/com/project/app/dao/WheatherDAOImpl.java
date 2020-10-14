@@ -5,9 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.project.app.vo.WheatherVO;
 
+@Repository
 public class WheatherDAOImpl implements WheatherDAO {
 	
 	@Inject
