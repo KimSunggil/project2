@@ -1,6 +1,6 @@
 package com.project.app.vo;
 
-public class WheatherVO {
+public class WeatherVO {
 	private String baseDate;
 	private String baseTime;
 	private String pop;

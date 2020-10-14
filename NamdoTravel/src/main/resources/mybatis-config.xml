@@ -9,7 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias alias="AccountVO" type="com.project.app.vo.AccountVO"/>
-		<typeAlias alias="WheatherVO" type="com.project.app.vo.WheatherVO"/>
+		<typeAlias alias="WeatherVO" type="com.project.app.vo.WeatherVO"/>
 	</typeAliases>
 	
 </configuration>

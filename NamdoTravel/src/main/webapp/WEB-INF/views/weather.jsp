@@ -6,6 +6,12 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+  <!-- Bootstrap core CSS -->
+  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="./resources/css/small-business.css" rel="stylesheet">
+
 </head>
 <body>
 <jsp:include page="includejsp/menubar.jsp"></jsp:include>

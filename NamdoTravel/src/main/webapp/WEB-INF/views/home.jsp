@@ -47,7 +47,7 @@
 	      <jsp:include page="includejsp/map.jsp"></jsp:include>
 	      <a class="btn btn-primary" onclick="mappen(34.9506986 , 127.4872429)">순천시</a>
 	      <a class="btn btn-primary" onclick="mappen(34.760374 , 127.662222)">여수시</a>
-	      <a class="btn btn-primary" href="wheather.jsp">목포시</a>
+	      <a class="btn btn-primary" href="weather">목포시</a>
 	      <a class="btn btn-primary" href="#">나주시</a>
 	      <a class="btn btn-primary" href="#">광양시</a>
 	      <a class="btn btn-primary" href="#">곡성군</a>
