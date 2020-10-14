@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.project.app.wheather">
+	<select id="getWheather" resultType="WheatherVO">
+		SELECT A.BASE_DATE, A.BASE_TIME, A.POP, A.PTY, A.RO6, A.REH, A.SKY, A.T3H, A.TMN, A.TMX, A.UUU, A.VVV, A.WAV, A.VEC, A.WSD
+			FROM NAMDODB.VILLAGE_WEATHER A	
+	</select>
+</mapper>
