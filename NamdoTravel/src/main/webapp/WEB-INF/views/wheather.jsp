@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach var="whaethers" items="${wheather}">
-	<li>${wheather.pop} ${wheather.pty} ${wheather.reh} ${wheather.sky}</li>
-</c:forEach>
+<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 </body>
 </html>

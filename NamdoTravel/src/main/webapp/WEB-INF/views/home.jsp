@@ -44,8 +44,28 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
       <div class="card-body">
-        <p>지도api되는지 실험용 바꿀예정 추천관광지 아니면 다른게 들어갈 에정 (회의해봐야)</p>
-        <jsp:include page="includejsp/map.jsp"></jsp:include>
+	      <jsp:include page="includejsp/map.jsp"></jsp:include>
+	      <a class="btn btn-primary" onclick="mappen(34.9506986 , 127.4872429)">순천시</a>
+	      <a class="btn btn-primary" onclick="mappen(34.760374 , 127.662222)">여수시</a>
+	      <a class="btn btn-primary" href="wheather.jsp">목포시</a>
+	      <a class="btn btn-primary" href="#">나주시</a>
+	      <a class="btn btn-primary" href="#">광양시</a>
+	      <a class="btn btn-primary" href="#">곡성군</a>
+	      <a class="btn btn-primary" href="#">구례군</a>
+	      <a class="btn btn-primary" href="#">고흥군</a>
+	      <a class="btn btn-primary" href="#">보성군</a>
+	      <a class="btn btn-primary" href="#">화순군</a>
+	      <a class="btn btn-primary" href="#">장흥군</a>
+	      <a class="btn btn-primary" href="#">강진군</a>
+	      <a class="btn btn-primary" href="#">해남군</a>
+	      <a class="btn btn-primary" href="#">영암군</a>
+	      <a class="btn btn-primary" href="#">무안군</a>
+	      <a class="btn btn-primary" href="#">함평군</a>
+	      <a class="btn btn-primary" href="#">영광군</a>
+	      <a class="btn btn-primary" href="#">장성군</a>
+	      <a class="btn btn-primary" href="#">완도군</a>
+	      <a class="btn btn-primary" href="#">진도군</a>
+	      <a class="btn btn-primary" href="#">신안군</a>	
       </div>
     </div>
 

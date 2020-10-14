@@ -15,6 +15,6 @@ public class WheatherDAOImpl implements WheatherDAO {
 
 	@Override
 	public List<WheatherVO> getWheather() {
-		return sqlSession.selectList("com.project.app.home.getWheather");
+		return sqlSession.selectList("com.project.app.wheather.getWheather");
 	}
 }
