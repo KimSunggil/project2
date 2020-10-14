@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -16,24 +18,36 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Áö¿ªº° ÃßÃµ ¼÷¹Ú</a>
+            <a class="nav-link" href="#">ì§€ì—­ë³„ ì¶”ì²œ ìˆ™ë°•</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Áö¿ªº° ÃßÃµ °ü±¤Áö</a>
+            <a class="nav-link" href="#">ì§€ì—­ë³„ ì¶”ì²œ ê´€ê´‘ì§€</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">¿©ÇàÁö¿ª ³¯¾¾</a>
+            <a class="nav-link" href="#">ì—¬í–‰ì§€ì—­ ë‚ ì”¨</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">°ü±¤ ¾È³»¼Ò</a>
+            <a class="nav-link" href="#">ê´€ê´‘ ì•ˆë‚´ì†Œ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">¸®ºä/½Å±Ô ¿©ÇàÁöÃßÃµ</a>
+            <a class="nav-link" href="#">ë¦¬ë·°/ì‹ ê·œ ì—¬í–‰ì§€ì¶”ì²œ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">ÀÚÀ¯°Ô½ÃÆÇ</a>
+            <a class="nav-link" href="#">ìžìœ ê²Œì‹œíŒ</a>
           </li>
         </ul>
+        
+    <sec:authorize access="isAnonymous()">
+    	<a href="<c:url value='/auth/login' />"><button>LOGIN</button></a>
+    </sec:authorize>
+    
+	<sec:authorize access="isAuthenticated()">
+	    <form action=<c:url value='/logout' /> method="GET">
+	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	        <button type="submit">LOGOUT</button>
+	    </form>
+	</sec:authorize>
+		
       </div>
     </div>
   </nav>

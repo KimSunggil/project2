@@ -3,14 +3,19 @@
 <mapper namespace="com.project.app.account">
 		
 	<insert id="addAccount" parameterType="AccountVO">
-		INSERT INTO NAMDODB.ACCOUNT(USER_ID, PASSWORD, NICKNAME, EMAIL, REG_DATE, ENABLE)
+		INSERT INTO NAMDODB.USER(USER_ID, PASSWORD, EMAIL, NICKNAME, AUTHORITY, REG_DATE, LAST_LOGIN, ENABLE, NAME, PHONE_NO, ADDRESS)
 		VALUES(
 		    #{userId},
 		    #{password},
-		    #{nickName},
 		    #{email},
+		    #{nickName},
+		    "USER",
 		    NOW(),
-		    1
+		    NOW(),
+		    1,
+		    #{name},
+		    #{phoneNo},
+		    #{address}
 		)
 	</insert>
 		
