@@ -9,6 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias alias="AccountVO" type="com.project.app.vo.AccountVO"/>
+		<typeAlias alias="PostVO" type="com.project.app.vo.PostVO"/>
 		<typeAlias alias="WeatherVO" type="com.project.app.vo.WeatherVO"/>
 	</typeAliases>
 	

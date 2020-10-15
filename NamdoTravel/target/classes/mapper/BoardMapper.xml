@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.project.app.board">
+		
+	<insert id="addpost" parameterType="hashMap">
+	</insert>
+	
+	<select id="getPost" parameterType="int" resultType="PostVO">
+		SELECT  B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
+			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
+    		WHERE A.BOARD_ID = #{boardId} ORDER BY B.POST_ID DESC
+	</select>
+</mapper>
