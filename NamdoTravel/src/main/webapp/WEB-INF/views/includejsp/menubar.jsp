@@ -13,7 +13,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="#"
+			<a class="navbar-brand" href="<c:url value='/home'/>"
 				style="text-shadow: 0.1em 0.1em 0.15em #7fffd4">Travel to JN</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -31,7 +31,7 @@
 					<li class="nav-item"><a class="nav-link" href="#">관광 안내소</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">리뷰/신규
 							여행지추천</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="<c:url value='/board/1'/>">자유게시판</a></li>
 					<sec:authorize access="isAuthenticated()">
 						<li class="nav-item dropdown no-arrow mx-1"><a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
