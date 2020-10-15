@@ -29,4 +29,8 @@ public class WeatherController {
 		model.addAttribute("weathers", weathers );
 		return "weather";
 	}
+	@RequestMapping(value = "/allpage", method = RequestMethod.GET)
+	public String allpage(Model model) {
+		return "allpage";
+	}
 }

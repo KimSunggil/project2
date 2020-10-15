@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
    <%@ page import="java.util.*" %>
 <!DOCTYPE html>
@@ -7,14 +7,11 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-  <!-- Bootstrap core CSS -->
-  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="./resources/css/small-business.css" rel="stylesheet">
 	
 </head>
 <body>
 <jsp:include page="includejsp/menubar.jsp"></jsp:include>
 </body>
+  <script src="./resources/vendor/jquery/jquery.min.js"></script>
+  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
