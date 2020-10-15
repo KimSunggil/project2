@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.project.app.festival">
+		
+		<select id="festivalList" resultType="hashmap" parameterType="hashmap">
+			SELECT festival_nm, start_dt, end_dt, festival_content, location_nm_address,festival_p_num, festival_hp
+			FROM NAMDODB.jeonnamfestival
+		</select>
+	
+		
+</mapper>
