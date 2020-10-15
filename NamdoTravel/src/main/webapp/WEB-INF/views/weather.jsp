@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 
   <!-- Custom styles for this template -->
   <link href="./resources/css/small-business.css" rel="stylesheet">
-
+	
 </head>
 <body>
 <jsp:include page="includejsp/menubar.jsp"></jsp:include>

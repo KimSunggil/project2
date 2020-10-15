@@ -4578,6 +4578,9 @@
         <extension>zmm</extension>
         <mime-type>application/vnd.handheld-entertainment+xml</mime-type>
     </mime-mapping>
+    <listener>
+        <listener-class>com.project.app.jsondb.Control</listener-class>
+    </listener>
 
   <!-- ==================== Default Welcome File List ===================== -->
   <!-- When a request URI refers to a directory, the default servlet looks  -->

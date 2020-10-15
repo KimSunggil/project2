@@ -16,6 +16,6 @@ public class Control {
 		VillageWeather vw = vwJson.getVillageWeather(baseDate, baseTime, x, y);
 		// 데이터베이스에 접속에 관련하는객체를 만들고 데이터베이스에 입력
 		VillageWeatherDAO vwDao = new VillageWeatherDAO();
-		vwDao.intertVillageWeather(3, vw);
+		vwDao.intertVillageWeather(6, vw);
 	}
 }
