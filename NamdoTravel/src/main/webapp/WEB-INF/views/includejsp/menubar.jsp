@@ -49,7 +49,7 @@
 						<li class="nav-item dropdown no-arrow mx-1"><a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
+								<span class="badge badge-danger badge-counter"><img/></span>
 						</a> <!-- Dropdown - Alerts -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -106,7 +106,8 @@
 				<sec:authorize access="isAuthenticated()">
             <li class="nav-item dropdown no-arrow" style="list-style: none;">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span>Valerie Luna</span>
+                <sec:authentication property="principal.username" var="user_id" />
+                    <span id="user_id" class="mr-2 d-none d-lg-inline text-gray-600 small">${user_id}</span>
                 <img class="img-profile rounded-circle" src="./resources/img/avatar.png" style="height:30px;widht:30px;">
               </a>
               <!-- Dropdown - User Information -->
@@ -132,7 +133,6 @@
               </div>
             </li>
 				</sec:authorize>
-
 			</div>
 		</div>
 	</nav>

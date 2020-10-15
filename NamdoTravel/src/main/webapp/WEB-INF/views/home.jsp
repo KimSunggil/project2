@@ -105,6 +105,9 @@
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary btn-sm">More Info</a>
+            	<sec:authorize property="principal.username" var="user_id">
+                    <div id="user_id">안녕하세요. ${userid }</div>
+                    </sec:authorize>
           </div>
         </div>
       </div>
