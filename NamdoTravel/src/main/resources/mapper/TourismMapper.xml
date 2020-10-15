@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.project.app.tour">
+		
+		<select id="tourList" resultType="hashmap" parameterType="hashmap">
+			select area, tourism_nm, location_nm_address, parking, tourism_hp
+			from  NAMDODB.tourism where sortation like '%관광%'
+		</select>
+		
+		<select id="roomList" resultType="hashmap" parameterType="hashmap">
+			select area, tourism_nm, location_nm_address, parking, tourism_hp
+			from  NAMDODB.tourism where sortation like '%숙박%'
+		</select>
+		
+		<select id="foodList" resultType="hashmap" parameterType="hashmap">
+			select area, tourism_nm, location_nm_address, parking, tourism_hp
+			from  NAMDODB.tourism where sortation like '%먹거리%'
+		</select>
+	
+	
+	
+		
+</mapper>
