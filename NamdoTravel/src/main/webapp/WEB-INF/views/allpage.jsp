@@ -11,6 +11,8 @@
 <body>
 <jsp:include page="includejsp/menubar.jsp"></jsp:include>
 <!-- 이 아래로 내용 넣으시면 됩니다. -->
+
+<jsp:include page="includejsp/footer.jsp"></jsp:include>
   <script src="./resources/vendor/jquery/jquery.min.js"></script>
   <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

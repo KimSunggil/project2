@@ -7,8 +7,22 @@
 <head>
   <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="./resources/css/small-business.css" rel="stylesheet">
+  <link href="./resources/sb2/css/sb-admin-2.min.css" rel="stylesheet">
 <meta charset="utf-8">
 <title>Insert title here</title>
+<style>
+	.logout-form{
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+
+ .logoutbtn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    }
+</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -28,7 +42,6 @@
 							관광지</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">여행지역 날씨</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">관광 안내소</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">리뷰/신규
 							여행지추천</a></li>
 					<li class="nav-item"><a class="nav-link" href="<c:url value='/board/1'/>">자유게시판</a></li>
@@ -91,11 +104,33 @@
 				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
-					<form action=<c:url value='/logout' /> method="GET">
+            <li class="nav-item dropdown no-arrow" style="list-style: none;">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="./resources/img/avatar.png" style="height:30px;widht:30px;">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+					<form action=<c:url value='/logout' /> method="GET" class="logout-form">
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
-						<button type="submit">LOGOUT</button>
+						<button type="submit" class="logoutbtn">LOGOUT</button>
 					</form>
+              </div>
+            </li>
 				</sec:authorize>
 
 			</div>
