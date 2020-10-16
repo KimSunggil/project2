@@ -36,10 +36,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="#">지역별 추천
-							숙박</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">지역별 추천
-							관광지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/room">숙박 업소</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/tour">관광지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/festival">지역별 축제</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">여행지역 날씨</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">리뷰/신규
