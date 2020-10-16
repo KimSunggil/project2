@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scal-1">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.css' />" >
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />">
+
 <style>
 	.margin100px{
 		margin:100px 20px;
@@ -53,6 +55,7 @@
 							<td><c:out value="${post.hits}"></c:out></td>
 							<td><c:out value="${post.like}"></c:out></td>
 							<td><c:out value="${post.dislike}"></c:out></td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -62,7 +65,7 @@
 		<hr/>
 		
 		<article class="container">
-			<a class="btn btn-primary float-right"> 글쓰기</a>
+			<a href="<c:url value='/board/write${boardIds}'/>" class="btn btn-primary float-right"> 글쓰기</a>
 			<nav>
 				<ul class="pagination">
 					<li class="page-item disabled"><a class="page-link" href="#"

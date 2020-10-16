@@ -13,10 +13,10 @@
   <title>Travel to JN</title>
   
   <!-- Bootstrap core CSS -->
-  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+	
   <!-- Custom styles for this template -->
-  <link href="./resources/css/small-business.css" rel="stylesheet">
+  <link href="<c:url value='/resources/css/small-business.css'/>" rel="stylesheet">
 
 </head>
 
@@ -122,8 +122,8 @@
   <!-- Footer -->
 	<jsp:include page="includejsp/footer.jsp"></jsp:include>
   <!-- Bootstrap core JavaScript -->
-  <script src="./resources/vendor/jquery/jquery.min.js"></script>
-  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
+  <script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
 
 </body>
 

@@ -1,15 +1,16 @@
 package com.project.app;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.project.app.vo.AccountVO;
 
 /**
  * Handles requests for the application home page.
@@ -26,5 +27,14 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);	
 		return "home";
+	}
+	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public String test(Model model, @AuthenticationPrincipal AccountVO acc) {
+		String nick = acc.getNickName();
+		System.out.println(acc);
+		System.out.println(nick);
+		model.addAttribute("result",nick);
+		return "testroom";
 	}
 }
