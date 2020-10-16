@@ -35,7 +35,15 @@ public class BoardController {
 		model.addAttribute("posts",post);
 		
 		return "board";
-
 	}
-
+	
+	@RequestMapping(value="/view", method=RequestMethod.GET)
+	public String view(Model model) {
+		return "view";
+	}
+	
+	@RequestMapping(value="/write", method=RequestMethod.GET)
+	public String write(Model model) {
+		return "write";
+	}
 }
