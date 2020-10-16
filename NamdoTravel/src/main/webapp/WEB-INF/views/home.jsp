@@ -17,7 +17,21 @@
 
   <!-- Custom styles for this template -->
   <link href="./resources/css/small-business.css" rel="stylesheet">
-
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+	document.getElementById("ajaxBtn").addEventListener("click", function(){
+		var httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = function(){
+			if ( httpRequest.readyState == XMLHttpRequest.DONE ){
+				if ( httpRequest.status == '200' ){
+					var result = JSON.parse(httpRequest.responseText);
+					document.getElementById("container").innerText = `\${result.result.CUST_ID}\n
+						\${result.result.CUST_NM}\n
+						\${result.result.TOT_AMT}`;
+				}
+			}
+		};
+</script>
 </head>
 
 <body>
@@ -47,7 +61,11 @@
     <div class="card text-white bg-secondary my-5 py-4 text-center">
       <div class="card-body">
 	      <jsp:include page="includejsp/map.jsp"></jsp:include>
-	      <a class="btn btn-primary" onclick="mappen(34.9506986 , 127.4872429)">순천시</a>
+	      <form action="weather" method="post">
+	      <input type="text" id="suncheon" name="suncheon" value="순천">
+	      <input  class="btn btn-primary" type="button" value="순천시" id="ajaxBtn">
+	      </form>
+	      
 	      <a class="btn btn-primary" onclick="mappen(34.760374 , 127.662222)">여수시</a>
 	      <a class="btn btn-primary" href="weather">목포시</a>
 	      <a class="btn btn-primary" href="#">나주시</a>
