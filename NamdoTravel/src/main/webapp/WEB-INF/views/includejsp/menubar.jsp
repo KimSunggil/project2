@@ -5,9 +5,9 @@
 	uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
-  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./resources/css/small-business.css" rel="stylesheet">
-  <link href="./resources/sb2/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+  <link href="<c:url value='/resources/css/small-business.css'/>" rel="stylesheet">
+  <link href="<c:url value='/resources/sb2/css/sb-admin-2.min.css'/>" rel="stylesheet">
 <meta charset="utf-8">
 <title>Insert title here</title>
 <style>
@@ -22,6 +22,7 @@
     border: none;
     cursor: pointer;
     }
+    
 </style>
 </head>
 <body>
@@ -107,7 +108,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <sec:authentication property="principal.username" var="user_id" />
                     <span id="user_id" class="mr-2 d-none d-lg-inline text-gray-600 small">${user_id}</span>
-                <img class="img-profile rounded-circle" src="./resources/img/avatar.png" style="height:30px;widht:30px;">
+                <img class="img-profile rounded-circle" src="<c:url value='/resources/img/avatar.png'/>" style="height:30px;widht:30px;">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
