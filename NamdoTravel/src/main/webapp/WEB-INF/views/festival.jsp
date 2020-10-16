@@ -19,23 +19,22 @@
 </head>
 
 <style>
-	
-	table {
-	  border-collapse: collapse;
-	  width: 100%;
-	  height: 800px;
-	  table-layout:fixed; 
-	}
-	
-	th, td {
-	  text-align: left;
-	  padding: 8px;
-	}
+table {
+	border-collapse: collapse;
+}
 
-	tr:nth-child(even) {background-color: #f2f2f2;}
+th, td {
+	text-align: center;
+}
+
+td {
 	
-	
-	
+	font-size: 13px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 </style>
 
 <body>
@@ -58,12 +57,13 @@
     </div>
     <!-- /.row -->
 
-	<div class="fst_table">
+	<div style=" height: 500px; overflow: auto">
 	   <table>
 	   	<thead>
-	   		<tr>
+	   		<tr style="text-align: center;">
+		      	<th>지역</th>
 		      	<th>축제정보</th>
-		      	<th colspan="2">축제기간</th>
+		      	<th>축제기간</th>
 		      	<th>행사 내용</th>
 		      	<th>행사장 위치</th>
 		      	<th>전화번호</th>
@@ -74,13 +74,13 @@
       	<tbody>    		
 			<c:forEach items="${festival}" var="festival">
 				<tr>
-					<td>${festival.festival_nm}</td>
-					<td>${festival.start_dt}</td>
-					<td>${festival.end_dt}</td>
-					<td>${festival.festival_content}</td>
-					<td>${festival.location_nm_address}</td>
-					<td>${festival.festival_p_num}</td>
-					<td>${festival.festival_hp}</td>
+					<td style="width:100px;">${festival.area}</td>
+					<td style="width:400px;">${festival.festival_nm}</td>
+					<td style="width:200px;">${festival.start_dt} <br> ~ ${festival.end_dt}</td>
+					<td style="width:400px;">${festival.festival_content}</td>
+					<td style="width:400px;">${festival.location_nm_address}</td>
+					<td style="width:200px;">${festival.festival_p_num}</td>
+					<td align="center" onClick="location.href='${festival.festival_hp}'" style="cursor:hand;">${festival.festival_hp}</td>
 				</tr>
 			</c:forEach>
    		</tbody>

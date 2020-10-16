@@ -19,25 +19,23 @@
 </head>
 
 <style>
-	
-	table {
-	  border-collapse: collapse;
-	  width: 100%;
-	  height: 800px;
-	  table-layout:fixed; 
-	}
-	
-	th, td {
-	  text-align: left;
-	  padding: 8px;
-	}
+table {
+	border-collapse: collapse;
+}
 
-	tr:nth-child(even) {background-color: #f2f2f2;}
-	
-	
-	
+th, td {
+	text-align: center;
+}
+
+td {
+	word-break: break-all;
+	font-size: 13px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 </style>
-
 <body>
 
   <!-- Navigation -->
@@ -58,10 +56,10 @@
     </div>
     <!-- /.row -->
 
-	<div>
+	<div style="width: 100%; height: 500px; overflow: auto">
 	   <table>
 	   	<thead>
-	   		<tr>
+	   		<tr style="text-align: center;">
 		      	<th>지역</th>
 		      	<th>식당이름</th>
 		      	<th>식당 주소</th>
@@ -73,11 +71,11 @@
       	<tbody>    		
 			<c:forEach items="${food}" var="food">
 				<tr>
-					<td>${food.area}</td>
+					<td style="width: 100px;">${food.area}</td>
 					<td>${food.tourism_nm}</td>
 					<td>${food.location_nm_address}</td>
-					<td>${food.parking}</td>
-					<td>${food.tourism_hp}</td>
+					<td style="width: 100px;">${food.parking}</td>
+					<td style="width: 200px;" align="center" onClick="location.href='${food.tourism_hp}'" style="cursor:hand;">${food.tourism_hp}</td>
 				</tr>
 			</c:forEach>
    		</tbody>

@@ -3,7 +3,7 @@
 <mapper namespace="com.project.app.festival">
 		
 		<select id="festivalList" resultType="hashmap" parameterType="hashmap">
-			SELECT festival_nm, start_dt, end_dt, festival_content, location_nm_address,festival_p_num, festival_hp
+			SELECT area, festival_nm, start_dt, end_dt, festival_content, location_nm_address,festival_p_num, festival_hp
 			FROM NAMDODB.jeonnamfestival
 		</select>
 	

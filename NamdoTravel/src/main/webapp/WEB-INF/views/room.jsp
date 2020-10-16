@@ -21,19 +21,17 @@
 </head>
 
 <style>
-.roomList {
-	
-}
-
 table {
 	border-collapse: collapse;
-	width: 100%;
-	table-layout: fixed;
 }
 
 th, td {
-	text-align: left;
-	padding: 8px;
+	text-align: center;
+}
+
+td {
+	word-break: break-all;
+	font-size: 13px;
 }
 
 tr:nth-child(even) {
@@ -54,7 +52,7 @@ tr:nth-child(even) {
 
 			<!-- /.col-lg-8 -->
 			<div class="col-lg-5">
-				<h1 class="fst_title">전라남도 숙박시설정보</h1>
+				<h1>전라남도 숙박시설정보</h1>
 			</div>
 			<!-- /.col-md-4 -->
 
@@ -111,10 +109,10 @@ tr:nth-child(even) {
 
 		<!-- /.row -->
 
-		<div class="roomList">
+		<div style="width: 100%; height: 500px; overflow: auto">
 			<table>
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th>지역</th>
 						<th>숙소이름</th>
 						<th>숙소 주소</th>
@@ -126,11 +124,11 @@ tr:nth-child(even) {
 				<tbody>
 					<c:forEach items="${room}" var="room">
 						<tr>
-							<td>${room.area}</td>
+							<td style="width: 100px;">${room.area}</td>
 							<td>${room.tourism_nm}</td>
 							<td>${room.location_nm_address}</td>
-							<td>${room.parking}</td>
-							<td>${room.tourism_hp}</td>
+							<td style="width: 100px;">${room.parking}</td>
+							<td style="width: 200px; cursor:hand;" align="center" onClick="location.href='${room.tourism_hp}'">${room.tourism_hp}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
