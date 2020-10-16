@@ -1,6 +1,7 @@
 package com.project.app.vo;
 
 public class PostVO {
+	private int boardId;
 	private int postId;
 	private String postNm;
 	private String userNm;
@@ -9,6 +10,12 @@ public class PostVO {
 	private int like;
 	private int dislike;
 	
+	public int getBoardId() {
+		return boardId;
+	}
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
+	}
 	public int getPostId() {
 		return postId;
 	}

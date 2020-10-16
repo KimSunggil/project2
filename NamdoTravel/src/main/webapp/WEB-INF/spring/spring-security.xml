@@ -7,7 +7,7 @@
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/home/**" access="permitAll" />
-		<intercept-url pattern="/customers/**" access="hasAnyRole('USER, ADMIN')" />
+		<intercept-url pattern="/board/write**" access="isAuthenticated()" />
 		<intercept-url pattern="/admin*" access="hasRole('ADMIN')" />
 
 		<form-login login-page="/auth/login" default-target-url="/home"

@@ -13,25 +13,10 @@
   <title>Travel to JN</title>
   
   <!-- Bootstrap core CSS -->
-  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+	
   <!-- Custom styles for this template -->
   <link href="./resources/css/small-business.css" rel="stylesheet">
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-	document.getElementById("ajaxBtn").addEventListener("click", function(){
-		var httpRequest = new XMLHttpRequest();
-		httpRequest.onreadystatechange = function(){
-			if ( httpRequest.readyState == XMLHttpRequest.DONE ){
-				if ( httpRequest.status == '200' ){
-					var result = JSON.parse(httpRequest.responseText);
-					document.getElementById("container").innerText = `\${result.result.CUST_ID}\n
-						\${result.result.CUST_NM}\n
-						\${result.result.TOT_AMT}`;
-				}
-			}
-		};
-</script>
 </head>
 
 <body>
@@ -140,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function(){
   <!-- Footer -->
 	<jsp:include page="includejsp/footer.jsp"></jsp:include>
   <!-- Bootstrap core JavaScript -->
-  <script src="./resources/vendor/jquery/jquery.min.js"></script>
-  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
+  <script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
 
 </body>
 

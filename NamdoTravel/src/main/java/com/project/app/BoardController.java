@@ -33,6 +33,7 @@ public class BoardController {
 	public String board(@PathVariable("boardId") int boardId, Model model) {
 		List<PostVO> post = boardService.getPost(boardId);
 		model.addAttribute("posts",post);
+		model.addAttribute("boardIds",boardId);
 		
 		return "board";
 	}
@@ -42,8 +43,15 @@ public class BoardController {
 		return "view";
 	}
 	
-	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String write(Model model) {
+	@RequestMapping(value="/write{boardId}", method=RequestMethod.GET)
+	public String write(@PathVariable("boardId") int boardId, Model model) {
+		
 		return "write";
+	}
+	
+	@RequestMapping(value="/write{boardId}", method=RequestMethod.POST)
+	public String uploadPost(@PathVariable("boardId") int boardId, Model model) {
+		
+		return "redirect: /{boardId}";
 	}
 }
