@@ -47,9 +47,8 @@
 	
 	<section class="container">
 		<article>
-			<form action="#" method="post">
-				<input type="hidden" name="boardId" value="1">
-				<input type="hidden" name="postId" value='1'>
+			<form action="<c:url value='/board/write'/>" method="post">
+				<input type="hidden" name="boardId" value="${boardIds}">
 				<sec:authentication property="principal.username" var="user_id" />
 				<input type="hidden" name="userId" value="${user_id}">
 
