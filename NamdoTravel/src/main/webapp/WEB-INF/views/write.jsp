@@ -37,6 +37,10 @@
 	.margin100px{
 		margin:100px 20px;
 	}
+	.whiteBoard{
+		background-color:white;
+		padding:40px;
+	}
 </style>
 
 <title>Insert title here</title>
@@ -45,7 +49,7 @@
 	
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	
-	<section class="container">
+	<section class="container whiteBoard">
 		<article>
 			<form action="<c:url value='/board/write'/>" method="post">
 				<input type="hidden" name="boardId" value="${boardIds}">
@@ -64,6 +68,7 @@
 				<input type="submit" class="btn btn-primary float-right">
 			</form>
 		</article>
+		<br>
 	</section>
 
 </body>

@@ -2,9 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.project.app.board">
 		
-	<insert id="uploadPost" parameterType="hashMap">
-	</insert>
-	
 	<select id="getPost" parameterType="int" resultType="PostVO">
 		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
 			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
@@ -12,5 +9,11 @@
 	</select>
 	
 	<insert id="addPost" parameterType="AddPostVO">
+		INSERT INTO NAMDODB.POST( POST_ID, BOARD_ID, USER_ID, USER_NM, POST_NM, POST_DATE, CATEGORY)
+			VALUES ((SELECT MAX(A.POST_ID)+1 FROM NAMDODB.POST A), #{boardId}, #{userId}, (SELECT A.NICKNAME FROM NAMDODB.USER A WHERE A.USER_ID = #{userId}), #{postNm}, SYSDATE(), '자유')
+	</insert>
+	<insert id="addPostContent" parameterType="AddPostVO">
+		INSERT INTO NAMDODB.POST_CONTENT(POST_ID, CONTENT)
+		    VALUES ((SELECT MAX(A.POST_ID)+1 FROM NAMDODB.POST_CONTENT A), #{postContent})
 	</insert>
 </mapper>

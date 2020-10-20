@@ -55,6 +55,6 @@ public class BoardController {
 	public String uploadPost(@ModelAttribute AddPostVO addPost, Model model) {
 		boardService.addPost(addPost);
 		
-		return "redirect: /{boardId}";
+		return "redirect: /" + addPost.getBoardId();
 	}
 }
