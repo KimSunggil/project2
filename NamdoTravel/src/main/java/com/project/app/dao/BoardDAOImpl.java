@@ -28,6 +28,12 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("com.project.app.board.addPost", addPost);
 		sqlSession.insert("com.project.app.board.addPostContent", addPost);
 	}
+
+	@Override
+	public String getPostContent(int postId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.project.app.board.getPostContent", postId);
+	}
 	
 	
 

@@ -28,4 +28,10 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.addPost(addPost);
 	}
 
+	@Override
+	public String getPostContent(int postId) {
+		// TODO Auto-generated method stub
+		return boardDao.getPostContent(postId);
+	}
+
 }

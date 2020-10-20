@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.project.app.board">
+	
+	<!-- 		select		 -->
 		
 	<select id="getPost" parameterType="int" resultType="PostVO">
 		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
 			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
     		WHERE A.BOARD_ID = #{boardId} ORDER BY B.POST_ID DESC
 	</select>
+	
+	<select id="getPostContent" parameterType="int" resultType="String">
+		SELECT A.CONTENT
+			FROM NAMDODB.POST_CONTENT A
+			WHERE A.POST_ID = #{postId}
+	</select>
+	
+	<select id="getReply" parameterType="int" resultType="ReplyVO">
+		SELECT A.REPLY_ID, A.SUPER_REPLY, A.USER_ID, B.NICKNAME, A.CONTENT, A.REPLY_DATE
+			FROM NAMDODB.REPLY A INNER JOIN NAMDODB.USER B ON A.USER_ID = B.USER_ID
+			WHERE A.POST_ID = #{postId}
+	</select>
+	
+	<!-- 		insert		 -->
 	
 	<insert id="addPost" parameterType="AddPostVO">
 		INSERT INTO NAMDODB.POST( POST_ID, BOARD_ID, USER_ID, USER_NM, POST_NM, POST_DATE, CATEGORY)

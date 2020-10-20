@@ -7,5 +7,6 @@ import com.project.app.vo.PostVO;
 
 public interface BoardService {
 	List<PostVO> getPost(int boardId);
+	String getPostContent(int postId);
 	void addPost(AddPostVO addPost);
 }
