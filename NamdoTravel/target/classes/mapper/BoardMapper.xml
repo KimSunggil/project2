@@ -38,4 +38,24 @@
 		INSERT INTO NAMDODB.POST_CONTENT(POST_ID, CONTENT)
 		    VALUES ((SELECT MAX(A.POST_ID)+1 FROM NAMDODB.POST_CONTENT A), #{postContent})
 	</insert>
+	
+	<!-- 		update		 -->
+	<update id="modifyPost" parameterType="AddPostVO">
+		UPDATE NAMDODB.POST
+			SET POST_NM = #{postNm}
+			WHERE POST_ID = #{postId}
+	</update>
+	<update id="modifyPostContent" parameterType="AddPostVO">
+		UPDATE NAMDODB.POST_CONTENT
+			SET CONTENT = #{postContent}
+			WHERE POST_ID = #{postId}
+	</update>
+	
+	<!-- 		delete		 -->
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM NAMDODB.POST WHERE POST_ID = #{postId}
+	</delete>
+	<delete id="deletePostContent" parameterType="int">
+		DELETE FROM NAMDODB.POST_CONTENT WHERE POST_ID = #{postId}
+	</delete>
 </mapper>

@@ -24,6 +24,11 @@
 
 <script>
 	document.addEventListener("DOMContentLoaded",function(){
+		
+		document.getElementById("btnDelete").addEventListener("click", function(){
+			document.getElementById("tmpForm").submit();	
+		});
+		
 		document.getElementById("contentDiv").innerHTML = `${postContents}`;
 	})
 </script>
@@ -54,13 +59,38 @@
 			</div>
 
 			<div style="margin-top : 20px">
-				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='<c:url value='/write_post${posts.postId}'/> ">수정</button>
+				
+				<form id='tmpForm' action="<c:url value='/deletePost${posts.boardId}_${posts.postId}'/>" method="post">
 				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
+				</form>
+				
+				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='<c:url value='/${boardId}'/> ">목록</button>
 			</div>
 		</article>
 		
 		<article>
+			<section class="reply-list">
+				<div>
+					<table>
+						<thead>
+						</thead>
+						
+						<tbody>
+							<tr>
+								<td> 아이디 </td>
+								<td> 난죽경없(난 죽음을 경험한 적이 없네), 언제든지, 가 짐 어서 </td>
+								<td> date </td>
+								<td> 수정 </td>
+								<td> 삭제 </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+			
+			<section class="post-reply">
+			</section>
 		</article>
 		
 		<hr/>

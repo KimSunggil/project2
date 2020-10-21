@@ -40,6 +40,20 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.project.app.board.getPostContent", postId);
 	}
+
+	@Override
+	public void modifyPost(AddPostVO addPost) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.modifyPost",addPost);
+		sqlSession.update("com.project.app.board.modifyPostContent",addPost);
+	}
+
+	@Override
+	public void deletePost(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("com.project.app.board.deletePost",postId);
+		sqlSession.delete("com.project.app.board.deletePostContent",postId);
+	}
 	
 	
 

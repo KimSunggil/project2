@@ -63,7 +63,9 @@
 					<input type="text" name="postNm" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
 				</div>
 				<br>
-				<textarea id="summernote" name="postContent"> </textarea>
+				<textarea id="summernote" name="postContent">
+				<c:out value="${postContents}"/>
+				 </textarea>
 				<br>
 				<input type="submit" class="btn btn-primary float-right">
 			</form>

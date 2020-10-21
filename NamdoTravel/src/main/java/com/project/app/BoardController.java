@@ -32,6 +32,7 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 		
+	// 게시판 게시글 목록
 	@RequestMapping(value = "/{boardId}", method = RequestMethod.GET)
 	public String board(@PathVariable("boardId") int boardId, Model model) {
 		List<PostVO> post = boardService.getPostList(boardId);
@@ -41,6 +42,7 @@ public class BoardController {
 		return "board";
 	}
 	
+	// 게시글 본문 화면
 	@RequestMapping(value="/view{postId}", method=RequestMethod.GET)
 	public String view(@PathVariable("postId") int postId, Model model) {
 		PostVO post = boardService.getPost(postId);
@@ -51,12 +53,14 @@ public class BoardController {
 		return "view";
 	}
 	
+	// 게시글 작성 화면 요청
 	@RequestMapping(value="/write{boardId}", method=RequestMethod.GET)
 	public String write(@PathVariable("boardId") int boardId, Model model) {
 		model.addAttribute("boardIds",boardId);
 		return "write";
 	}
 	
+	// 게시글 내용 업로드 요청
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String uploadPost(@ModelAttribute AddPostVO addPost, Model model) {
 		boardService.addPost(addPost);
@@ -64,14 +68,32 @@ public class BoardController {
 		return "redirect: /" + addPost.getBoardId();
 	}
 	
-	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String view(Model model) {
+	// 게시글 수정 화면
+	@RequestMapping(value="/write_post{postId}", method=RequestMethod.GET)
+	public String modifyWrite(@PathVariable("postId") int postId, Model model) {
+		PostVO post = boardService.getPost(postId);
+		String postContent = boardService.getPostContent(postId);
 		
-		String postContent = boardService.getPostContent(1);
-		System.out.println(postContent);
-		
-		//model.addAttribute("posts",post);
+		model.addAttribute("posts",post);
 		model.addAttribute("postContents",postContent);
-		return "view";
+		model.addAttribute("boardIds",postId);
+		return "write";
+	}
+	
+	// 게시글 내용 수정 요청
+	@RequestMapping(value="/write", method=RequestMethod.POST)
+	public String uploadModifyPost(@ModelAttribute AddPostVO addPost, Model model) {
+		boardService.modifyPost(addPost);
+		
+		return "redirect: /" + addPost.getBoardId();
+	}
+	
+	// 게시글 삭제 요청
+	@RequestMapping(value="/deletePost{boardId}_{postId}", method=RequestMethod.POST)
+	public String deletePost(@PathVariable("boardId") int boardId, @PathVariable("postId") int postId, Model model)
+	{
+		boardService.deletePost(postId);
+		
+		return "redirect: /" + boardId;
 	}
 }

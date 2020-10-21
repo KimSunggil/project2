@@ -40,4 +40,16 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.getPostContent(postId);
 	}
 
+	@Override
+	public void modifyPost(AddPostVO addPost) {
+		// TODO Auto-generated method stub
+		boardDao.modifyPost(addPost);
+	}
+
+	@Override
+	public void deletePost(int postId) {
+		// TODO Auto-generated method stub
+		boardDao.deletePost(postId);
+	}
+
 }
