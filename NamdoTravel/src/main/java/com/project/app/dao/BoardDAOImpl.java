@@ -17,9 +17,15 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<PostVO> getPost(int boardId) {
+	public List<PostVO> getPostList(int boardId) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.project.app.board.getPost", boardId);
+		return sqlSession.selectList("com.project.app.board.getPostList", boardId);
+	}
+	
+	@Override
+	public PostVO getPost(int postId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.project.app.board.getPost", postId);
 	}
 
 	@Override

@@ -17,9 +17,15 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDao;
 	
 	@Override
-	public List<PostVO> getPost(int boardId) {
+	public List<PostVO> getPostList(int boardId) {
 		// TODO Auto-generated method stub
-		return boardDao.getPost(boardId);
+		return boardDao.getPostList(boardId);
+	}
+	
+	@Override
+	public PostVO getPost(int postId) {
+		// TODO Auto-generated method stub
+		return boardDao.getPost(postId);
 	}
 
 	@Override

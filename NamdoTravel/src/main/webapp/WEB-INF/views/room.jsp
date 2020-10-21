@@ -81,7 +81,7 @@ tr:nth-child(even) {
 				var map = new kakao.maps.Map(mapContainer, mapOption);
 				
 				var roomAddress = "${room}";
-				 console.log(roomAddress);
+				 console.log(roomAddress[location_nm_address]);
 				
 							
 
@@ -89,8 +89,7 @@ tr:nth-child(even) {
 				var geocoder = new kakao.maps.services.Geocoder();
 
 				// 주소로 좌표를 검색합니다
-				geocoder
-						.addressSearch(
+				geocoder.addressSearch(
 								'제주특별자치도 제주시 첨단로 242',
 								function(result, status) {
 

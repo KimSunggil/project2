@@ -4,10 +4,16 @@
 	
 	<!-- 		select		 -->
 		
-	<select id="getPost" parameterType="int" resultType="PostVO">
+	<select id="getPostList" parameterType="int" resultType="PostVO">
 		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
 			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
     		WHERE A.BOARD_ID = #{boardId} ORDER BY B.POST_ID DESC
+	</select>
+	
+	<select id="getPost" parameterType="int" resultType="PostVO">
+		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
+			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
+    		WHERE B.POST_ID = #{postId} ORDER BY B.POST_ID DESC
 	</select>
 	
 	<select id="getPostContent" parameterType="int" resultType="String">

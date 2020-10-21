@@ -6,7 +6,9 @@ import com.project.app.vo.AddPostVO;
 import com.project.app.vo.PostVO;
 
 public interface BoardDAO {
-	public List<PostVO> getPost(int boardId);
+	public List<PostVO> getPostList(int boardId);
+	public PostVO getPost(int postId);
+
 	public String getPostContent(int postId);
 	public void addPost(AddPostVO addPost);
 }

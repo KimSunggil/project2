@@ -10,16 +10,23 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.css' />" >
 <style>
 	.margin100px{
-		margin:100px 20px;
+		margin:100px 40px;
 	}
 	
 	.board_info_box{
+		
 	}
 	
-	.board_date{
+	.sub-info-font{
 		font-size:10px;
 	}
 </style>
+
+<script>
+	document.addEventListener("DOMContentLoaded",function(){
+		document.getElementById("contentDiv").innerHTML = `${postContents}`;
+	})
+</script>
 
 <title>Insert title here</title>
 
@@ -30,15 +37,18 @@
 	
 	<section class="container">
 		<article>
-			<h2>Title</h2>
+			<h2><c:out value="${posts.postNm}"/></h2>
 
 			<div class="bg-white rounded shadow-sm">
 				<div class="board_info_box float-right">
-					<span class="board_hits">조회수 : </span><br>
-					<span class="board_author">작성자 : </span><span class="board_date">작성일 : 2020-10-16 02:12</span>
+					<span class="board_hits sub-info-font">
+						조회수 : <c:out value="${posts.hits}"/>/
+						작성자 : <c:out value="${posts.userNm}"/>/
+						작성일 : <c:out value="${posts.postDate}"/>
+					</span>
 				</div>
 				<br>
-				<div id="contentDiv" class="board_content float-none">Content
+				<div id="contentDiv" class="board_content float-none">
 					<c:out value="${postContents}"></c:out>
 				</div>
 			</div>
@@ -50,7 +60,7 @@
 			</div>
 		</article>
 		
-		<article label="reply">
+		<article>
 		</article>
 		
 		<hr/>
