@@ -58,14 +58,14 @@
 				</div>
 			</div>
 
-			<div style="margin-top : 20px">
-				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='<c:url value='/write_post${posts.postId}'/> ">수정</button>
+			<div style="margin-top : 20px;">
+				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onClick="window.location.href='<c:url value='/board/write_post${posts.postId}'/> ">수정</button>
 				
-				<form id='tmpForm' action="<c:url value='/deletePost${posts.boardId}_${posts.postId}'/>" method="post">
+				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/deletePost${posts.boardId}_${posts.postId}'/>" method="POST">
 				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</form>
 				
-				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='<c:url value='/${boardId}'/> ">목록</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnList" onClick="window.location.href = /app/board/${boardId}">목록</button>
 			</div>
 		</article>
 		
