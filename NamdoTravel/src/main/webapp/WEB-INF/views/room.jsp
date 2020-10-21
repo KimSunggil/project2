@@ -80,10 +80,8 @@ tr:nth-child(even) {
 				// 지도를 생성합니다    
 				var map = new kakao.maps.Map(mapContainer, mapOption);
 				
-				var roomAddress = "${room}";
-				 console.log(roomAddress[location_nm_address]);
-				
-							
+				var roomAddress = JSON.parse('${room}');
+				console.log(roomAddress[0].location_nm_address);
 
 				// 주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();

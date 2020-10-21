@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.app.service.TourService;
 import com.project.app.vo.TourVO;
 
+import net.sf.json.JSONArray;
+
 /**
  * Handles requests for the application tour page.
  */
@@ -41,7 +43,9 @@ public class TourController {
 	@RequestMapping(value = "/room", method = RequestMethod.GET)
 	public String Room(Model model) {
 		List<TourVO> room = tourService.roomList();
-		model.addAttribute("room", room);
+		JSONArray jsonArray = new JSONArray();
+
+		model.addAttribute("room", jsonArray.fromObject(room));
 		return "room";
 	}
 	
