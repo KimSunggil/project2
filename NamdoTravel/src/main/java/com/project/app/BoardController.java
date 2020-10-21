@@ -81,7 +81,7 @@ public class BoardController {
 	}
 	
 	// 게시글 내용 수정 요청
-	@RequestMapping(value="/write", method=RequestMethod.POST)
+	@RequestMapping(value="/write_post{postId}", method=RequestMethod.POST)
 	public String uploadModifyPost(@ModelAttribute AddPostVO addPost, Model model) {
 		boardService.modifyPost(addPost);
 		
