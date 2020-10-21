@@ -38,8 +38,8 @@
 					<span class="board_author">작성자 : </span><span class="board_date">작성일 : 2020-10-16 02:12</span>
 				</div>
 				<br>
-				<div class="board_content float-none">Content
-				
+				<div id="contentDiv" class="board_content float-none">Content
+					<c:out value="${postContents}"></c:out>
 				</div>
 			</div>
 

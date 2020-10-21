@@ -14,7 +14,34 @@
 	.margin100px{
 		margin:100px 20px;
 	}
+	.whiteBoard{
+		background-color:white;
+		padding:40px;
+	}
 </style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function(){
+		var postId = document.getElementById("postId");
+		
+		document.querySelector("#board > tbody").addEventListener("click",function(e){
+			var src = e.target;
+	
+			if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
+			
+			console.log(src);
+			
+			console.log(src.parentElement.firstElementChild.innerText);
+// 			custId.value = src.parentElement.firstElementChild.innerText;
+// 			custNm.value = src.parentElement.firstElementChild.nextElementSibling.innerText;
+		})	
+		
+		//when add item click
+// 		document.getElementById("addOrder").addEventListener("click",function(){
+// 			addItem("orderContainer");
+// 		});
+	});
+</script>
 
 <title>Insert title here</title>
 </head>
@@ -22,9 +49,9 @@
 	
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	
-	<section class="container">
+	<section class="container whiteBoard">
 		<article>
-			<table class="table table-hover">
+			<table id="board" class="table table-hover">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -48,22 +75,20 @@
 					</tr>
 					<c:forEach items="${posts}" var="post">
 						<tr>
-							<td><c:out value="${post.postId}"></c:out></td>
-							<td><c:out value="${post.postNm}"></c:out></td>
-							<td><c:out value="${post.userNm}"></c:out></td>
-							<td><c:out value="${post.postDate}"></c:out></td>
-							<td><c:out value="${post.hits}"></c:out></td>
-							<td><c:out value="${post.like}"></c:out></td>
-							<td><c:out value="${post.dislike}"></c:out></td>
+							<td id="postId"><c:out value="${post.postId}"></c:out></td>
+							<td id="postNm"><c:out value="${post.postNm}"></c:out></td>
+							<td id="userNm"><c:out value="${post.userNm}"></c:out></td>
+							<td id="postDate"><c:out value="${post.postDate}"></c:out></td>
+							<td id="postHit"><c:out value="${post.hits}"></c:out></td>
+							<td id="postLike"><c:out value="${post.like}"></c:out></td>
+							<td id="postDislike"><c:out value="${post.dislike}"></c:out></td>
 							
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</article>
-		
-		<hr/>
-		
+
 		<article class="container">
 			<a href="<c:url value='/board/write${boardIds}'/>" class="btn btn-primary float-right"> 글쓰기</a>
 			<nav>
