@@ -32,6 +32,8 @@
 			console.log(src);
 			
 			console.log(src.parentElement.firstElementChild.innerText);
+			
+			window.location.href = "/app/board/view"+src.parentElement.firstElementChild.innerText;
 // 			custId.value = src.parentElement.firstElementChild.innerText;
 // 			custNm.value = src.parentElement.firstElementChild.nextElementSibling.innerText;
 		})	
@@ -64,15 +66,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>postId</td>
-						<td>postNm</td>
-						<td>userId</td>
-						<td>postDate</td>
-						<td>hits</td>
-						<td>like</td>
-						<td>disLike</td>
-					</tr>
 					<c:forEach items="${posts}" var="post">
 						<tr>
 							<td id="postId"><c:out value="${post.postId}"></c:out></td>
