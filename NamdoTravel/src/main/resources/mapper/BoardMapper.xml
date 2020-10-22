@@ -40,12 +40,12 @@
 	</insert>
 	
 	<!-- 		update		 -->
-	<update id="modifyPost" parameterType="AddPostVO">
+	<update id="modifyPost" parameterType="PostVO">
 		UPDATE NAMDODB.POST
 			SET POST_NM = #{postNm}
 			WHERE POST_ID = #{postId}
 	</update>
-	<update id="modifyPostContent" parameterType="AddPostVO">
+	<update id="modifyPostContent" parameterType="PostVO">
 		UPDATE NAMDODB.POST_CONTENT
 			SET CONTENT = #{postContent}
 			WHERE POST_ID = #{postId}

@@ -51,7 +51,7 @@
 	
 	<section class="container whiteBoard">
 		<article>
-			<form action="<c:url value='/board/write'/>" method="post">
+			<form action="<c:url value='/board/write${posts.postId}'/>" method="post">
 				<input type="hidden" name="boardId" value="${boardIds}">
 				<sec:authentication property="principal.username" var="user_id" />
 				<input type="hidden" name="userId" value="${user_id}">
@@ -60,7 +60,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="inputGroup-sizing-sm"> 제목 </span>
 					</div>
-					<input type="text" name="postNm" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+					<input type="text" name="postNm" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="${posts.postNm }">
 				</div>
 				<br>
 				<textarea id="summernote" name="postContent">

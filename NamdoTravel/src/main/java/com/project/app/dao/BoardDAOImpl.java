@@ -42,7 +42,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void modifyPost(AddPostVO addPost) {
+	public void modifyPost(PostVO addPost) {
 		// TODO Auto-generated method stub
 		sqlSession.update("com.project.app.board.modifyPost",addPost);
 		sqlSession.update("com.project.app.board.modifyPostContent",addPost);

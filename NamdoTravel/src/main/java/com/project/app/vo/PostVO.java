@@ -6,9 +6,17 @@ public class PostVO {
 	private String postNm;
 	private String userNm;
 	private String postDate;
+	private String postContent;
 	private int hits;
 	private int like;
 	private int dislike;
+	
+	public String getPostContent() {
+		return postContent;
+	}
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
+	}
 	
 	public int getBoardId() {
 		return boardId;

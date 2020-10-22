@@ -41,7 +41,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void modifyPost(AddPostVO addPost) {
+	public void modifyPost(PostVO addPost) {
 		// TODO Auto-generated method stub
 		boardDao.modifyPost(addPost);
 	}
