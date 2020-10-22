@@ -46,13 +46,7 @@ public class APISerializer {
 		
 		try {
 			String s = receiveToString(spec);
-/*			
-			<dependency>
-			    <groupId>org.json</groupId>
-			    <artifactId>json</artifactId>
-			    <version>20180813</version>
-		    </dependency>
-*/					
+	
 			JSONObject job = new JSONObject(s);
 			result = job.toString();			
 			
