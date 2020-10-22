@@ -1,7 +1,6 @@
 package com.project.app;
 
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +63,7 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String uploadPost(@ModelAttribute AddPostVO addPost, Model model) {
 		boardService.addPost(addPost);
+		System.out.println("Insert Active!  " + addPost.getBoardId());
 		
 		return "redirect: /" + addPost.getBoardId();
 	}
@@ -73,17 +73,19 @@ public class BoardController {
 	public String modifyWrite(@PathVariable("postId") int postId, Model model) {
 		PostVO post = boardService.getPost(postId);
 		String postContent = boardService.getPostContent(postId);
+		int boardIds = post.getBoardId();
 		
 		model.addAttribute("posts",post);
 		model.addAttribute("postContents",postContent);
-		model.addAttribute("boardIds",postId);
+		model.addAttribute("boardIds",boardIds);
 		return "write";
 	}
 	
 	// 게시글 내용 수정 요청
-	@RequestMapping(value="/write_post{postId}", method=RequestMethod.POST)
-	public String uploadModifyPost(@ModelAttribute AddPostVO addPost, Model model) {
+	@RequestMapping(value="/write{postId}", method=RequestMethod.POST)
+	public String uploadModifyPost(@ModelAttribute PostVO addPost, Model model) {
 		boardService.modifyPost(addPost);
+		System.out.println("Update Active!" + addPost.getBoardId());
 		
 		return "redirect: /" + addPost.getBoardId();
 	}

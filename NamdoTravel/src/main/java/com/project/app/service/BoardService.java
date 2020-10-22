@@ -13,7 +13,7 @@ public interface BoardService {
 	String getPostContent(int postId);
 	void addPost(AddPostVO addPost);
 	//update
-	void modifyPost(AddPostVO addPost);
+	void modifyPost(PostVO addPost);
 	//delete
 	void deletePost(int postId);
 }

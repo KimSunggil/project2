@@ -13,7 +13,7 @@ public interface BoardDAO {
 	public String getPostContent(int postId);
 	public void addPost(AddPostVO addPost);
 	//update
-	public void modifyPost(AddPostVO addPost);
+	public void modifyPost(PostVO addPost);
 	//delete
 	public void deletePost(int postId);
 }
