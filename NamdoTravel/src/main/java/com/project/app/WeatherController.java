@@ -35,7 +35,7 @@ public class WeatherController {
 		// 키
 		String serviceKey="mdCptxvVYDgerO2kQkkuIFXuPM8%2FLFH6gcxsiUFfV0uU%2FvG1W4qL85BRYIQap5BfxfheIqd0l3a2PcjgyjI7Gg%3D%3D";
 		// 한페이지 결과수
-		int numOfRows=30;
+		int numOfRows=67;
 		// 페이지
 		int pageNo=1;
 		// 타입(XML/JSON)

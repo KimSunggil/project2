@@ -5,8 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-">
 <title>Insert title here</title>
+   <link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+  <link href="./resources/css/small-business.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="includejsp/menubar.jsp"></jsp:include>
