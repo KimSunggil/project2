@@ -1,5 +1,6 @@
 package com.project.app;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.app.service.BoardService;
 import com.project.app.vo.AddPostVO;
 import com.project.app.vo.PostVO;
+import com.project.app.vo.ReplyVO;
 
 /**
  * Handles requests for the application home page.
@@ -43,12 +45,21 @@ public class BoardController {
 	
 	// 게시글 본문 화면
 	@RequestMapping(value="/view{postId}", method=RequestMethod.GET)
-	public String view(@PathVariable("postId") int postId, Model model) {
+	public String view(Principal principal, @PathVariable("postId") int postId, Model model) {
+		// 본문 내용 소환
 		PostVO post = boardService.getPost(postId);
 		String postContent = boardService.getPostContent(postId);
-				
+	
+		if(principal != null)
+			model.addAttribute("userIds", principal.getName());
+		
 		model.addAttribute("posts",post);
 		model.addAttribute("postContents",postContent);
+		
+		//댓글 내용 소환
+		List<ReplyVO> reply = boardService.getReplyList(postId);
+		model.addAttribute("replys", reply);
+		
 		return "view";
 	}
 	
@@ -91,11 +102,26 @@ public class BoardController {
 	}
 	
 	// 게시글 삭제 요청
-	@RequestMapping(value="/deletePost{boardId}_{postId}", method=RequestMethod.POST)
-	public String deletePost(@PathVariable("boardId") int boardId, @PathVariable("postId") int postId, Model model)
-	{
+	@RequestMapping(value="/delete_Post{boardId}_{postId}", method=RequestMethod.POST)
+	public String deletePost(@PathVariable("boardId") int boardId, @PathVariable("postId") int postId, Model model){
 		boardService.deletePost(postId);
 		
 		return "redirect: /" + boardId;
+	}
+	
+	// 멋글 관련
+	//댓글 업로드 요청
+	@RequestMapping(value="/write_reply", method=RequestMethod.POST)
+	public String writeReply(@ModelAttribute ReplyVO reply, Model model){
+		boardService.addReply(reply);
+		
+		return "redirect: /view" + reply.getPostId();
+	}
+	
+	//댓글 수정 요청
+	@RequestMapping(value="/write_reply{replyId}", method=RequestMethod.POST)
+	public String writeRelply(@ModelAttribute ReplyVO reply, Model model) {
+		
+		return "redirect: /view" + reply.getPostId();
 	}
 }

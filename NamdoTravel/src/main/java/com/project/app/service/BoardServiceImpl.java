@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.app.dao.BoardDAO;
 import com.project.app.vo.AddPostVO;
 import com.project.app.vo.PostVO;
+import com.project.app.vo.ReplyVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -52,4 +53,16 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.deletePost(postId);
 	}
 
+	@Override
+	public List<ReplyVO> getReplyList(int postId) {
+		// TODO Auto-generated method stub
+		return boardDao.getReplyList(postId);
+	}
+
+	@Override
+	public void addReply(ReplyVO reply) {
+		// TODO Auto-generated method stub
+		boardDao.addReply(reply);
+	}
+	
 }

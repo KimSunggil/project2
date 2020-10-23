@@ -9,12 +9,11 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script>
-	document.addEventListener("DOMContentLoaded",function(){
-		console.log(${result});
-	})
+
 </script>
 </head>
 <body>
-	현재 접속자 : <c:out value="${result}"></c:out>
+	Spring Security 현 사용자 정보 불러오기 위한 테스트 장소 입니다.<br><br>
+	<c:out value='${aaa}'/>
 </body>
 </html>

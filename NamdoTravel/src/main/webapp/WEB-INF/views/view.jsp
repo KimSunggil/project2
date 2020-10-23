@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -12,11 +14,6 @@
 	.margin100px{
 		margin:100px 40px;
 	}
-	
-	.board_info_box{
-		
-	}
-	
 	.sub-info-font{
 		font-size:10px;
 	}
@@ -40,6 +37,7 @@
 	
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	
+	<!-- 본 문  -->
 	<section class="container">
 		<article>
 			<h2><c:out value="${posts.postNm}"/></h2>
@@ -61,7 +59,7 @@
 			<div style="margin-top : 20px;">
 				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button> </a>
 				
-				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/deletePost${posts.boardId}_${posts.postId}'/>" method="POST">
+				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/delete_Post${posts.boardId}_${posts.postId}'/>" method="POST">
 				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</form>
 				
@@ -69,27 +67,50 @@
 			</div>
 		</article>
 		
+		<!-- 댓글  -->
 		<article>
 			<section class="reply-list">
 				<div>
-					<table>
+					<table class="table">
 						<thead>
 						</thead>
 						
 						<tbody>
 							<tr>
 								<td> 아이디 </td>
-								<td> 난죽경없(난 죽음을 경험한 적이 없네), 언제든지, 가 짐 어서 </td>
-								<td> date </td>
+								<td> 내용 </td>
+								<td> 날짜 </td>
 								<td> 수정 </td>
 								<td> 삭제 </td>
 							</tr>
+							
+							<c:forEach items="${replys}" var="reply">
+								<tr>
+									<td> ${reply.nickName} </td>
+									<td> ${reply.content} </td>
+									<td> ${reply.replyDate }</td>
+									<td> 답글 </td>
+									<td><a href="<c:url value ='#'/>"> 수정 </a></td>
+									<td><a href="<c:url value ='#'/>"> 삭제 </a></td>
+								</tr>
+								<tr id="relplyUpdateBox">
+									<td colspan='6'>
+										<textarea></textarea>
+									</td>
+								</tr>
+							</c:forEach>
+							
 						</tbody>
-					</table>
+					</table>					
 				</div>
 			</section>
 			
 			<section class="post-reply">
+				<form action="<c:url value ='/board/write_reply'/>" method="post">
+					<input type="hidden" name="postId" value="${posts.postId }">
+					<input type="hidden" name="userId" value="${userIds}">
+					<textarea id="inputReply" name="content" style="width:50%;"></textarea> <input type="submit">
+				</form>
 			</section>
 		</article>
 		

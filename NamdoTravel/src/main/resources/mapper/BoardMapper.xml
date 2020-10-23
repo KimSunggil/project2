@@ -22,7 +22,7 @@
 			WHERE A.POST_ID = #{postId}
 	</select>
 	
-	<select id="getReply" parameterType="int" resultType="ReplyVO">
+	<select id="getReplyList" parameterType="int" resultType="ReplyVO">
 		SELECT A.REPLY_ID, A.SUPER_REPLY, A.USER_ID, B.NICKNAME, A.CONTENT, A.REPLY_DATE
 			FROM NAMDODB.REPLY A INNER JOIN NAMDODB.USER B ON A.USER_ID = B.USER_ID
 			WHERE A.POST_ID = #{postId}
@@ -37,6 +37,11 @@
 	<insert id="addPostContent" parameterType="AddPostVO">
 		INSERT INTO NAMDODB.POST_CONTENT(POST_ID, CONTENT)
 		    VALUES ((SELECT MAX(A.POST_ID)+1 FROM NAMDODB.POST_CONTENT A), #{postContent})
+	</insert>
+	
+	<insert id="addReply" parameterType="ReplyVO">
+		INSERT INTO NAMDODB.REPLY(REPLY_ID, POST_ID, SUPER_REPLY, USER_ID, CONTENT, REPLY_DATE)
+			VALUE ((SELECT MAX(A.REPLY_ID)+1 FROM NAMDODB.REPLY A), #{postId}, #{superReply}, #{userId}, #{content}, now())
 	</insert>
 	
 	<!-- 		update		 -->
