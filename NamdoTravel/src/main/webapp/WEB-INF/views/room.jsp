@@ -246,8 +246,8 @@ tr:nth-child(even) {
 					<c:forEach items="${room}" var="room">
 						<tr>
 							<td style="width: 100px;">${room.area}</td>
-							<td>${room.tourism_nm}</td>
-							<td>${room.location_nm_address}</td>
+							<td style="width: 300px;">${room.tourism_nm}</td>
+							<td style="width: 300px;">${room.location_nm_address}</td>
 							<td style="width: 100px;">${room.parking}</td>
 							<td style="width: 200px; cursor: hand;" align="center"
 								onClick="location.href='${room.tourism_hp}'">${room.tourism_hp}</td>
