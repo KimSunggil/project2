@@ -13,6 +13,9 @@
 		<typeAlias alias="WeatherVO" type="com.project.app.vo.WeatherVO"/>
 		<typeAlias alias="AddPostVO" type="com.project.app.vo.AddPostVO"/>
 		<typeAlias alias="ReplyVO" type="com.project.app.vo.ReplyVO"/>
+		<typeAlias alias="FestivalVO" type="com.project.app.vo.FestivalVO"/>
+		<typeAlias alias="TourVO" type="com.project.app.vo.TourVO"/>
+		
 	</typeAliases>
 	
 </configuration>
