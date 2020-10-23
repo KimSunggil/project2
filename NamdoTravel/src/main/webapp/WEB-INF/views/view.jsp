@@ -17,16 +17,24 @@
 	.sub-info-font{
 		font-size:10px;
 	}
+	
+	.displayActive{
+		display:none;
+	}
 </style>
 
 <script>
 	document.addEventListener("DOMContentLoaded",function(){
+
+		document.getElementById("contentDiv").innerHTML = `${posts.content}`;
+
+		document.getElementById("modifyReplyA").addEventListener("click",function(){
+			document.getElementById("relplyUpdateBox").classList.toggle("displayActive");
+		})
 		
 		document.getElementById("btnDelete").addEventListener("click", function(){
 			document.getElementById("tmpForm").submit();	
 		});
-		
-		document.getElementById("contentDiv").innerHTML = `${postContents}`;
 	})
 </script>
 
@@ -39,24 +47,36 @@
 	
 	<!-- 본 문  -->
 	<section class="container">
-		<article>
-			<h2><c:out value="${posts.postNm}"/></h2>
+		<article class="bg-white rounded shadow-sm">
+			<br>
+			<h2 style="padding:0.2%;"><c:out value="${posts.postNm}"/></h2>
+			<hr/>
 
-			<div class="bg-white rounded shadow-sm">
+			<div >
 				<div class="board_info_box float-right">
 					<span class="board_hits sub-info-font">
-						조회수 : <c:out value="${posts.hits}"/>/
-						작성자 : <c:out value="${posts.userNm}"/>/
-						작성일 : <c:out value="${posts.postDate}"/>
+						조회수 : <c:out value="${posts.hits}"/> /
+						작성자 : <c:out value="${posts.userNm}"/> /
+						작성일 : <c:out value="${posts.postDate}"/> /
+						좋아요 : <c:out value="${posts.like }"/> /
+						싫어요 : <c:out value="${posts.dislike}"/>
 					</span>
 				</div>
 				<br>
 				<div id="contentDiv" class="board_content float-none">
-					<c:out value="${postContents}"></c:out>
+					<c:out value="${posts.content}"/>
 				</div>
 			</div>
-
-			<div style="margin-top : 20px;">
+			<hr/>
+			<!-- 좋아요 싫어요 -->
+			<div style="display:flex; justify-content: space-around; ">
+				<a href = "<c:url value = "/board/favor${posts.postId}_LIKE"/>" > 좋아요 </a>
+				<a href = "<c:url value = "/board/favor${posts.postId}_DISLIKE"/>"> 싫어요 </a>
+			</div>
+		</article>
+		
+		<!-- 게시글 수정 삭제 목록 -->
+		<article style="margin-top : 20px;">
 			<c:if test="${posts.userId == principals }">
 				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button> </a>
 				
@@ -65,9 +85,8 @@
 				</form>
 			</c:if>
 				<a href="<c:url value='/board/${posts.boardId}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
-			</div>
-			<br>
 		</article>
+		<br>
 		
 		<!-- 댓글  -->
 		<article>
@@ -93,15 +112,30 @@
 									<td> ${reply.content} </td>
 									<td> ${reply.replyDate }</td>
 									<td> 답글 </td>
-									<c:if test="${reply.userId == principals }">
-										<td><a id="modifyReplyA"> 수정 </a></td>
-										<td><a href="<c:url value ='#'/>"> 삭제 </a></td>
-									</c:if>
+									<c:choose>
+										<c:when test="${reply.userId == principals }">
+											<td><button id="modifyReplyA"> 수정 </button></td>
+											<td>
+												<form action="<c:url value ='/board/delete_reply' />" method="post">
+													<input type="hidden" name="replyId" value="${reply.replyId }">
+													<input type="hidden" name="postId" value="${reply.postId }">
+													<input type="submit" value="삭제">
+												</form>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td colspan='2'/>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 								
-								<tr id="relplyUpdateBox" class="">
+								<!-- 수정 활성화 시 -->
+								<tr id="relplyUpdateBox" class="displayActive">
 									<td colspan='6'>
-										<textarea> <c:out value = "${principals}"/> </textarea> <input type="submit">
+										<form action="<c:url value="/board/write_reply${reply.postId}" />" method="post">
+											<input type="hidden" name="replyId" value="${reply.replyId}">
+											<textarea name="content"> <c:out value = "${reply.content}"/> </textarea> <input type="submit">
+										</form>
 									</td>
 								</tr>
 							</c:forEach>
@@ -111,13 +145,15 @@
 				</div>
 			</section>
 			
-			<section class="post-reply">
-				<form action="<c:url value ='/board/write_reply'/>" method="post">
-					<input type="hidden" name="postId" value="${posts.postId }">
-					<input type="hidden" name="userId" value="${principals}">
-					<textarea id="inputReply" name="content" style="width:50%;"></textarea> <input type="submit">
-				</form>
-			</section>
+			<sec:authorize access="isAuthenticated()">
+				<section class="post-reply">
+					<form action="<c:url value ='/board/write_reply'/>" method="post">
+						<input type="hidden" name="postId" value="${posts.postId }">
+						<input type="hidden" name="userId" value="${principals}">
+						<textarea id="inputReply" name="content" style="width:50%;"></textarea> <input type="submit">
+					</form>
+				</section>
+			</sec:authorize>
 		</article>
 		
 		<hr/>

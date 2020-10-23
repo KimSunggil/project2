@@ -2,6 +2,7 @@ package com.project.app;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,13 +52,11 @@ public class BoardController {
 		
 		// 본문 내용 소환
 		PostVO post = boardService.getPost(postId);
-		String postContent = boardService.getPostContent(postId);
 	
 		if(principal != null)
 			model.addAttribute("principals", principal.getName());
 		
 		model.addAttribute("posts",post);
-		model.addAttribute("postContents",postContent);
 		
 		//댓글 내용 소환
 		List<ReplyVO> reply = boardService.getReplyList(postId);
@@ -86,11 +85,9 @@ public class BoardController {
 	@RequestMapping(value="/write_post{postId}", method=RequestMethod.GET)
 	public String modifyWrite(@PathVariable("postId") int postId, Model model) {
 		PostVO post = boardService.getPost(postId);
-		String postContent = boardService.getPostContent(postId);
 		int boardIds = post.getBoardId();
 		
 		model.addAttribute("posts",post);
-		model.addAttribute("postContents",postContent);
 		model.addAttribute("boardIds",boardIds);
 		return "write";
 	}
@@ -112,7 +109,19 @@ public class BoardController {
 		return "redirect: /" + boardId;
 	}
 	
-	// 멋글 관련
+	//좋아요 싫어요
+	@RequestMapping(value="/board/favor{postId}_{favor}", method=RequestMethod.POST)
+	public String favor(@PathVariable("postId") int postId, @PathVariable("favor") String favor, Model model) {
+		
+//		Map<String,String> map = new Map<String,String>();
+//		map.put(userId, );
+//		
+//		boardService.seachPostFavor(map);
+		
+		return "redirect: /view" + postId ;
+	}
+	
+	// ================ 멋글 관련 ==============================
 	//댓글 업로드 요청
 	@RequestMapping(value="/write_reply", method=RequestMethod.POST)
 	public String writeReply(@ModelAttribute ReplyVO reply, Model model){
@@ -122,9 +131,19 @@ public class BoardController {
 	}
 	
 	//댓글 수정 요청
-	@RequestMapping(value="/write_reply{replyId}", method=RequestMethod.POST)
-	public String writeRelply(@ModelAttribute ReplyVO reply, Model model) {
+	@RequestMapping(value="/write_reply{postId}", method=RequestMethod.POST)
+	public String writeRelply(@PathVariable("postId") int postId, @ModelAttribute ReplyVO reply, Model model) {
+		boardService.modifyReply(reply);
 		
-		return "redirect: /view" + reply.getPostId();
+		return "redirect: /view" + postId;
+	}
+	
+	//댓글 삭제 요청
+	@RequestMapping(value="/delete_reply", method=RequestMethod.POST)
+	public String deleteReply(@ModelAttribute("reply") ReplyVO reply, Model model)
+	{
+		int way = reply.getPostId();
+		boardService.deleteReply(reply.getReplyId());
+		return "redirect: /view" + way;
 	}
 }

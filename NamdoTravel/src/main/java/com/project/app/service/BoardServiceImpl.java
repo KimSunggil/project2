@@ -1,6 +1,7 @@
 package com.project.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,12 +37,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public String getPostContent(int postId) {
-		// TODO Auto-generated method stub
-		return boardDao.getPostContent(postId);
-	}
-
-	@Override
 	public void modifyPost(PostVO addPost) {
 		// TODO Auto-generated method stub
 		boardDao.modifyPost(addPost);
@@ -52,17 +47,11 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		boardDao.plusHits(postId);
 	}
-
+	
 	@Override
-	public void plusLike(int postId) {
-		// TODO Auto-generated method stub
-		boardDao.plusLike(postId);
-	}
-
-	@Override
-	public void plusDisLike(int postId) {
-		// TODO Auto-generated method stub
-		boardDao.plusDisLike(postId);
+	public void modifyReply(ReplyVO reply) {
+		// TODO Auto-generated method stub		
+		boardDao.modifyReply(reply);
 	}
 	
 	@Override
@@ -81,6 +70,18 @@ public class BoardServiceImpl implements BoardService {
 	public void addReply(ReplyVO reply) {
 		// TODO Auto-generated method stub
 		boardDao.addReply(reply);
+	}
+
+	@Override
+	public void deleteReply(int replyId) {
+		// TODO Auto-generated method stub
+		boardDao.deleteReply(replyId);
+	}
+
+	@Override
+	public String seachPostFavor(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return boardDao.seachPostFavor(map);
 	}
 	
 }

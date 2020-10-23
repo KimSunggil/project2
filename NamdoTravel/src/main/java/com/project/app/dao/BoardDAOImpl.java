@@ -1,6 +1,7 @@
 package com.project.app.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -37,12 +38,6 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public String getPostContent(int postId) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("com.project.app.board.getPostContent", postId);
-	}
-
-	@Override
 	public void modifyPost(PostVO addPost) {
 		// TODO Auto-generated method stub
 		sqlSession.update("com.project.app.board.modifyPost",addPost);
@@ -56,15 +51,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public void plusLike(int postId) {
+	public void modifyReply(ReplyVO reply) {
 		// TODO Auto-generated method stub
-		sqlSession.update("com.project.app.board.plusLike",postId);
-	}
-
-	@Override
-	public void plusDisLike(int postId) {
-		// TODO Auto-generated method stub
-		sqlSession.update("com.project.app.board.plusDisLike",postId);
+		sqlSession.update("com.project.app.board.modifyReply",reply);
 	}
 
 	@Override
@@ -86,4 +75,16 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("com.project.app.board.addReply",reply);
 	}
 
+	@Override
+	public void deleteReply(int replyId) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("com.project.app.board.deleteReply",replyId);
+		
+	}
+
+	@Override
+	public String seachPostFavor(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.project.app.board.seachPostFavor", map);
+	}
 }

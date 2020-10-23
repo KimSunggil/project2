@@ -5,27 +5,31 @@
 	<!-- 		select		 -->
 		
 	<select id="getPostList" parameterType="int" resultType="PostVO">
-		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
-			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
+		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, IFNULL(C.LIKE,0), IFNULL(C.DISLIKE,0)
+			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B ON A.BOARD_ID = B.BOARD_ID
+								 LEFT OUTER JOIN (SELECT A.POST_ID POST_ID, COUNT(CASE WHEN A.FAVOR='LIKE' THEN 1 END) AS 'LIKE', COUNT(CASE WHEN A.FAVOR='DISLIKE' THEN 1 END) AS 'DISLIKE'
+												FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID
     		WHERE A.BOARD_ID = #{boardId} ORDER BY B.POST_ID DESC
 	</select>
 	
 	<select id="getPost" parameterType="int" resultType="PostVO">
-		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_ID, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
-			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
-    		WHERE B.POST_ID = #{postId} ORDER BY B.POST_ID DESC
+		SELECT A.BOARD_ID, A.POST_ID, A.POST_NM, A.USER_ID, A.USER_NM, A.POST_DATE, B.CONTENT, A.HITS, IFNULL(C.LIKE,0), IFNULL(C.DISLIKE,0)
+			FROM NAMDODB.POST A INNER JOIN NAMDODB.POST_CONTENT B ON A.POST_ID = B.POST_ID 
+								LEFT OUTER JOIN (SELECT A.POST_ID POST_ID, COUNT(CASE WHEN A.FAVOR='LIKE' THEN 1 END) AS 'LIKE', COUNT(CASE WHEN A.FAVOR='DISLIKE' THEN 1 END) AS 'DISLIKE'
+													FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID																
+    		WHERE A.POST_ID = #{postId}
 	</select>
-	
-	<select id="getPostContent" parameterType="int" resultType="String">
-		SELECT A.CONTENT
-			FROM NAMDODB.POST_CONTENT A
-			WHERE A.POST_ID = #{postId}
-	</select>
-	
+
 	<select id="getReplyList" parameterType="int" resultType="ReplyVO">
-		SELECT A.REPLY_ID, A.SUPER_REPLY, A.USER_ID, B.NICKNAME, A.CONTENT, A.REPLY_DATE
+		SELECT A.REPLY_ID, A.POST_ID, A.SUPER_REPLY, A.USER_ID, B.NICKNAME, A.CONTENT, A.REPLY_DATE
 			FROM NAMDODB.REPLY A INNER JOIN NAMDODB.USER B ON A.USER_ID = B.USER_ID
 			WHERE A.POST_ID = #{postId} ORDER BY A.REPLY_ID
+	</select>
+	
+	<select id="seachPostFavor" parameterType="hashmap" resultType="String">
+		SELECT A.FAVOR
+			FROM FAVOR A
+			WHERE A.USER_ID = ${userId} AND A.POST_ID = ${postId}
 	</select>
 	
 	<!-- 		insert		 -->
@@ -52,7 +56,7 @@
 	</update>
 	<update id="modifyPostContent" parameterType="PostVO">
 		UPDATE NAMDODB.POST_CONTENT
-			SET CONTENT = #{postContent}
+			SET CONTENT = #{content}
 			WHERE POST_ID = #{postId}
 	</update>
 	
@@ -61,15 +65,11 @@
 			SET HITS = HITS+1
 			WHERE POST_ID = #{postId}
 	</update>
-	<update id="plusLike" parameterType="int">
-		UPDATE NAMDODB.POST
-			SET LIKE = LIKE+1
-			WHERE POST_ID = #{postId}
-	</update>
-	<update id="plusDisLike" parameterType="int">
-		UPDATE NAMDODB.POST
-			SET DISLIKE = DISLIKE+1
-			WHERE POST_ID = #{postId}
+	
+	<update id="modifyReply" parameterType="ReplyVO">
+		UPDATE NAMDODB.REPLY
+			SET CONTENT = #{content}
+			WHERE REPLY_ID = #{replyId}
 	</update>
 	
 	<!-- 		delete		 -->
@@ -78,5 +78,9 @@
 	</delete>
 	<delete id="deletePostContent" parameterType="int">
 		DELETE FROM NAMDODB.POST_CONTENT WHERE POST_ID = #{postId}
+	</delete>
+	
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM NAMDODB.REPLY WHERE REPLY_ID = #{replyId}
 	</delete>
 </mapper>

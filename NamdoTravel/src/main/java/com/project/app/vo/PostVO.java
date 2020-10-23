@@ -7,24 +7,11 @@ public class PostVO {
 	private String userId;
 	private String userNm;
 	private String postDate;
-	private String postContent;
+	private String content;
 	private int hits;
 	private int like;
 	private int dislike;
 	
-	public String getPostContent() {
-		return postContent;
-	}
-	public void setPostContent(String postContent) {
-		this.postContent = postContent;
-	}
-		
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 	public int getBoardId() {
 		return boardId;
 	}
@@ -43,6 +30,12 @@ public class PostVO {
 	public void setPostNm(String postNm) {
 		this.postNm = postNm;
 	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getUserNm() {
 		return userNm;
 	}
@@ -54,6 +47,12 @@ public class PostVO {
 	}
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public int getHits() {
 		return hits;
@@ -73,6 +72,4 @@ public class PostVO {
 	public void setDislike(int dislike) {
 		this.dislike = dislike;
 	}
-
-	
 }
