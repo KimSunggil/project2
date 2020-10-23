@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.app.vo.AddPostVO;
 import com.project.app.vo.PostVO;
+import com.project.app.vo.ReplyVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -47,6 +48,24 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.update("com.project.app.board.modifyPost",addPost);
 		sqlSession.update("com.project.app.board.modifyPostContent",addPost);
 	}
+	
+	@Override
+	public void plusHits(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.plusHits",postId);
+	}
+	
+	@Override
+	public void plusLike(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.plusLike",postId);
+	}
+
+	@Override
+	public void plusDisLike(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.plusDisLike",postId);
+	}
 
 	@Override
 	public void deletePost(int postId) {
@@ -54,7 +73,17 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete("com.project.app.board.deletePost",postId);
 		sqlSession.delete("com.project.app.board.deletePostContent",postId);
 	}
-	
-	
+
+	@Override
+	public List<ReplyVO> getReplyList(int postId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.project.app.board.getReplyList",postId);
+	}
+
+	@Override
+	public void addReply(ReplyVO reply) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("com.project.app.board.addReply",reply);
+	}
 
 }

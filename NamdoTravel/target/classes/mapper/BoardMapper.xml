@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="getPost" parameterType="int" resultType="PostVO">
-		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
+		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_ID, B.USER_NM, B.POST_DATE, B.HITS, B.LIKE, B.DISLIKE
 			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B
     		WHERE B.POST_ID = #{postId} ORDER BY B.POST_ID DESC
 	</select>
@@ -22,10 +22,10 @@
 			WHERE A.POST_ID = #{postId}
 	</select>
 	
-	<select id="getReply" parameterType="int" resultType="ReplyVO">
+	<select id="getReplyList" parameterType="int" resultType="ReplyVO">
 		SELECT A.REPLY_ID, A.SUPER_REPLY, A.USER_ID, B.NICKNAME, A.CONTENT, A.REPLY_DATE
 			FROM NAMDODB.REPLY A INNER JOIN NAMDODB.USER B ON A.USER_ID = B.USER_ID
-			WHERE A.POST_ID = #{postId}
+			WHERE A.POST_ID = #{postId} ORDER BY A.REPLY_ID
 	</select>
 	
 	<!-- 		insert		 -->
@@ -39,6 +39,11 @@
 		    VALUES ((SELECT MAX(A.POST_ID)+1 FROM NAMDODB.POST_CONTENT A), #{postContent})
 	</insert>
 	
+	<insert id="addReply" parameterType="ReplyVO">
+		INSERT INTO NAMDODB.REPLY(REPLY_ID, POST_ID, SUPER_REPLY, USER_ID, CONTENT, REPLY_DATE)
+			VALUE ((SELECT MAX(A.REPLY_ID)+1 FROM NAMDODB.REPLY A), #{postId}, #{superReply}, #{userId}, #{content}, now())
+	</insert>
+	
 	<!-- 		update		 -->
 	<update id="modifyPost" parameterType="PostVO">
 		UPDATE NAMDODB.POST
@@ -48,6 +53,22 @@
 	<update id="modifyPostContent" parameterType="PostVO">
 		UPDATE NAMDODB.POST_CONTENT
 			SET CONTENT = #{postContent}
+			WHERE POST_ID = #{postId}
+	</update>
+	
+	<update id="plusHits" parameterType="int">
+		UPDATE NAMDODB.POST
+			SET HITS = HITS+1
+			WHERE POST_ID = #{postId}
+	</update>
+	<update id="plusLike" parameterType="int">
+		UPDATE NAMDODB.POST
+			SET LIKE = LIKE+1
+			WHERE POST_ID = #{postId}
+	</update>
+	<update id="plusDisLike" parameterType="int">
+		UPDATE NAMDODB.POST
+			SET DISLIKE = DISLIKE+1
 			WHERE POST_ID = #{postId}
 	</update>
 	

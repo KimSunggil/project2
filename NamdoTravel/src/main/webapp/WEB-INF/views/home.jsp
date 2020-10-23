@@ -30,7 +30,7 @@
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
       <div class="col-lg-7">
-        <img id="namdo" class="img-fluid rounded mb-4 mb-lg-0" src="./resources/img/namdo.png" alt="">
+        <img id="namdo" class="img-fluid rounded mb-4 mb-lg-0" src="./resources/img/main.jpg" alt="">
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">

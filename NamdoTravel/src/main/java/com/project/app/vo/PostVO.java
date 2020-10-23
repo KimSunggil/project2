@@ -4,6 +4,7 @@ public class PostVO {
 	private int boardId;
 	private int postId;
 	private String postNm;
+	private String userId;
 	private String userNm;
 	private String postDate;
 	private String postContent;
@@ -17,7 +18,13 @@ public class PostVO {
 	public void setPostContent(String postContent) {
 		this.postContent = postContent;
 	}
-	
+		
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getBoardId() {
 		return boardId;
 	}
