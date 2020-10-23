@@ -46,12 +46,15 @@ public class BoardController {
 	// 게시글 본문 화면
 	@RequestMapping(value="/view{postId}", method=RequestMethod.GET)
 	public String view(Principal principal, @PathVariable("postId") int postId, Model model) {
+		
+		boardService.plusHits(postId);
+		
 		// 본문 내용 소환
 		PostVO post = boardService.getPost(postId);
 		String postContent = boardService.getPostContent(postId);
 	
 		if(principal != null)
-			model.addAttribute("userIds", principal.getName());
+			model.addAttribute("principals", principal.getName());
 		
 		model.addAttribute("posts",post);
 		model.addAttribute("postContents",postContent);
@@ -59,7 +62,7 @@ public class BoardController {
 		//댓글 내용 소환
 		List<ReplyVO> reply = boardService.getReplyList(postId);
 		model.addAttribute("replys", reply);
-		
+				
 		return "view";
 	}
 	

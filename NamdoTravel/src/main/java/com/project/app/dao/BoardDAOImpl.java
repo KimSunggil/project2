@@ -48,6 +48,24 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.update("com.project.app.board.modifyPost",addPost);
 		sqlSession.update("com.project.app.board.modifyPostContent",addPost);
 	}
+	
+	@Override
+	public void plusHits(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.plusHits",postId);
+	}
+	
+	@Override
+	public void plusLike(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.plusLike",postId);
+	}
+
+	@Override
+	public void plusDisLike(int postId) {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.project.app.board.plusDisLike",postId);
+	}
 
 	@Override
 	public void deletePost(int postId) {
@@ -67,4 +85,5 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		sqlSession.insert("com.project.app.board.addReply",reply);
 	}
+
 }

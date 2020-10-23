@@ -16,6 +16,9 @@ public interface BoardService {
 	void addPost(AddPostVO addPost);
 	//update
 	void modifyPost(PostVO addPost);
+	void plusHits(int postId);
+	void plusLike(int postId);
+	void plusDisLike(int postId);
 	//delete
 	void deletePost(int postId);
 	

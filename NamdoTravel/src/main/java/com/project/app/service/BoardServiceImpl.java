@@ -48,6 +48,24 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public void plusHits(int postId) {
+		// TODO Auto-generated method stub
+		boardDao.plusHits(postId);
+	}
+
+	@Override
+	public void plusLike(int postId) {
+		// TODO Auto-generated method stub
+		boardDao.plusLike(postId);
+	}
+
+	@Override
+	public void plusDisLike(int postId) {
+		// TODO Auto-generated method stub
+		boardDao.plusDisLike(postId);
+	}
+	
+	@Override
 	public void deletePost(int postId) {
 		// TODO Auto-generated method stub
 		boardDao.deletePost(postId);

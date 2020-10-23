@@ -57,20 +57,22 @@
 			</div>
 
 			<div style="margin-top : 20px;">
+			<c:if test="${posts.userId == principals }">
 				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button> </a>
 				
 				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/delete_Post${posts.boardId}_${posts.postId}'/>" method="POST">
 				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 				</form>
-				
+			</c:if>
 				<a href="<c:url value='/board/${posts.boardId}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
 			</div>
+			<br>
 		</article>
 		
 		<!-- 댓글  -->
 		<article>
 			<section class="reply-list">
-				<div>
+				<div class="bg-white rounded shadow-sm">
 					<table class="table">
 						<thead>
 						</thead>
@@ -80,6 +82,7 @@
 								<td> 아이디 </td>
 								<td> 내용 </td>
 								<td> 날짜 </td>
+								<td> 댓글 </td>
 								<td> 수정 </td>
 								<td> 삭제 </td>
 							</tr>
@@ -90,12 +93,15 @@
 									<td> ${reply.content} </td>
 									<td> ${reply.replyDate }</td>
 									<td> 답글 </td>
-									<td><a href="<c:url value ='#'/>"> 수정 </a></td>
-									<td><a href="<c:url value ='#'/>"> 삭제 </a></td>
+									<c:if test="${reply.userId == principals }">
+										<td><a id="modifyReplyA"> 수정 </a></td>
+										<td><a href="<c:url value ='#'/>"> 삭제 </a></td>
+									</c:if>
 								</tr>
-								<tr id="relplyUpdateBox">
+								
+								<tr id="relplyUpdateBox" class="">
 									<td colspan='6'>
-										<textarea></textarea>
+										<textarea> <c:out value = "${principals}"/> </textarea> <input type="submit">
 									</td>
 								</tr>
 							</c:forEach>
@@ -108,7 +114,7 @@
 			<section class="post-reply">
 				<form action="<c:url value ='/board/write_reply'/>" method="post">
 					<input type="hidden" name="postId" value="${posts.postId }">
-					<input type="hidden" name="userId" value="${userIds}">
+					<input type="hidden" name="userId" value="${principals}">
 					<textarea id="inputReply" name="content" style="width:50%;"></textarea> <input type="submit">
 				</form>
 			</section>

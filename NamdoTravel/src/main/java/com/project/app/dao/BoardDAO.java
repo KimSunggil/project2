@@ -16,6 +16,9 @@ public interface BoardDAO {
 	public void addPost(AddPostVO addPost);
 	//update
 	public void modifyPost(PostVO addPost);
+	public void plusHits(int postId);
+	public void plusLike(int postId);
+	public void plusDisLike(int postId);
 	//delete
 	public void deletePost(int postId);
 	

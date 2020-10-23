@@ -76,7 +76,7 @@ tr:nth-child(even) {
 
 			<script>
 				// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-				var infowindow = new kakao.maps.InfoWindow({
+				/* var infowindow = new kakao.maps.InfoWindow({
 					zIndex : 1
 				});
 
@@ -169,8 +169,10 @@ tr:nth-child(even) {
 
 					map.relayout();
 
-				});
-				/* 		
+				}); */
+				
+				//================================================================================
+						
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 						mapOption = {
 							center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -222,7 +224,7 @@ tr:nth-child(even) {
 									map.setCenter(coords);
 								}
 							});
-						} */
+						} 
 			</script>
 		</div>
 
