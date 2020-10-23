@@ -35,7 +35,6 @@ if(20<hours){
 }else if(0<hours){
 	hours="0600";
 }
-console.log(hours);
 
 if(month.length == 1){ 
   month = "0" + month; 
@@ -61,8 +60,8 @@ function ajaxJSON(url, type, query, fn) {
 }
 document.addEventListener("DOMContentLoaded",function(){
 	var areas = [
-		["전라남도",126.853
-, 35.156
+		["평균날씨",126
+, 35
 ],
 		["광주",126, 35],
 		["목포",126, 34],
@@ -114,125 +113,75 @@ function wae(area,ny,nx){
 		}
 		out+="<tr>";
 		var list=data.response.body.items.item;
-		out+="<td>"+area;+"</td>"
+		
+		 out+="<td>"+area;+"</td>"
 		for(var j=0; j<64; j++){
 			
-		    if(list[j].category=="POP"){
+		    if(list[j].category==="POP"){
 		        if(list[j].fcstTime==hours){
-		            out+="<td>"+"ㄱ"+list[j].fcstValue+"</td>"
+		            out+="<td>"+list[j].fcstValue+"%"+"</td>"
 		        }
 		    }
 		    if(list[j].category=="PTY"){
 		        if(list[j].fcstTime==hours){
-		            out+="<td>"+"ㄴ"+list[j].fcstValue+"</td>"
+		        	fcstValue=list[j].fcstValue;
+		            if(fcstValue=="0") {
+		    			out+="<td>"+"없음"+"</td>";
+		    		} else if(fcstValue=="1") {
+		    			out+="<td>"+"비"+"</td>";
+		    		} else if(fcstValue=="2") {
+		    			out+="<td>"+"비/눈"+"</td>";
+		    		} else if(fcstValue=="3") {
+		    			out+="<td>"+"눈"+"</td>";
+		    		} else if(fcstValue=="4") {
+		    			out+="<td>"+"소나기"+"</td>";
+		    		} else if(fcstValue=="5") {
+		    			out+="<td>"+"빗방울"+"</td>";
+		    		} else if(fcstValue=="6") {
+		    			out+="<td>"+"빗방울/눈날림"+"</td>";
+		    		} else if(fcstValue=="7") {
+		    			out+="<td>"+"눈날림"+"</td>";
+		    		}
 		        }
 		    }
 		    if(list[j].category=="REH"){
 		        if(list[j].fcstTime==hours){
-		            out+="<td>"+"ㄷ"+fcstValue+"</td>"
+		        	fcstValue=list[j].fcstValue;
+		            out+="<td>"+fcstValue+"%"+"</td>"
 		        }
 		    }
 		    if(list[j].category=="SKY"){
 		        if(list[j].fcstTime==hours){
-		            out+="<td>"+"ㄹ"+list[j].fcstValue+"</td>"
+		        	fcstValue=list[j].fcstValue;
+		        	if(fcstValue=="1") {
+		    			out+="<td>"+"맑음"+"<td>";
+		    		} else if(fcstValue=="3") {
+		    			out+="<td>"+"구름 많음"+"<td>";
+		    		} else if(fcstValue=="4") {
+		    			out+="<td>"+"흐림"+"<td>";
+		    		}
 		        }
 		    }
 		    if(list[j].category=="T3H"){
 		        if(list[j].fcstTime==hours){
-		            out+="<td>"+"ㅂ"+list[j].fcstValue+"</td>"
+		            out+="<td>"+list[j].fcstValue+"℃"+"</td>"
 		        }
 		    }
 		    if(list[j].category=="TMN"){
-		            out+="<td>"+"ㅈ"+list[j].fcstValue+"</td>"
+		            out+="<td>"+"최저기온"+list[j].fcstValue+"℃"+"</td>"
 		    }
-		    if(list[j].category=="TMX"){
-		            out+="<td>"+"ㅅ"+list[j].fcstValue+"</td>"
-		    }
-		    if(list[j].category=="WSD"){
+		    if(list[j].category=="UUU"){
 		        if(list[j].fcstTime==hours){
-		            out+="<td>"+"ㅎ"+list[j].fcstValue+"</td>"
+		            out+="<td>"+list[j].fcstValue+"m/s"+"</td>"
 		        }
 		    }
+		    if(list[j].category==="TMX"){
+	            out+="<td>"+"최고기온"+list[j].fcstValue+"℃"+"</td>"
+	    	}
+		    
 		}
-/* 		category=list[0].category;
-		fcstDate=list[0].fcstDate;
-		fcstTime=list[0].fcstTime;
-		fcstValue=list[0].fcstValue;
-		out+="<tr>";
-		out+="<td>"+area+"</td>"; */
-		/* out+="발표일자 : "+fcstDate+"<br>";
-		out+="발표시간 : "+fcstTime+"<br>"; */
-/* 		out+="<td>"+fcstValue+"%"+"</td>";
-		category=list[1].category;
-		fcstDate=list[1].fcstDate;
-		fcstTime=list[1].fcstTime;
-		fcstValue=list[1].fcstValue;
-		if(fcstValue=="0") {
-			out+="<td>"+"없음"+"</td>";
-		} else if(fcstValue=="1") {
-			out+="<td>"+"비"+"</td>";
-		} else if(fcstValue=="2") {
-			out+="<td>"+"비/눈"+"</td>";
-		} else if(fcstValue=="3") {
-			out+="<td>"+"눈"+"</td>";
-		} else if(fcstValue=="4") {
-			out+="<td>"+"소나기"+"</td>";
-		} else if(fcstValue=="5") {
-			out+="<td>"+"빗방울"+"</td>";
-		} else if(fcstValue=="6") {
-			out+="<td>"+"빗방울/눈날림"+"</td>";
-		} else if(fcstValue=="7") {
-			out+="<td>"+"눈날림"+"</td>";
-		}
-		category=list[2].category;
-		fcstDate=list[2].fcstDate;
-		fcstTime=list[2].fcstTime;
-		fcstValue=list[2].fcstValue;
-		if(fcstValue=="0") {
-			out+="<td>"+"없음"+"</td>";
-		}else{
-			out+="<td>"+"6시간 강수량 : "+fcstValue+"mm"+"</td>"
-		}
-		category=list[3].category;
-		fcstDate=list[3].fcstDate;
-		fcstTime=list[3].fcstTime;
-		fcstValue=list[3].fcstValue;
-		out+="<td>"+fcstValue+"%"+"<td>"
-		category=list[5].category;
-		fcstDate=list[5].fcstDate;
-		fcstTime=list[5].fcstTime;
-		fcstValue=list[5].fcstValue;
-		if(fcstValue=="1") {
-			out+="<td>"+"맑음"+"<td>";
-		} else if(fcstValue=="3") {
-			out+="<td>"+"구름 많음"+"<td>";
-		} else if(fcstValue=="4") {
-			out+="<td>"+"흐림"+"<td>";
-		}
-		category=list[6].category;
-		fcstDate=list[6].fcstDate;
-		fcstTime=list[6].fcstTime;
-		fcstValue=list[6].fcstValue;
-		out+="<td>"+fcstValue+"℃"+"</td>"
-		category=list[8].category;
-		fcstDate=list[8].fcstDate;
-		fcstTime=list[8].fcstTime;
-		fcstValue=list[8].fcstValue;
-		out+="<td>"+fcstValue+"m/s"+"</td>"
-		out+="</tr>"
-			console.log(out);
-		console.log(list); */
-/* 			if(fcstValue=="1") {
-			out+="하늘상태 : 맑음<br>";
-		} else if(fcstValue=="3") {
-			out+="하늘상태 : 구름 많음<br>";
-		} else if(fcstValue=="4") {
-			out+="하늘상태 : 흐림<br>";
-		} */
-/* 			out+="섭씨온도:"+fcstValue+"<br>"; */
-		console.log(list)
-		out+="</tr>";
-		document.getElementById("resultLayout").innerHTML+=out;
+		 out+="</tr>";
+		    document.getElementById("resultLayout").innerHTML+=out; 
 		
 	};
 	
@@ -248,9 +197,24 @@ function wae(area,ny,nx){
 	border: 1px;
 	border-style: solid;
 	width:100%;
-	justify-content: center;
+	text-align: center;
 	color:black;
-}
+		}
+	thead{
+	text-align: center;
+	}
+	th{
+	text-align: center;
+	border-color: black;
+	border: 1px;
+	border-style: solid;
+	}
+	td{
+	text-align: center;
+	border-color: black;
+	border: 1px;
+	border-style: solid;
+	}
     </style>
 </head>
 <body>
@@ -266,19 +230,17 @@ function wae(area,ny,nx){
 				<tr>
 					<th>지역</th>
 					<th>강수확률</th>
-					<th>비 형태</th>
-					<th>6시간 강수량</th>
+					<th>강수형태</th>
 					<th>습도</th>
-					<th>낮 최저기온</th>
-					<th>풍속(동서기준)</th>
-					<th>풍속(동서기준)</th>
-					<th>풍속(동서기준)</th>
+					<th>하늘 상태</th>
+					<th></th>
+					<th>3시간 기준 최저기온</th>
+					<th>최저기온</th>
+					<th>풍속</th>
+					<th>최고기온</th>
 				</tr>
 			</thead>
 			<tbody id="resultLayout">
-				<tr>
-				
-				</tr>
 			</tbody>
 		</table>
 	</div>
