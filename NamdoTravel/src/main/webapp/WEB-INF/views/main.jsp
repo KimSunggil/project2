@@ -18,34 +18,7 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-var date = new Date(); 
-var year = date.getFullYear(); 
-var month = new String(date.getMonth()+1); 
-var day = new String(date.getDate()); 
-var hours = date.getHours();
 
-if(20<hours){
-	hours="2100";
-}else if(17<hours){
-	hours="1800";
-}else if(14<hours){
-	hours="1500";
-}else if(11<hours){
-	hours="1200";
-}else if(8<hours){
-	hours="0900";
-}else if(0<hours){
-	hours="0600";
-}
-
-if(month.length == 1){ 
-  month = "0" + month; 
-} 
-if(day.length == 1){ 
-  day = "0" + day; 
-}
-
-var d_day = year+month+day;
 function ajaxJSON(url, type, query, fn) {
 	$.ajax({
 		type:type,
@@ -93,8 +66,35 @@ document.addEventListener("DOMContentLoaded",function(){
 		};
 });
 function wae(area,ny,nx){
+	var date = new Date(); 
+	var year = date.getFullYear(); 
+	var month = new String(date.getMonth()+1); 
+	var day = new String(date.getDate()); 
+	var hours = date.getHours();
+
+	if(20<hours){
+		hours="2100";
+	}else if(17<hours){
+		hours="1800";
+	}else if(14<hours){
+		hours="1500";
+	}else if(11<hours){
+		hours="1200";
+	}else if(8<hours){
+		hours="0900";
+	}else if(0<hours){
+		hours="0600";
+	}
+
+	if(month.length == 1){ 
+	  month = "0" + month; 
+	} 
+	if(day.length == 1){ 
+	  day = "0" + day; 
+	}
+	var d_day = year+month+day;
 	var url="<%=cp%>/weather/search2";
-		var base_date = d_day;
+	var base_date = d_day;
 		var base_time = "0200";
 		var area;
 		var query = "base_date=" + base_date + "&base_time=" + base_time
@@ -116,6 +116,7 @@ function wae(area,ny,nx){
 
 			out += "<td>" + area;
 			+"</td>"
+
 			for (var j = 0; j < 64; j++) {
 
 				if (list[j].category === "POP") {
@@ -227,12 +228,12 @@ td {
 <body>
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	<div>
-
-
 		<div class="container" id="container">
 			<h1>동네예보</h1>
 			<hr>
 			<div class="bg-white rounded shadow-sm">
+				<!-- 이미지 지도를 표시할 div 입니다 -->
+				<div id="staticMap" style="width:60vw;height:70vh;"></div>    
 				<table id="weatherTb">
 					<thead>
 						<tr>
@@ -245,13 +246,11 @@ td {
 
 		</div>
 	</div>
-	<!-- 이미지 지도를 표시할 div 입니다 -->
-<div id="staticMap" style="width:800px;height:800px;"></div>    
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c731503805ccfcc41946121c0050cfc"></script>
 <script>    
-// 이미지 지도에 표시할 마커입니다
-// 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
+
 var markers = [
     {
         position: new kakao.maps.LatLng(35.156974999999996,	126.85336388888888),
