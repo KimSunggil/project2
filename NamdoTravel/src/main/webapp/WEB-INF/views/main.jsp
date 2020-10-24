@@ -1,20 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   <%@ page import="java.util.*" %>
-   <%
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
+<%
 	String cp=request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 var date = new Date(); 
 var year = date.getFullYear(); 
@@ -60,32 +62,29 @@ function ajaxJSON(url, type, query, fn) {
 }
 document.addEventListener("DOMContentLoaded",function(){
 	var areas = [
-		["평균날씨",126
-, 35
-],
-		["광주",126, 35],
-		["목포",126, 34],
-		["여수",127, 34],
-		["순천",127, 34],
-		["광양",127, 34],
-		["나주",126, 35],
-		["담양", 126, 35],
-		["곡성",127, 35],
-		["구례",127, 35],
-		["고흥",127, 34],
-		["보성",127, 34],
-		["화순",126, 35],
-		["강진",126, 35],
-		["장흥",126, 34],
-		["해남",126, 34],
-		["영암",126, 34],
-		["무안",126, 34],
-		["함평",126, 35],
-		["영광",126, 35],
-		["장성",126, 35],
-		["완도",126, 34],
-		["진도",126 ,34],
-		["신안",126, 34]
+		["광주",74, 58],
+		["목포",67, 50],
+		["여수",66, 73],
+		["순천",70, 70],
+		["광양",71, 56],
+		["나주",70, 73],
+		["담양",78, 61],
+		["곡성",77, 66],
+		["구례",75, 69],
+		["고흥",62, 66],
+		["보성",66, 62],
+		["화순",72, 61],
+		["강진",64, 59],
+		["장흥",63, 57],
+		["해남",61, 54],
+		["영암",66, 56],
+		["무안",71, 52],
+		["함평",72, 52],
+		["영광",77, 52],
+		["장성",77, 57],
+		["완도",56, 57],
+		["진도",59 ,48],
+		["신안",66, 50]
 	];
 		for(var i=0; i<24; i++){
 			(function(){
@@ -95,158 +94,253 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 function wae(area,ny,nx){
 	var url="<%=cp%>/weather/search2";
-	var base_date=d_day;
-	var base_time="0200";
-	var area;
-	var query="base_date="+base_date+"&base_time="+base_time+"&nx="+nx+"&ny="+ny;
-	
-	var out="";
-	var fn=function(data) {
-		// console.log(data);
-		var category;
-		var fcstDate, fcstTime; // 발표일자, 시간
-		var fcstValue;
-		
-		if(! data.response.body) {
-			alert("등록된 정보가 없습니다.");
-			return false;
-		}
-		out+="<tr>";
-		var list=data.response.body.items.item;
-		
-		 out+="<td>"+area;+"</td>"
-		for(var j=0; j<64; j++){
-			
-		    if(list[j].category==="POP"){
-		        if(list[j].fcstTime==hours){
-		            out+="<td>"+list[j].fcstValue+"%"+"</td>"
-		        }
-		    }
-		    if(list[j].category=="PTY"){
-		        if(list[j].fcstTime==hours){
-		        	fcstValue=list[j].fcstValue;
-		            if(fcstValue=="0") {
-		    			out+="<td>"+"없음"+"</td>";
-		    		} else if(fcstValue=="1") {
-		    			out+="<td>"+"비"+"</td>";
-		    		} else if(fcstValue=="2") {
-		    			out+="<td>"+"비/눈"+"</td>";
-		    		} else if(fcstValue=="3") {
-		    			out+="<td>"+"눈"+"</td>";
-		    		} else if(fcstValue=="4") {
-		    			out+="<td>"+"소나기"+"</td>";
-		    		} else if(fcstValue=="5") {
-		    			out+="<td>"+"빗방울"+"</td>";
-		    		} else if(fcstValue=="6") {
-		    			out+="<td>"+"빗방울/눈날림"+"</td>";
-		    		} else if(fcstValue=="7") {
-		    			out+="<td>"+"눈날림"+"</td>";
-		    		}
-		        }
-		    }
-		    if(list[j].category=="REH"){
-		        if(list[j].fcstTime==hours){
-		        	fcstValue=list[j].fcstValue;
-		            out+="<td>"+fcstValue+"%"+"</td>"
-		        }
-		    }
-		    if(list[j].category=="SKY"){
-		        if(list[j].fcstTime==hours){
-		        	fcstValue=list[j].fcstValue;
-		        	if(fcstValue=="1") {
-		    			out+="<td>"+"맑음"+"<td>";
-		    		} else if(fcstValue=="3") {
-		    			out+="<td>"+"구름 많음"+"<td>";
-		    		} else if(fcstValue=="4") {
-		    			out+="<td>"+"흐림"+"<td>";
-		    		}
-		        }
-		    }
-		    if(list[j].category=="T3H"){
-		        if(list[j].fcstTime==hours){
-		            out+="<td>"+list[j].fcstValue+"℃"+"</td>"
-		        }
-		    }
-		    if(list[j].category=="TMN"){
-		            out+="<td>"+"최저기온"+list[j].fcstValue+"℃"+"</td>"
-		    }
-		    if(list[j].category=="UUU"){
-		        if(list[j].fcstTime==hours){
-		            out+="<td>"+list[j].fcstValue+"m/s"+"</td>"
-		        }
-		    }
-		    if(list[j].category==="TMX"){
-	            out+="<td>"+"최고기온"+list[j].fcstValue+"℃"+"</td>"
-	    	}
-		    
-		}
-		 out+="</tr>";
-		    document.getElementById("resultLayout").innerHTML+=out; 
-		
+		var base_date = d_day;
+		var base_time = "0200";
+		var area;
+		var query = "base_date=" + base_date + "&base_time=" + base_time
+				+ "&nx=" + nx + "&ny=" + ny;
+
+		var out = "";
+		var fn = function(data) {
+			// console.log(data);
+			var category;
+			var fcstDate, fcstTime; // 발표일자, 시간
+			var fcstValue;
+
+			if (!data.response.body) {
+				alert("등록된 정보가 없습니다.");
+				return false;
+			}
+			out += "<tr>";
+			var list = data.response.body.items.item;
+
+			out += "<td>" + area;
+			+"</td>"
+			for (var j = 0; j < 64; j++) {
+
+				if (list[j].category === "POP") {
+					if (list[j].fcstTime == hours) {
+						out += "<td>" + list[j].fcstValue + "%" + "</td>"
+					}
+				}
+				if (list[j].category == "PTY") {
+					if (list[j].fcstTime == hours) {
+						fcstValue = list[j].fcstValue;
+						if (fcstValue == "0") {
+							out += "<td>" + "없음" + "</td>";
+						} else if (fcstValue == "1") {
+							out += "<td>" + "비" + "</td>";
+						} else if (fcstValue == "2") {
+							out += "<td>" + "비/눈" + "</td>";
+						} else if (fcstValue == "3") {
+							out += "<td>" + "눈" + "</td>";
+						} else if (fcstValue == "4") {
+							out += "<td>" + "소나기" + "</td>";
+						} else if (fcstValue == "5") {
+							out += "<td>" + "빗방울" + "</td>";
+						} else if (fcstValue == "6") {
+							out += "<td>" + "빗방울/눈날림" + "</td>";
+						} else if (fcstValue == "7") {
+							out += "<td>" + "눈날림" + "</td>";
+						}
+					}
+				}
+				if (list[j].category == "REH") {
+					if (list[j].fcstTime == hours) {
+						fcstValue = list[j].fcstValue;
+						out += "<td>" + fcstValue + "%" + "</td>"
+					}
+				}
+				if (list[j].category == "SKY") {
+					if (list[j].fcstTime == hours) {
+						fcstValue = list[j].fcstValue;
+						if (fcstValue == "1") {
+							out += "<td>" + "맑음" + "<td>";
+						} else if (fcstValue == "3") {
+							out += "<td>" + "구름 많음" + "<td>";
+						} else if (fcstValue == "4") {
+							out += "<td>" + "흐림" + "<td>";
+						}
+					}
+				}
+				if (list[j].category == "T3H") {
+					if (list[j].fcstTime == hours) {
+						out += "<td>" + list[j].fcstValue + "℃" + "</td>"
+					}
+				}
+				if (list[j].category == "TMN") {
+					out += "<td>" + "최저기온" + list[j].fcstValue + "℃" + "</td>"
+				}
+				if (list[j].category == "UUU") {
+					if (list[j].fcstTime == hours) {
+						out += "<td>" + list[j].fcstValue + "m/s" + "</td>"
+					}
+				}
+				if (list[j].category === "TMX") {
+					out += "<td>" + "최고기온" + list[j].fcstValue + "℃" + "</td>"
+				}
+
+			}
+			out += "</tr>";
+			document.getElementById("resultLayout").innerHTML += out;
+
+		};
+
+		ajaxJSON(url, "post", query, fn);
 	};
-	
-	ajaxJSON(url, "post", query, fn);
-};
 </script>
-   <link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
-  <link href="./resources/css/small-business.css" rel="stylesheet">
-    <link href="./resources/css/weather.css" rel="stylesheet">
-    <style>
-    #weatherTb{
+
+<link
+	href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />"
+	rel="stylesheet">
+<link href="./resources/css/small-business.css" rel="stylesheet">
+<link href="./resources/css/weather.css" rel="stylesheet">
+<style>
+#weatherTb {
 	border-color: black;
 	border: 1px;
 	border-style: solid;
-	width:100%;
+	width: 100%;
 	text-align: center;
-	color:black;
-		}
-	thead{
+	color: black;
+}
+
+thead {
 	text-align: center;
-	}
-	th{
-	text-align: center;
-	border-color: black;
-	border: 1px;
-	border-style: solid;
-	}
-	td{
+}
+
+th {
 	text-align: center;
 	border-color: black;
 	border: 1px;
 	border-style: solid;
-	}
-    </style>
+}
+
+td {
+	text-align: center;
+	border-color: black;
+	border: 1px;
+	border-style: solid;
+}
+</style>
 </head>
 <body>
-<jsp:include page="includejsp/menubar.jsp"></jsp:include>
-<div>
+	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
+	<div>
 
-	
-	<div class="container" id="container">
-		<h1>동네예보</h1>
-	<hr>
-		<table id="weatherTb">
-			<thead>
-				<tr>
-					<th>지역</th>
-					<th>강수확률</th>
-					<th>강수형태</th>
-					<th>습도</th>
-					<th>하늘 상태</th>
-					<th></th>
-					<th>3시간 기준 최저기온</th>
-					<th>최저기온</th>
-					<th>풍속</th>
-					<th>최고기온</th>
-				</tr>
-			</thead>
-			<tbody id="resultLayout">
-			</tbody>
-		</table>
+
+		<div class="container" id="container">
+			<h1>동네예보</h1>
+			<hr>
+			<div class="bg-white rounded shadow-sm">
+				<table id="weatherTb">
+					<thead>
+						<tr>
+						</tr>
+					</thead>
+					<tbody id="resultLayout">
+					</tbody>
+				</table>
+			</div>
+
+		</div>
 	</div>
-</div>
-<jsp:include page="includejsp/footer.jsp"></jsp:include>
-  <script src="./resources/vendor/jquery/jquery.min.js"></script>
-  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- 이미지 지도를 표시할 div 입니다 -->
+<div id="staticMap" style="width:800px;height:800px;"></div>    
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c731503805ccfcc41946121c0050cfc"></script>
+<script>    
+// 이미지 지도에 표시할 마커입니다
+// 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
+var markers = [
+    {
+        position: new kakao.maps.LatLng(35.156974999999996,	126.85336388888888),
+    	text: '광주' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+    },{
+        position: new kakao.maps.LatLng(34.808788888888884,	126.39441944444445),
+    	text: '목포'
+    },{
+        position: new kakao.maps.LatLng(34.757311111111115,	127.66438611111111),
+    	text: '여수'
+    },{
+        position: new kakao.maps.LatLng(34.947605555555555,	127.48933055555555),
+    	text: '순천'
+    },{
+        position: new kakao.maps.LatLng(35.012838888888886,	126.71286666666667),
+    	text: '나주'
+    },{
+        position: new kakao.maps.LatLng(34.93753611111111,	127.69817777777779),
+    	text: '광양'
+    },{
+        position: new kakao.maps.LatLng(35.318125,	126.99016388888889),
+    	text: '담양'
+    },{
+        position: new kakao.maps.LatLng(35.278955555555555,	127.29410833333333),
+    	text: '곡성'
+    },{
+        position: new kakao.maps.LatLng(35.19945833333333,127.46493333333333),
+    	text: '구례'
+    },{
+        position: new kakao.maps.LatLng(34.608069444444446,127.28705555555555),
+    	text: '고흥'
+    },{
+        position: new kakao.maps.LatLng(34.76833333333333,127.08208888888889),
+    	text: '보성'
+    },{
+        position: new kakao.maps.LatLng(35.061480555555555,126.98856666666667),
+    	text: '화순'
+    },{
+        position: new kakao.maps.LatLng(34.678525,126.90910833333334),
+    	text: '장흥'
+    },{
+        position: new kakao.maps.LatLng(34.63891111111111,126.76919722222222),
+    	text: '강진'
+    },{
+        position: new kakao.maps.LatLng(34.570436111111114,126.60128888888889),
+    	text: '해남'
+    },{
+        position: new kakao.maps.LatLng(34.79698888888889,126.69861944444445),
+    	text: '영암'
+    },{
+        position: new kakao.maps.LatLng(34.98736944444445,126.4837),
+    	text: '무안'
+    },{
+        position: new kakao.maps.LatLng(35.06274444444444,126.51861944444444),
+    	text: '함평'
+    },{
+        position: new kakao.maps.LatLng(35.274166666666666,126.51408611111111),
+    	text: '영광'
+    },{
+        position: new kakao.maps.LatLng(35.29881111111111,126.786975),
+    	text: '장성'
+    },{
+        position: new kakao.maps.LatLng(34.307852777777775,126.75709722222223),
+    	text: '완도'
+    },{
+        position: new kakao.maps.LatLng(34.48375,126.26554444444444),
+    	text: '진도'
+    },{
+        position: new kakao.maps.LatLng(34.789811111111106,126.38173055555555),
+    	text: '신안'
+    }
+    
+];
+
+var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+    staticMapOption = { 
+        center: new kakao.maps.LatLng(34.97385, 126.97021), // 이미지 지도의 중심좌표
+        level: 11, // 이미지 지도의 확대 레벨
+        marker: markers // 이미지 지도에 표시할 마커 
+    };    
+
+// 이미지 지도를 생성합니다
+var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+</script>
+	<jsp:include page="includejsp/footer.jsp"></jsp:include>
+	<script src="./resources/vendor/jquery/jquery.min.js"></script>
+	<script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
