@@ -1,9 +1,9 @@
 package com.project.app.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.project.app.vo.AddPostVO;
+import com.project.app.vo.FavorVO;
 import com.project.app.vo.PostVO;
 import com.project.app.vo.ReplyVO;
 
@@ -21,7 +21,8 @@ public interface BoardDAO {
 	public void deletePost(int postId);
 	
 	//좋아요/싫어요 관련
-	public String seachPostFavor(Map<String, String> map);
+	public String seachPostFavor(FavorVO fav);
+	public void addPostFavor(FavorVO fav);
 	
 	// 댓글 관련
 	// select

@@ -1,7 +1,6 @@
 package com.project.app.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.project.app.vo.AddPostVO;
+import com.project.app.vo.FavorVO;
 import com.project.app.vo.PostVO;
 import com.project.app.vo.ReplyVO;
 
@@ -83,8 +83,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public String seachPostFavor(Map<String, String> map) {
+	public String seachPostFavor(FavorVO fav) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("com.project.app.board.seachPostFavor", map);
+		return sqlSession.selectOne("com.project.app.board.seachPostFavor", fav);
 	}
 }

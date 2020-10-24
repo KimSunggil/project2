@@ -2,7 +2,6 @@ package com.project.app;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.app.service.BoardService;
 import com.project.app.vo.AddPostVO;
+import com.project.app.vo.FavorVO;
 import com.project.app.vo.PostVO;
 import com.project.app.vo.ReplyVO;
 
@@ -111,17 +111,28 @@ public class BoardController {
 	
 	//좋아요 싫어요
 	@RequestMapping(value="/board/favor{postId}_{favor}", method=RequestMethod.POST)
-	public String favor(@PathVariable("postId") int postId, @PathVariable("favor") String favor, Model model) {
+	public String favor(Principal principal, @PathVariable("postId") int postId, @PathVariable("favor") String favor, Model model) {
 		
-//		Map<String,String> map = new Map<String,String>();
-//		map.put(userId, );
-//		
-//		boardService.seachPostFavor(map);
-		
+		if(principal == null) {
+			model.addAttribute("errorLog", "로그인이 필요한 기능 입니다.");
+		}else {
+
+			FavorVO fav = new FavorVO();
+			
+			fav.setPostId(postId);
+			fav.setUserId(principal.getName());
+			fav.setFavor(favor);
+			
+			if(boardService.seachPostFavor(fav) == null) // 좋아요, 싫어요 누른 적이 없을 때
+				boardService.addPostFavor(fav);
+			else
+				model.addAttribute("errorLog", "이미 평가 하셨습니다.");
+		}		
+	
 		return "redirect: /view" + postId ;
 	}
 	
-	// ================ 멋글 관련 ==============================
+	// ===================== 멋글 관련 ==============================
 	//댓글 업로드 요청
 	@RequestMapping(value="/write_reply", method=RequestMethod.POST)
 	public String writeReply(@ModelAttribute ReplyVO reply, Model model){

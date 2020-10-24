@@ -1,7 +1,6 @@
 package com.project.app.service;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.app.dao.BoardDAO;
 import com.project.app.vo.AddPostVO;
+import com.project.app.vo.FavorVO;
 import com.project.app.vo.PostVO;
 import com.project.app.vo.ReplyVO;
 
@@ -79,9 +79,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public String seachPostFavor(Map<String, String> map) {
+	public String seachPostFavor(FavorVO fav) {
 		// TODO Auto-generated method stub
-		return boardDao.seachPostFavor(map);
+		return boardDao.seachPostFavor(fav);
 	}
-	
+
+	@Override
+	public void addPostFavor(FavorVO fav) {
+		// TODO Auto-generated method stub
+		boardDao.addPostFavor(fav);
+	}
+		
 }
