@@ -26,7 +26,7 @@
 			WHERE A.POST_ID = #{postId} ORDER BY A.REPLY_ID
 	</select>
 	
-	<select id="seachPostFavor" parameterType="hashmap" resultType="String">
+	<select id="seachPostFavor" parameterType="FavorVO" resultType="String">
 		SELECT A.FAVOR
 			FROM FAVOR A
 			WHERE A.USER_ID = ${userId} AND A.POST_ID = ${postId}
@@ -46,6 +46,11 @@
 	<insert id="addReply" parameterType="ReplyVO">
 		INSERT INTO NAMDODB.REPLY(REPLY_ID, POST_ID, SUPER_REPLY, USER_ID, CONTENT, REPLY_DATE)
 			VALUE ((SELECT MAX(A.REPLY_ID)+1 FROM NAMDODB.REPLY A), #{postId}, #{superReply}, #{userId}, #{content}, now())
+	</insert>
+	
+	<insert id="plusPostFavor" parameterType="FavorVO">
+		INSERT INTO NAMDODB.POST_FAVOR(POST_ID, USER_ID, FAVOR)
+			VALUES (#{postId}, #{userId}, #{favor})
 	</insert>
 	
 	<!-- 		update		 -->

@@ -15,7 +15,7 @@
 		<typeAlias alias="ReplyVO" type="com.project.app.vo.ReplyVO"/>
 		<typeAlias alias="FestivalVO" type="com.project.app.vo.FestivalVO"/>
 		<typeAlias alias="TourVO" type="com.project.app.vo.TourVO"/>
-		
+		<typeAlias alias="FavorVO" type="com.project.app.vo.FavorVO"/>
 	</typeAliases>
 	
 </configuration>

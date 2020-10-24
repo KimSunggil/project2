@@ -45,8 +45,9 @@ public class TourController {
 		List<TourVO> room = tourService.roomList();
 		JSONArray jsonArray = new JSONArray();
 
-		model.addAttribute("room", jsonArray.fromObject(room));
+		model.addAttribute("room", JSONArray.fromObject(room));
 		return "room";
+	
 	}
 	
 //	@RequestMapping(value = "/food", method = RequestMethod.GET)
