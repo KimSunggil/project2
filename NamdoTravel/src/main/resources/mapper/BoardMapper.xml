@@ -5,7 +5,7 @@
 	<!-- 		select		 -->
 		
 	<select id="getPostList" parameterType="int" resultType="PostVO">
-		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, IFNULL(C.LIKE,0), IFNULL(C.DISLIKE,0)
+		SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, C.LIKE, C.DISLIKE
 			FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B ON A.BOARD_ID = B.BOARD_ID
 								 LEFT OUTER JOIN (SELECT A.POST_ID POST_ID, COUNT(CASE WHEN A.FAVOR='LIKE' THEN 1 END) AS 'LIKE', COUNT(CASE WHEN A.FAVOR='DISLIKE' THEN 1 END) AS 'DISLIKE'
 												FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID
@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="getPost" parameterType="int" resultType="PostVO">
-		SELECT A.BOARD_ID, A.POST_ID, A.POST_NM, A.USER_ID, A.USER_NM, A.POST_DATE, B.CONTENT, A.HITS, IFNULL(C.LIKE,0), IFNULL(C.DISLIKE,0)
+		SELECT A.BOARD_ID, A.POST_ID, A.POST_NM, A.USER_ID, A.USER_NM, A.POST_DATE, B.CONTENT, A.HITS, C.LIKE, C.DISLIKE
 			FROM NAMDODB.POST A INNER JOIN NAMDODB.POST_CONTENT B ON A.POST_ID = B.POST_ID 
 								LEFT OUTER JOIN (SELECT A.POST_ID POST_ID, COUNT(CASE WHEN A.FAVOR='LIKE' THEN 1 END) AS 'LIKE', COUNT(CASE WHEN A.FAVOR='DISLIKE' THEN 1 END) AS 'DISLIKE'
 													FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID																
@@ -28,8 +28,8 @@
 	
 	<select id="seachPostFavor" parameterType="FavorVO" resultType="String">
 		SELECT A.FAVOR
-			FROM FAVOR A
-			WHERE A.USER_ID = ${userId} AND A.POST_ID = ${postId}
+			FROM NAMDODB.POST_FAVOR A
+			WHERE A.POST_ID = ${postId} AND A.USER_ID = '${userId}' 
 	</select>
 	
 	<!-- 		insert		 -->
@@ -48,7 +48,7 @@
 			VALUE ((SELECT MAX(A.REPLY_ID)+1 FROM NAMDODB.REPLY A), #{postId}, #{superReply}, #{userId}, #{content}, now())
 	</insert>
 	
-	<insert id="plusPostFavor" parameterType="FavorVO">
+	<insert id="addPostFavor" parameterType="FavorVO">
 		INSERT INTO NAMDODB.POST_FAVOR(POST_ID, USER_ID, FAVOR)
 			VALUES (#{postId}, #{userId}, #{favor})
 	</insert>

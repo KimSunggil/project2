@@ -87,4 +87,10 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.project.app.board.seachPostFavor", fav);
 	}
+
+	@Override
+	public void addPostFavor(FavorVO fav) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("com.project.app.board.addPostFavor",fav);
+	}
 }

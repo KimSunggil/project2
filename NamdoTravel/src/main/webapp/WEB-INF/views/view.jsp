@@ -25,16 +25,16 @@
 
 <script>
 	document.addEventListener("DOMContentLoaded",function(){
-
+		
 		document.getElementById("contentDiv").innerHTML = `${posts.content}`;
 
 		document.getElementById("modifyReplyA").addEventListener("click",function(){
 			document.getElementById("relplyUpdateBox").classList.toggle("displayActive");
 		})
 		
-		document.getElementById("btnDelete").addEventListener("click", function(){
-			document.getElementById("tmpForm").submit();	
-		});
+		if(`${errorLog}`){
+			alert(`${errorLog}`);
+		}
 	})
 </script>
 
@@ -70,8 +70,16 @@
 			<hr/>
 			<!-- 좋아요 싫어요 -->
 			<div style="display:flex; justify-content: space-around; ">
-				<a href = "<c:url value = "/board/favor${posts.postId}_LIKE"/>" > 좋아요 </a>
-				<a href = "<c:url value = "/board/favor${posts.postId}_DISLIKE"/>"> 싫어요 </a>
+				<form action="<c:url value='/board/favor'/>" method="post">
+					<input type="hidden" name="favor" value="LIKE"/>
+					<input type="hidden" name="postId" value="${posts.postId}">
+					<input type="submit" value="좋아요">
+				</form>
+				<form action="<c:url value='/board/favor'/>" method="post">
+					<input type="hidden" name="favor" value="DISLIKE"/>
+					<input type="hidden" name="postId" value="${posts.postId}"/>
+					<input type="submit" value="싫어요">
+				</form>
 			</div>
 		</article>
 		
@@ -81,7 +89,7 @@
 				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button> </a>
 				
 				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/delete_Post${posts.boardId}_${posts.postId}'/>" method="POST">
-				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				<button type="submit" class="btn btn-sm btn-primary">삭제</button>
 				</form>
 			</c:if>
 				<a href="<c:url value='/board/${posts.boardId}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
