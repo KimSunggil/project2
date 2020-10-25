@@ -35,10 +35,11 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 		
 	// 게시판 게시글 목록
-	@RequestMapping(value = "/{boardId}", method = RequestMethod.GET)
-	public String board(@PathVariable("boardId") int boardId, Model model) {
+	@RequestMapping(value = "/{boardId}_page{page}", method = RequestMethod.GET)
+	public String board(@PathVariable("boardId") int boardId, @PathVariable("page") int page, Model model) {
 		List<PostVO> post = boardService.getPostList(boardId);
 		model.addAttribute("posts",post);
+		model.addAttribute("pages",page);
 		model.addAttribute("boardIds",boardId);
 		
 		return "board";

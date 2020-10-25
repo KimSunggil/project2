@@ -22,26 +22,15 @@
 
 <script>
 	document.addEventListener("DOMContentLoaded", function(){
-		var postId = document.getElementById("postId");
+		
 		
 		document.querySelector("#board > tbody").addEventListener("click",function(e){
 			var src = e.target;
 	
 			if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
 			
-			console.log(src);
-			
-			console.log(src.parentElement.firstElementChild.innerText);
-			
 			window.location.href = "/app/board/view"+src.parentElement.firstElementChild.innerText;
-// 			custId.value = src.parentElement.firstElementChild.innerText;
-// 			custNm.value = src.parentElement.firstElementChild.nextElementSibling.innerText;
-		})	
-		
-		//when add item click
-// 		document.getElementById("addOrder").addEventListener("click",function(){
-// 			addItem("orderContainer");
-// 		});
+		})
 	});
 </script>
 
@@ -85,7 +74,7 @@
 		<article class="container">
 			<a href="<c:url value='/board/write${boardIds}'/>" class="btn btn-primary float-right"> 글쓰기</a>
 			<nav>
-				<ul class="pagination">
+				<ul class="pagination justify-content-center">
 					<li class="page-item disabled"><a class="page-link" href="#"
 						tabindex="-1">Previous</a></li>
 					<li class="page-item"><a class="page-link" href="#">1</a></li>
