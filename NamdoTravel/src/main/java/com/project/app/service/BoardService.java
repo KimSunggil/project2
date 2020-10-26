@@ -1,6 +1,7 @@
 package com.project.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.app.vo.AddPostVO;
 import com.project.app.vo.FavorVO;
@@ -11,7 +12,8 @@ public interface BoardService {
 	//본문 관련
 	//select
 	PostVO getPost(int boardId);
-	List<PostVO> getPostList(int boardId);
+	int getPaging(int boardId);
+	List<PostVO> getPostList(Map<String,Object> map);
 	//insert
 	void addPost(AddPostVO addPost);
 	//update

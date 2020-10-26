@@ -29,7 +29,7 @@
 	
 			if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
 			
-			window.location.href = "/app/board/view"+src.parentElement.firstElementChild.innerText;
+			window.location.href = "/app/board/view"+src.parentElement.firstElementChild.innerText+"_page${pages}";
 		})
 	});
 </script>
