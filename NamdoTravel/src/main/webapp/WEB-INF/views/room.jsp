@@ -85,18 +85,12 @@ tr:nth-child(even) {
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
 				var addressArray = [];
-				var roomAddress = JSON.parse('${room}');
+				var roomAddress = JSON.parse('${json}');
 
 				for (var i = 0; i < roomAddress.length; i++) {
-					addressArray.push({
-						'groupAddress' : $("input[name='address']").eq(i).val()
-					});
-				}
-
-				for (var i = 0; i < addressArray.length; i++) {
 					geocoder
 							.addressSearch(
-									addressArray[i].groupAddress,
+									roomAddress[i].address,
 									function(result, status, data) {
 
 										if (status === kakao.maps.services.Status.OK) {
@@ -128,7 +122,7 @@ tr:nth-child(even) {
 											customOverlay.setMap(map);
 
 											// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-											map.setCenter(coords);
+//											map.setCenter(coords);
 										}
 									});
 				}
@@ -153,11 +147,11 @@ tr:nth-child(even) {
 					<c:forEach items="${room}" var="room">
 						<tr>
 							<td style="width: 100px;">${room.area}</td>
-							<td style="width: 300px;">${room.tourism_nm}</td>
-							<td style="width: 300px;">${room.location_nm_address}</td>
+							<td style="width: 300px;">${room.tourismNm}</td>
+							<td style="width: 300px;">${room.locationNmAddress}</td>
 							<td style="width: 100px;">${room.parking}</td>
 							<td style="width: 200px; cursor: hand;" align="center"
-								onClick="location.href='${room.tourism_hp}'">${room.tourism_hp}</td>
+								onClick="location.href='${room.tourismHp}'">${room.tourismHp}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

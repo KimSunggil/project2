@@ -7,7 +7,7 @@
 			from  NAMDODB.tourism where sortation like '%관광%'
 		</select>
 		
-		<select id="roomList" resultType="hashmap" parameterType="hashmap">
+		<select id="roomList" resultType="TourVO" parameterType="hashmap">
 			select area, tourism_nm, location_nm_address, parking, tourism_hp
 			from  NAMDODB.tourism where sortation like '%숙박%'
 		</select>
