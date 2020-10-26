@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.*"%>
 <%
@@ -14,7 +13,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Insert title here</title>
-
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -34,38 +32,17 @@ function ajaxJSON(url, type, query, fn) {
 	});
 }
 document.addEventListener("DOMContentLoaded",function(){
-	var areas = [
-		["광주",74, 58],
-		["목포",67, 50],
-		["여수",66, 73],
-		["순천",70, 70],
-		["광양",71, 56],
-		["나주",70, 73],
-		["담양",78, 61],
-		["곡성",77, 66],
-		["구례",75, 69],
-		["고흥",62, 66],
-		["보성",66, 62],
-		["화순",72, 61],
-		["강진",64, 59],
-		["장흥",63, 57],
-		["해남",61, 54],
-		["영암",66, 56],
-		["무안",71, 52],
-		["함평",72, 52],
-		["영광",77, 52],
-		["장성",77, 57],
-		["완도",56, 57],
-		["진도",59 ,48],
-		["신안",66, 50]
-	];
+	var areas = new Array();
+	<c:forEach items="${weather}" var="weather">
+	 areas.push(["${weather.city}","${weather.gridX}","${weather.gridY}"]);
+	</c:forEach>
 		for(var i=0; i<24; i++){
 			(function(){
-				wae(areas[i][0],areas[i][1],areas[i][2]);
+				weather(areas[i][0],areas[i][1],areas[i][2]);
 			})(i)
 		};
 });
-function wae(area,ny,nx){
+function weather(area,nx,ny){
 	var date = new Date(); 
 	var year = date.getFullYear(); 
 	var month = new String(date.getMonth()+1); 
@@ -180,21 +157,15 @@ function wae(area,ny,nx){
 				if (list[j].category === "TMX") {
 					out += "<td>" + "최고기온" + list[j].fcstValue + "℃" + "</td>"
 				}
-
 			}
 			out += "</tr>";
 			document.getElementById("resultLayout").innerHTML += out;
 
 		};
-
 		ajaxJSON(url, "post", query, fn);
 	};
-</script>
 
-<link
-	href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />"
-	rel="stylesheet">
-<link href="./resources/css/small-business.css" rel="stylesheet">
+</script>
 <link href="./resources/css/weather.css" rel="stylesheet">
 <style>
 #weatherTb {
@@ -246,13 +217,26 @@ td {
 
 		</div>
 	</div>
-
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c731503805ccfcc41946121c0050cfc"></script>
-<script>    
-
-var markers = [
-    {
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c731503805ccfcc41946121c0050cfc"></script>
+	<script>    
+			var markers = new Array();
+			<c:forEach items="${weather}" var="weather">
+			 markers.push([{position: new kakao.maps.LatLng(${weather.latitude},${weather.longitude}),text:'${weather.city}'}]);
+			</c:forEach>
+				var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+				    staticMapOption = { 
+				        center: new kakao.maps.LatLng(34.97385, 126.97021), // 이미지 지도의 중심좌표
+				        level: 11, // 이미지 지도의 확대 레벨
+				        marker: markers // 이미지 지도에 표시할 마커 
+				    };    
+console.log(markers);
+				// 이미지 지도를 생성합니다
+				var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+	</script>    
+	<jsp:include page="includejsp/footer.jsp"></jsp:include>
+</body>
+</html>
+<!-- {
         position: new kakao.maps.LatLng(35.156974999999996,	126.85336388888888),
     	text: '광주' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
     },{
@@ -321,25 +305,6 @@ var markers = [
     },{
         position: new kakao.maps.LatLng(126.12666666666667,	34.752947222222225),
     	text: '신안'
-    }
-    
-];
-
-var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-    staticMapOption = { 
-        center: new kakao.maps.LatLng(34.97385, 126.97021), // 이미지 지도의 중심좌표
-        level: 11, // 이미지 지도의 확대 레벨
-        marker: markers // 이미지 지도에 표시할 마커 
-    };    
-
-// 이미지 지도를 생성합니다
-var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-</script>
-	<jsp:include page="includejsp/footer.jsp"></jsp:include>
-	<script src="./resources/vendor/jquery/jquery.min.js"></script>
-	<script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
+    } -->
 
 
