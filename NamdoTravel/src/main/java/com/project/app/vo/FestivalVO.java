@@ -4,19 +4,26 @@ import java.sql.Date;
 
 public class FestivalVO {
 	
-	private String fstNm;
+	private String area;
+	private String festivalNnm;
 	private Date startDt;
 	private Date endDt;
-	private String fstContent;
-	private String fstAddress;
-	private String fstNum;
-	private String fstHp;
+	private String festivalContent;
+	private String locationNmAddress;
+	private String festivalPNum;
+	private String festivalHp;
 	
-	public String getFstNm() {
-		return fstNm;
+	public String getArea() {
+		return area;
 	}
-	public void setFstNm(String fstNm) {
-		this.fstNm = fstNm;
+	public void setArea(String area) {
+		this.area = area;
+	}
+	public String getFestivalNnm() {
+		return festivalNnm;
+	}
+	public void setFestivalNnm(String festivalNnm) {
+		this.festivalNnm = festivalNnm;
 	}
 	public Date getStartDt() {
 		return startDt;
@@ -30,35 +37,30 @@ public class FestivalVO {
 	public void setEndDt(Date endDt) {
 		this.endDt = endDt;
 	}
-	public String getFstContent() {
-		return fstContent;
+	public String getFestivalContent() {
+		return festivalContent;
 	}
-	public void setFstContent(String fstContent) {
-		this.fstContent = fstContent;
+	public void setFestivalContent(String festivalContent) {
+		this.festivalContent = festivalContent;
 	}
-	public String getFstAddress() {
-		return fstAddress;
+	public String getLocationNmAddress() {
+		return locationNmAddress;
 	}
-	public void setFstAddress(String fstAddress) {
-		this.fstAddress = fstAddress;
+	public void setLocationNmAddress(String locationNmAddress) {
+		this.locationNmAddress = locationNmAddress;
 	}
-	public String getFstNum() {
-		return fstNum;
+	public String getFestivalPNum() {
+		return festivalPNum;
 	}
-	public void setFstNum(String fstNum) {
-		this.fstNum = fstNum;
+	public void setFestivalPNum(String festivalPNum) {
+		this.festivalPNum = festivalPNum;
 	}
-	public String getFstHp() {
-		return fstHp;
+	public String getFestivalHp() {
+		return festivalHp;
 	}
-	public void setFstHp(String fstHp) {
-		this.fstHp = fstHp;
+	public void setFestivalHp(String festivalHp) {
+		this.festivalHp = festivalHp;
 	}
 	
-	@Override
-	public String toString() {
-		return "FestivalVO [fstNm=" + fstNm + ", startDt=" + startDt + ", endDt=" + endDt + ", fstContent=" + fstContent
-				+ ", fstAddress=" + fstAddress + ", fstNum=" + fstNum + ", fstHp=" + fstHp + "]";
-	}
 	
 }
