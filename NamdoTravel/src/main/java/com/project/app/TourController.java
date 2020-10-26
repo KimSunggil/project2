@@ -49,6 +49,7 @@ public class TourController {
 		room.stream().forEach((ele) -> {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("area", ele.getArea());
+			jsonObject.put("tourismNm", ele.getTourismNm());
 			jsonObject.put("address", ele.getLocationNmAddress());
 			jsonArray.add(jsonObject);
 		});
