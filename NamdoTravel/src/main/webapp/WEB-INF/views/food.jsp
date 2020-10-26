@@ -1,20 +1,22 @@
-<%@ page contentType = "text/html;charset=utf-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="kr">
 <html>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title>전남 먹거리 정보</title>
+<title>전남 먹거리 정보</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="./resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="./resources/css/small-business.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="./resources/css/small-business.css" rel="stylesheet">
 
 </head>
 
@@ -38,108 +40,109 @@ tr:nth-child(even) {
 </style>
 <body>
 
-  <!-- Navigation -->
+	<!-- Navigation -->
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 
-  <!-- Page Content -->
-  <div class="container">
+	<!-- Page Content -->
+	<div class="container">
 
-    <!-- Heading Row -->
-    <div class="row align-items-center my-5">
-      
-      <!-- /.col-lg-8 -->
-      <div class="col-lg-5">
-        <h1 class="fst_title">전라남도 먹거리정보</h1>
-      </div>
-      <!-- /.col-md-4 -->
-   
-    </div>
-    <!-- /.row -->
+		<!-- Heading Row -->
+		<div class="row align-items-center my-5">
 
-	<div style="width: 100%; height: 500px; overflow: auto">
-	   <table>
-	   	<thead>
-	   		<tr style="text-align: center;">
-		      	<th>지역</th>
-		      	<th>식당이름</th>
-		      	<th>식당 주소</th>
-		      	<th>주차여부</th>
-		      	<th>홈페이지</th>
-	      	</tr>
-      	</thead>
-	      	
-      	<tbody>    		
-			<c:forEach items="${food}" var="food">
-				<tr>
-					<td style="width: 100px;">${food.area}</td>
-					<td>${food.tourism_nm}</td>
-					<td>${food.location_nm_address}</td>
-					<td style="width: 100px;">${food.parking}</td>
-					<td style="width: 200px;" align="center" onClick="location.href='${food.tourism_hp}'" style="cursor:hand;">${food.tourism_hp}</td>
-				</tr>
-			</c:forEach>
-   		</tbody>
-      </table>
+			<!-- /.col-lg-8 -->
+			<div class="col-lg-5">
+				<h1 class="fst_title">전라남도 먹거리정보</h1>
+			</div>
+			<!-- /.col-md-4 -->
+
+		</div>
+		<!-- /.row -->
+
+		<div style="width: 100%; height: 500px; overflow: auto">
+			<table>
+				<thead>
+					<tr style="text-align: center;">
+						<th>지역</th>
+						<th>식당이름</th>
+						<th>식당 주소</th>
+						<th>주차여부</th>
+						<th>홈페이지</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<c:forEach items="${food}" var="food">
+						<td style="width: 100px;">${food.area}</td>
+						<td style="width: 300px;">${food.tourismNm}</td>
+						<td style="width: 300px;">${food.locationNmAddress}</td>
+						<td style="width: 100px;">${food.parking}</td>
+						<td style="width: 200px; cursor: hand;" align="center"
+							onClick="location.href='${food.tourismHp}'">${food.tourismHp}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+
+
+
+		<!-- Content Row -->
+		<div class="row">
+			<div class="col-md-4 mb-5">
+				<div class="card h-100">
+					<div class="card-body">
+						<h2 class="card-title"></h2>
+						<p class="card-text"></p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+					</div>
+				</div>
+			</div>
+			<!-- /.col-md-4 -->
+			<div class="col-md-4 mb-5">
+				<div class="card h-100">
+					<div class="card-body">
+						<h2 class="card-title"></h2>
+						<p class="card-text"></p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+					</div>
+				</div>
+			</div>
+			<!-- /.col-md-4 -->
+			<div class="col-md-4 mb-5">
+				<div class="card h-100">
+					<div class="card-body">
+						<h2 class="card-title"></h2>
+						<p class="card-text"></p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+					</div>
+				</div>
+			</div>
+			<!-- /.col-md-4 -->
+
+		</div>
+		<!-- /.row -->
+
 	</div>
-	
-    
+	<!-- /.container -->
 
-    <!-- Content Row -->
-    <div class="row">
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="card-title"></h2>
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary btn-sm">More Info</a>
-          </div>
-        </div>
-      </div>
-      <!-- /.col-md-4 -->
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="card-title"></h2>
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary btn-sm">More Info</a>
-          </div>
-        </div>
-      </div>
-      <!-- /.col-md-4 -->
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="card-title"></h2>
-            <p class="card-text"></p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary btn-sm">More Info</a>
-          </div>
-        </div>
-      </div>
-      <!-- /.col-md-4 -->
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2020</p>
+		</div>
+		<!-- /.container -->
+	</footer>
 
-    </div>
-    <!-- /.row -->
-
-  </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="./resources/vendor/jquery/jquery.min.js"></script>
-  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script src="./resources/vendor/jquery/jquery.min.js"></script>
+	<script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

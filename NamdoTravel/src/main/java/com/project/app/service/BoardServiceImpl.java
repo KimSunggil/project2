@@ -1,6 +1,7 @@
 package com.project.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -19,9 +20,14 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDao;
 	
 	@Override
-	public List<PostVO> getPostList(int boardId) {
+	public List<PostVO> getPostList(Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return boardDao.getPostList(boardId);
+		return boardDao.getPostList(map);
+	}
+	
+	@Override
+	public int getPaging(int boardId) {
+		return boardDao.getPaging(boardId);
 	}
 	
 	@Override

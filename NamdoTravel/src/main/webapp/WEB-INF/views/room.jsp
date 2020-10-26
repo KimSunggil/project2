@@ -84,9 +84,8 @@ tr:nth-child(even) {
 
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-				var addressArray = [];
 				var roomAddress = JSON.parse('${json}');
-
+				
 				for (var i = 0; i < roomAddress.length; i++) {
 					geocoder
 							.addressSearch(
@@ -107,10 +106,10 @@ tr:nth-child(even) {
 											// 마커를 지도에 표시합니다.
 											marker.setMap(map);
 
-											var content = '<div class ="labelWish"><span class="leftWish"></span><span class="centerWish">'
-													+ result[0].address_name
+										/* 	var content = '<div class ="labelWish"><span class="leftWish"></span><span class="centerWish">'
+													+ result[0].tourismNm
 													+ '</span><span class="rightWish"></span></div>';
-
+												console.log(tourismNm); */
 											// 커스텀 오버레이를 생성합니다
 											var customOverlay = new daum.maps.CustomOverlay(
 													{
@@ -126,7 +125,26 @@ tr:nth-child(even) {
 										}
 									});
 				}
+				
+				
+				/* // 지도에 클릭 이벤트를 등록합니다
+				// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+				kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+				    
+				    // 클릭한 위도, 경도 정보를 가져옵니다 
+				    var latlng = mouseEvent.latLng;
+				    
+				    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+				    message += '경도는 ' + latlng.getLng() + ' 입니다';
+				    
+				    var resultDiv = document.getElementById('firstBtn'); 
+				    
+				    
+				}); */
 			</script>
+			<div class="province">
+                	<a id="room.area" href="#" class="selectBox"></a>
+       		</div>
 		</div>
 
 		<!-- /.row -->

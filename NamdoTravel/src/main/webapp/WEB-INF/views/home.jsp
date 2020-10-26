@@ -42,7 +42,7 @@
     </div>
     <!-- /.row -->
 
-    <%-- <!-- Call to Action Well -->
+    <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
       <div class="card-body">
 	      <jsp:include page="includejsp/map.jsp"></jsp:include>
@@ -72,7 +72,7 @@
 	      <a class="btn btn-primary" href="#">진도군</a>
 	      <a class="btn btn-primary" href="#">신안군</a>	
       </div>
-    </div> --%>
+    </div>
 
     <!-- Content Row -->
     <div class="row">
