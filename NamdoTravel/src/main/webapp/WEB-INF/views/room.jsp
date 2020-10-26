@@ -84,7 +84,6 @@ tr:nth-child(even) {
 
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-				var addressArray = [];
 				var roomAddress = JSON.parse('${json}');
 
 				for (var i = 0; i < roomAddress.length; i++) {

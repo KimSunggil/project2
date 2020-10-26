@@ -39,6 +39,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="/app/room">숙박 업소</a></li>
 					<li class="nav-item"><a class="nav-link" href="/app/tour">관광지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/food">맛집</a></li>
 					<li class="nav-item"><a class="nav-link" href="/app/festival">지역별 축제</a></li>
 					<li class="nav-item"><a class="nav-link" href="/app/weather/main">전남지역 날씨(미완)</a>
 					</li>

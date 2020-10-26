@@ -61,6 +61,12 @@ public class FestivalVO {
 	public void setFestivalHp(String festivalHp) {
 		this.festivalHp = festivalHp;
 	}
+	@Override
+	public String toString() {
+		return "FestivalVO [area=" + area + ", festivalNnm=" + festivalNnm + ", startDt=" + startDt + ", endDt=" + endDt
+				+ ", festivalContent=" + festivalContent + ", locationNmAddress=" + locationNmAddress
+				+ ", festivalPNum=" + festivalPNum + ", festivalHp=" + festivalHp + "]";
+	}
 	
 	
 }

@@ -36,9 +36,8 @@ public class TourController {
 	@RequestMapping(value = "/tour", method = RequestMethod.GET)
 	public String Tour(Model model) {
 		List<TourVO> tour = tourService.tourList();
-		List<TourVO> food = tourService.foodList();
 		model.addAttribute("tour", tour);
-		model.addAttribute("food", food);
+		
 		return "tour";
 	}
 
@@ -60,11 +59,11 @@ public class TourController {
 
 	}
 
-//	@RequestMapping(value = "/food", method = RequestMethod.GET)
-//	public String Food(Model model) {
-//		List<TourVO> food = tourService.foodList();
-//		model.addAttribute("food", food);
-//		return "food";
-//	}
+	@RequestMapping(value = "/food", method = RequestMethod.GET)
+	public String Food(Model model) {
+		List<TourVO> food = tourService.foodList();
+		model.addAttribute("food", food);
+		return "food";
+	}
 
 }

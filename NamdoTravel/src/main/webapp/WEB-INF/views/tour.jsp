@@ -70,47 +70,20 @@ tr:nth-child(even) {
       	</thead>
 	      	
       	<tbody>    		
-			<c:forEach items="${tour}" var="tour">
-				<tr>
-					<td style="width: 100px;">${tour.area}</td>
-					<td>${tour.tourism_nm}</td>
-					<td>${tour.location_nm_address}</td>
-					<td style="width: 100px;">${tour.parking}</td>
-					<td style="width: 200px;" align="center" onClick="location.href='${tour.tourism_hp}'" style="cursor:hand;">${tour.tourism_hp}</td>
-				</tr>
-			</c:forEach>
+				<c:forEach items="${tour}" var="tour">
+						<td style="width: 100px;">${tour.area}</td>
+						<td style="width: 300px;">${tour.tourismNm}</td>
+						<td style="width: 300px;">${tour.locationNmAddress}</td>
+						<td style="width: 100px;">${tour.parking}</td>
+						<td style="width: 200px; cursor: hand;" align="center"
+							onClick="location.href='${tour.tourismHp}'">${tour.tourismHp}</td>
+						</tr>
+					</c:forEach>
    		</tbody>
       </table>
 	</div>
 	
-	<h1>전라남도 먹거리 정보</h1>
-	
-	<div style="width: 100%; height: 300px; overflow: auto">
-	   <table>
-	   	<thead>
-	   		<tr style="text-align: center;">
-		      	<th>지역</th>
-		      	<th>식당이름</th>
-		      	<th>식당 주소</th>
-		      	<th>주차여부</th>
-		      	<th>홈페이지</th>
-	      	</tr>
-      	</thead>
-	      	
-      	<tbody>    		
-			<c:forEach items="${food}" var="food">
-				<tr>
-					<td style="width: 100px;">${food.area}</td>
-					<td>${food.tourism_nm}</td>
-					<td>${food.location_nm_address}</td>
-					<td style="width: 100px;">${food.parking}</td>
-					<td style="width: 200px;" align="center" onClick="location.href='${food.tourism_hp}'" style="cursor:hand;">${food.tourism_hp}</td>
-				</tr>
-			</c:forEach>
-   		</tbody>
-      </table>
-	</div>
-	
+	<
     
 
     <!-- Content Row -->

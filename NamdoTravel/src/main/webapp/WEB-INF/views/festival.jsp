@@ -75,12 +75,12 @@ tr:nth-child(even) {
 			<c:forEach items="${festival}" var="festival">
 				<tr>
 					<td style="width:100px;">${festival.area}</td>
-					<td style="width:400px;">${festival.festival_nm}</td>
-					<td style="width:200px;">${festival.start_dt} <br> ~ ${festival.end_dt}</td>
-					<td style="width:400px;">${festival.festival_content}</td>
-					<td style="width:400px;">${festival.location_nm_address}</td>
-					<td style="width:200px;">${festival.festival_p_num}</td>
-					<td align="center" onClick="location.href='${festival.festival_hp}'" style="cursor:hand;">${festival.festival_hp}</td>
+					<td style="width:400px;">${festival.festivalNnm}</td>
+					<td style="width:200px;">${festival.startDt} <br> ~ ${festival.endDt}</td>
+					<td style="width:400px;">${festival.festivalContent}</td>
+					<td style="width:400px;">${festival.locationNmAddress}</td>
+					<td style="width:200px;">${festival.festivalPNum}</td>
+					<td align="center" onClick="location.href='${festival.festivalHp}'" style="cursor:hand;">${festival.festivalHp}</td>
 				</tr>
 			</c:forEach>
    		</tbody>
