@@ -319,7 +319,7 @@ var markers = [
         position: new kakao.maps.LatLng(34.48375,126.26554444444444),
     	text: '진도'
     },{
-        position: new kakao.maps.LatLng(34.789811111111106,126.38173055555555),
+        position: new kakao.maps.LatLng(126.12666666666667,	34.752947222222225),
     	text: '신안'
     }
     
