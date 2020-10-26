@@ -35,10 +35,11 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 		
 	// 게시판 게시글 목록
-	@RequestMapping(value = "/{boardId}", method = RequestMethod.GET)
-	public String board(@PathVariable("boardId") int boardId, Model model) {
+	@RequestMapping(value = "/{boardId}_page{page}", method = RequestMethod.GET)
+	public String board(@PathVariable("boardId") int boardId, @PathVariable("page") int page, Model model) {
 		List<PostVO> post = boardService.getPostList(boardId);
 		model.addAttribute("posts",post);
+		model.addAttribute("pages",page);
 		model.addAttribute("boardIds",boardId);
 		
 		return "board";
@@ -110,26 +111,25 @@ public class BoardController {
 	}
 	
 	//좋아요 싫어요
-	@RequestMapping(value="/board/favor{postId}_{favor}", method=RequestMethod.POST)
-	public String favor(Principal principal, @PathVariable("postId") int postId, @PathVariable("favor") String favor, Model model) {
+	@RequestMapping(value="/favor", method=RequestMethod.POST)
+	public String favor(Principal principal, @ModelAttribute FavorVO fav, Model model ) {
+		
+		String errors;
 		
 		if(principal == null) {
-			model.addAttribute("errorLog", "로그인이 필요한 기능 입니다.");
+			errors = "로그인이 필요한 기능입니다.";
+			model.addAttribute("errorLog", errors);
 		}else {
-
-			FavorVO fav = new FavorVO();
-			
-			fav.setPostId(postId);
 			fav.setUserId(principal.getName());
-			fav.setFavor(favor);
 			
-			if(boardService.seachPostFavor(fav) == null) // 좋아요, 싫어요 누른 적이 없을 때
+			if(boardService.seachPostFavor(fav) == null) {
 				boardService.addPostFavor(fav);
-			else
-				model.addAttribute("errorLog", "이미 평가 하셨습니다.");
-		}		
-	
-		return "redirect: /view" + postId ;
+			}else {
+				errors = "이미 평가 하셨습니다.";
+				model.addAttribute("errorLog", errors);
+			}
+		}
+		return "redirect: /view" + fav.getPostId();
 	}
 	
 	// ===================== 멋글 관련 ==============================

@@ -23,21 +23,6 @@
 	}
 </style>
 
-<script>
-	document.addEventListener("DOMContentLoaded",function(){
-
-		document.getElementById("contentDiv").innerHTML = `${posts.content}`;
-
-		document.getElementById("modifyReplyA").addEventListener("click",function(){
-			document.getElementById("relplyUpdateBox").classList.toggle("displayActive");
-		})
-		
-		document.getElementById("btnDelete").addEventListener("click", function(){
-			document.getElementById("tmpForm").submit();	
-		});
-	})
-</script>
-
 <title>Insert title here</title>
 
 </head>
@@ -70,8 +55,16 @@
 			<hr/>
 			<!-- 좋아요 싫어요 -->
 			<div style="display:flex; justify-content: space-around; ">
-				<a href = "<c:url value = "/board/favor${posts.postId}_LIKE"/>" > 좋아요 </a>
-				<a href = "<c:url value = "/board/favor${posts.postId}_DISLIKE"/>"> 싫어요 </a>
+				<form action="<c:url value='/board/favor'/>" method="post">
+					<input type="hidden" name="favor" value="LIKE"/>
+					<input type="hidden" name="postId" value="${posts.postId}">
+					<input type="submit" value="좋아요">
+				</form>
+				<form action="<c:url value='/board/favor'/>" method="post">
+					<input type="hidden" name="favor" value="DISLIKE"/>
+					<input type="hidden" name="postId" value="${posts.postId}"/>
+					<input type="submit" value="싫어요">
+				</form>
 			</div>
 		</article>
 		
@@ -81,7 +74,7 @@
 				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button> </a>
 				
 				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/delete_Post${posts.boardId}_${posts.postId}'/>" method="POST">
-				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				<button type="submit" class="btn btn-sm btn-primary">삭제</button>
 				</form>
 			</c:if>
 				<a href="<c:url value='/board/${posts.boardId}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
@@ -106,15 +99,17 @@
 								<td> 삭제 </td>
 							</tr>
 							
-							<c:forEach items="${replys}" var="reply">
+							<c:forEach items="${replys}" var="reply" varStatus="status">
+								<c:set var="replyIndex" value="${status.index}"/>
 								<tr>
 									<td> ${reply.nickName} </td>
 									<td> ${reply.content} </td>
 									<td> ${reply.replyDate }</td>
+									
 									<td> 답글 </td>
 									<c:choose>
 										<c:when test="${reply.userId == principals }">
-											<td><button id="modifyReplyA"> 수정 </button></td>
+											<td><button id="modifyReplyA${status.index}"> 수정 </button></td>
 											<td>
 												<form action="<c:url value ='/board/delete_reply' />" method="post">
 													<input type="hidden" name="replyId" value="${reply.replyId }">
@@ -130,7 +125,7 @@
 								</tr>
 								
 								<!-- 수정 활성화 시 -->
-								<tr id="relplyUpdateBox" class="displayActive">
+								<tr id="relplyUpdateBox${status.index}" class="displayActive">
 									<td colspan='6'>
 										<form action="<c:url value="/board/write_reply${reply.postId}" />" method="post">
 											<input type="hidden" name="replyId" value="${reply.replyId}">
@@ -162,5 +157,25 @@
 		
 	<script src="<c:url value='/resources/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.js'/>"></script>
+	<script>	
+		document.addEventListener("DOMContentLoaded",function(){
+			
+			document.getElementById("contentDiv").innerHTML = `${posts.content}`;
+			
+			document.addEventListener('click',function(e){
+				for(var i=0; i<${replyIndex};i++)
+					{
+						if(e.target && e.target.id== 'modifyReplyA'+i){
+					          //do something
+					    	document.getElementById("relplyUpdateBox"+i).classList.toggle("displayActive");
+					     }
+					}
+			 });
+					
+			if(`${errorLog}`){
+				alert(`${errorLog}`);
+			}
+		})
+	</script>
 </body>
 </html>

@@ -63,7 +63,7 @@
 					<input type="text" name="postNm" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="${posts.postNm }">
 				</div>
 				<br>
-				<textarea id="summernote" name="content">
+				<textarea id="summernote" name="postContent">
 				<c:out value="${posts.content}"/>
 				 </textarea>
 				<br>
