@@ -16,13 +16,3 @@ body {
     justify-content:center;
     align-items:center;
 }
-@font-face{
-	font-family: "YDOO08";
-	src:url("fonts/YDOO08.ttf")format("truetype");
-	font-weight: bold;
-}
-#nav-link{
-	color:white;
-	font-family:"YDOO08";
-	font-weight: bold;
-}
