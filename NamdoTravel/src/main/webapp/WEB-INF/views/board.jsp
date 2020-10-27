@@ -24,6 +24,7 @@
 	document.addEventListener("DOMContentLoaded", function(){
 		
 		
+		
 		document.querySelector("#board > tbody").addEventListener("click",function(e){
 			var src = e.target;
 	
@@ -64,24 +65,23 @@
 							<td id="postHit"><c:out value="${post.hits}"></c:out></td>
 							<td id="postLike"><c:out value="${post.like}"></c:out></td>
 							<td id="postDislike"><c:out value="${post.dislike}"></c:out></td>
-							
 						</tr>
-					</c:forEach>
+					</c:forEach>		
 				</tbody>
 			</table>
 		</article>
 
 		<article class="container">
 			<a href="<c:url value='/board/write${boardIds}'/>" class="btn btn-primary float-right"> 글쓰기</a>
+			
 			<nav>
-				<ul class="pagination justify-content-center">
+				<ul id="pagination" class="pagination justify-content-center">
 					<li class="page-item disabled"><a class="page-link" href="#"
 						tabindex="-1">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active"><a class="page-link" href="#">2
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					
+					<c:forEach var="pageIndex" begin="1" end="${allPages}" varStatus="state">
+						<li class="page-item"><a class="page-link" href="<c:url value='/board/${boardIds}_page${pageIndex}'/>">${pageIndex}</a></li>
+					</c:forEach>
 					<li class="page-item"><a class="page-link" href="#">Next</a></li>
 				</ul>
 			</nav>
