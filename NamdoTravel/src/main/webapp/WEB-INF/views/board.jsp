@@ -20,21 +20,6 @@
 	}
 </style>
 
-<script>
-	document.addEventListener("DOMContentLoaded", function(){
-		
-		
-		
-		document.querySelector("#board > tbody").addEventListener("click",function(e){
-			var src = e.target;
-	
-			if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
-			
-			window.location.href = "/app/board/view"+src.parentElement.firstElementChild.innerText+"_page${pages}";
-		})
-	});
-</script>
-
 <title>Insert title here</title>
 </head>
 <body class="margin100px">
@@ -76,13 +61,20 @@
 			
 			<nav>
 				<ul id="pagination" class="pagination justify-content-center">
-					<li class="page-item disabled"><a class="page-link" href="#"
+					<li id="prePage" class="page-item"><a id="preA" class="page-link" href="#"
 						tabindex="-1">Previous</a></li>
 					
-					<c:forEach var="pageIndex" begin="1" end="${allPages}" varStatus="state">
-						<li class="page-item"><a class="page-link" href="<c:url value='/board/${boardIds}_page${pageIndex}'/>">${pageIndex}</a></li>
+					<c:forEach var="pageIndex" begin="${blockStartNums}" end="${blockLastNums}" varStatus="state">
+						<c:choose>
+							<c:when test="${pageIndex <= allPages}">
+								<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/board/${boardIds}_page${pageIndex}'/>">${pageIndex}</a></li>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					
+					<li id="nextPage" class="page-item"><a id="nextA" class="page-link" href="#">Next</a></li>
 				</ul>
 			</nav>
 		</article>
@@ -90,5 +82,40 @@
 		
 	<script src="<c:url value='/resources/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.js'/>"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(){
+			
+			(function() {	
+				document.getElementById("page${pages}").classList.add('active');
+				
+				if(${blockStartNums} <= 1){
+					document.getElementById("prePage").classList.add('disabled');
+				}else{
+					document.getElementById("preA").addEventListener("click",function(){
+						window.location.href = "/app/board/" + ${boardIds} +"_page" + (${blockLastNums} - 10);
+					});
+				}
+				
+				if(${blockLastNums} >= ${allPages} ){
+					document.getElementById("nextPage").classList.add('disabled');
+				}else{
+					document.getElementById("nextA").addEventListener("click",function(){
+						window.location.href = "/app/board/" + ${boardIds} +"_page" + (${blockStartNums} + 10);
+					});
+
+				}
+				
+			})()
+			
+			document.querySelector("#board > tbody").addEventListener("click",function(e){
+				var src = e.target;
+		
+				if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
+				
+				window.location.href = "/app/board/view"+src.parentElement.firstElementChild.innerText+"_page${pages}";
+			})
+		});
+	</script>
+
 </body>
 </html>
