@@ -4,8 +4,20 @@ public class WeatherVO {
 	private String city;
 	private String gridX;
 	private String gridY;
-	private String latitude;
-	private String longitude;
+	private double latitude;
+	private double longitude;
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
 	public String getCity() {
 		return city;
 	}
@@ -23,17 +35,5 @@ public class WeatherVO {
 	}
 	public void setGridY(String gridY) {
 		this.gridY = gridY;
-	}
-	public String getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-	public String getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
 	}
 }
