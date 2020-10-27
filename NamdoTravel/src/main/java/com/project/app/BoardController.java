@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.app.method.Paging;
 import com.project.app.service.BoardService;
 import com.project.app.vo.AddPostVO;
 import com.project.app.vo.FavorVO;
@@ -40,15 +41,30 @@ public class BoardController {
 	@RequestMapping(value = "/{boardId}_page{page}", method = RequestMethod.GET)
 	public String board(@PathVariable("boardId") int boardId, @PathVariable("page") int page, Model model) {
 		Map<String,Object> map = new HashMap<String,Object>();
+		
 		map.put("boardId",boardId);
 		map.put("pageIndex",(page-1)*10);
 		
 		List<PostVO> post = boardService.getPostList(map);
+		int allPage = boardService.getPaging(boardId);
+		
+		Paging paging = new Paging();
+		
+		paging.makePage(page);
+		paging.makeLastPageNum(allPage);
+		
+		Integer blockStartNum = paging.getPageStartNum();
+		Integer blockLastNum = paging.getPageEndNum();
+		Integer lastPageNum = paging.getLastPageNum();
 		
 		model.addAttribute("posts",post);
 		model.addAttribute("pages",page);
-		model.addAttribute("allPages",boardService.getPaging(boardId));
+		model.addAttribute("allPages",allPage);
 		model.addAttribute("boardIds",boardId);
+		
+		model.addAttribute("blockStartNums", blockStartNum);
+		model.addAttribute("blockLastNums", blockLastNum);
+		model.addAttribute("lastPageNums", lastPageNum);
 		
 		return "board";
 	}
