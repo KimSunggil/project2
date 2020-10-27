@@ -41,39 +41,6 @@
       <!-- /.col-md-4 -->
     </div>
     <!-- /.row -->
-
-    <!-- Call to Action Well -->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-      <div class="card-body">
-	      <jsp:include page="includejsp/map.jsp"></jsp:include>
-	      <form action="weather" method="post">
-	      <input type="text" id="suncheon" name="suncheon" value="순천">
-	      <input  class="btn btn-primary" type="button" value="순천시" id="ajaxBtn">
-	      </form>
-	      
-	      <a class="btn btn-primary" onclick="mappen(34.760374 , 127.662222)">여수시</a>
-	      <a class="btn btn-primary" href="weather">목포시</a>
-	      <a class="btn btn-primary" href="#">나주시</a>
-	      <a class="btn btn-primary" href="#">광양시</a>
-	      <a class="btn btn-primary" href="#">곡성군</a>
-	      <a class="btn btn-primary" href="#">구례군</a>
-	      <a class="btn btn-primary" href="#">고흥군</a>
-	      <a class="btn btn-primary" href="#">보성군</a>
-	      <a class="btn btn-primary" href="#">화순군</a>
-	      <a class="btn btn-primary" href="#">장흥군</a>
-	      <a class="btn btn-primary" href="#">강진군</a>
-	      <a class="btn btn-primary" href="#">해남군</a>
-	      <a class="btn btn-primary" href="#">영암군</a>
-	      <a class="btn btn-primary" href="#">무안군</a>
-	      <a class="btn btn-primary" href="#">함평군</a>
-	      <a class="btn btn-primary" href="#">영광군</a>
-	      <a class="btn btn-primary" href="#">장성군</a>
-	      <a class="btn btn-primary" href="#">완도군</a>
-	      <a class="btn btn-primary" href="#">진도군</a>
-	      <a class="btn btn-primary" href="#">신안군</a>	
-      </div>
-    </div>
-
     <!-- Content Row -->
     <div class="row">
       <div class="col-md-4 mb-5">

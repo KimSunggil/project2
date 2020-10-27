@@ -51,11 +51,12 @@ td {
 			<h1>동네예보</h1>
 			<hr>
 			<div class="bg-white rounded shadow-sm">
+			<div>
+				<a href="#" id="yesD" class="btn btn-primary btn-sm">어제</a>
+				<a href="#" id="toD" class="btn btn-primary btn-sm">오늘</a>
+				<a href="#" id="tomD" class="btn btn-primary btn-sm">내일</a>
+			</div>
 				<table id="weatherTb">
-					<thead>
-						<tr>
-						</tr>
-					</thead>
 					<tbody id="resultLayout">
 					</tbody>
 				</table>
@@ -82,39 +83,6 @@ function ajaxJSON(url, type, query, fn) {
 		});
 	}
 document.addEventListener("DOMContentLoaded", function() {
-	var areas = new Array();
-	var date = new Date(); 
-	var year = date.getFullYear(); 
-	var month = new String(date.getMonth()+1); 
-	var day = new String(date.getDate()); 
-	var hours = date.getHours();
-	if(20<hours){
-		hours="2100";
-	}else if(17<hours){
-		hours="1800";
-	}else if(14<hours){
-		hours="1500";
-	}else if(11<hours){
-		hours="1200";
-	}else if(8<hours){
-		hours="0900";
-	}else if(0<hours){
-		hours="0600";
-	}
-	if(month.length == 1){ 
-	  month = "0" + month; 
-	} 
-	if(day.length == 1){ 
-	  day = "0" + day; 
-	}
-	var d_day = year+month+day;
-	<c:forEach items="${weather}" var="weather">
-		areas.push([ "${weather.city}", "${weather.gridX}","${weather.gridY}" ]);
-	</c:forEach>
-	for (var i = 0; i < 24; i++) {
-		weather(areas[i][0], areas[i][1], areas[i][2],d_day,hours);
-			}
-		});
 function weather(area,nx,ny,d_day,hours){
 	var url="<%=cp%>/weather/search2";
 	var base_date = d_day;
