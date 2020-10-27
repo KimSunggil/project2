@@ -12,8 +12,15 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Insert title here</title>
-
+<title></title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://mattstow.com/experiment/responsive-image-maps/jquery.rwdImageMaps.min.js"></script>
+<script>
+$(function(){
+	$('img[usemap]').rwdImageMaps();
+	$("#img").width("100%");
+});
+</script>
 <link href="./resources/css/weather.css" rel="stylesheet">
 <style>
 #weatherTb {
@@ -42,6 +49,12 @@ td {
 	border: 1px;
 	border-style: solid;
 }
+img[usemap] {
+	border: none;
+	height: auto;
+	max-width: 100%;
+	width: auto;
+	}
 </style>
 </head>
 <body>
@@ -61,7 +74,36 @@ td {
 					</tbody>
 				</table>
 			</div>
-
+			<img id="Image-Maps-Com-image-maps-2020-10-27-064121" src="https://www.image-maps.com/m/private/0/b8uufhongbr0cnq99idbkrm037_.jpg" border="0" width="1024" height="768" orgWidth="1024" orgHeight="768" usemap="#image-maps-2020-10-27-064121" alt="" />
+			<map name="image-maps-2020-10-27-064121" id="ImageMapsCom-image-maps-2020-10-27-064121">
+			
+			
+			
+			<area  alt="" title="" href="#" shape="rect" coords="820,151,870,201" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="874,233,924,283" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="873,339,923,389" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="755,250,805,300" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="691,145,741,195" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="581,241,631,291" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="651,320,701,370" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="712,418,762,467" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="533,349,583,398" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="438,235,488,284" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="500,180,550,229" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="572,118,622,167" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="460,381,510,430" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="360,468,410,517" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="434,548,484,597" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="216,490,266,539" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="399,328,449,377" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="307,280,357,329" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="245,308,295,357" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="356,197,406,246" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="454,119,504,168" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="324,111,374,160" style="outline:none;" target="_self"     />
+			<area  alt="" title="" href="#" shape="rect" coords="143,315,193,364" style="outline:none;" target="_self"     />
+			<area shape="rect" coords="1022,766,1024,768" alt="Image Map" style="outline:none;" title="Image Map" href="http://www.image-maps.com/index.php?aff=mapped_users_0" />
+			</map>
 		</div>
 	</div>
 	<jsp:include page="includejsp/footer.jsp"></jsp:include>
@@ -116,21 +158,21 @@ function weather(area,nx,ny,d_day,hours){
 					fcstValue = list[j].fcstValue;
 					pty = list[j].fcstValue
 					if (fcstValue == "0") {
-						var pty = "<td>" + "없음" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/sun.gif">' + "</td>";
 					} else if (fcstValue == "1") {
-						var pty = "<td>" + "비" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/rain.png">' + "</td>";
 					} else if (fcstValue == "2") {
-						var pty = "<td>" + "비/눈" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/rain-or-snow.ico">' + "</td>";
 					} else if (fcstValue == "3") {
-						var pty = "<td>" + "눈" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/snow.png">' + "</td>";
 					} else if (fcstValue == "4") {
-						var pty = "<td>" + "소나기" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/rain.png">' + "</td>";
 					} else if (fcstValue == "5") {
-						var pty = "<td>" + "빗방울" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/rain.png">' + "</td>";
 					} else if (fcstValue == "6") {
-						pty = "<td>" + "빗방울/눈날림" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/rain-or-snow.ico">' + "</td>";
 					} else if (fcstValue == "7") {
-						var pty = "<td>" + "눈날림" + "</td>";
+						var pty = "<td>" + '<img src="../resources/img/snow.png">' + "</td>";
 					}
 				}
 			}
@@ -145,11 +187,11 @@ function weather(area,nx,ny,d_day,hours){
 				if (list[j].fcstTime == hours) {
 					fcstValue = list[j].fcstValue;
 					if (fcstValue == "1") {
-						var sky ="<td>"+'맑음'+"</td>";
+						var sky ="<td>"+'<img src="../resources/img/sun.gif">'+"</td>";
 					} else if (fcstValue == "3") {
-						var sky ="<td>"+'흐림'+"</td>";
+						var sky ="<td>"+'<img src="../resources/img/cloud.png">'+"</td>";
 					} else if (fcstValue == "4") {
-						var sky ="<td>"+'구름많음'+"</td>";
+						var sky ="<td>"+'<img src="../resources/img/cloudy.png">'+"</td>";
 					}
 				}
 			}
@@ -180,7 +222,7 @@ function weather(area,nx,ny,d_day,hours){
 		console.log(list);
 	};
 	ajaxJSON(url, "post", query, fn);
-}
+};
 	</script>
 </body>
 </html>
