@@ -51,8 +51,6 @@ td {
 			<h1>동네예보</h1>
 			<hr>
 			<div class="bg-white rounded shadow-sm">
-				<!-- 이미지 지도를 표시할 div 입니다 -->
-				<div id="map" style="width:60vw;height:70vh;"></div>    
 				<table id="weatherTb">
 					<thead>
 						<tr>
@@ -62,71 +60,34 @@ td {
 					</tbody>
 				</table>
 			</div>
-				
+
 		</div>
 	</div>
 	<jsp:include page="includejsp/footer.jsp"></jsp:include>
 	<script type="text/javascript"
-	src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c731503805ccfcc41946121c0050cfc"></script>
-<script type="text/javascript">
-
+		src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
 function ajaxJSON(url, type, query, fn) {
-	$.ajax({
-		type:type,
-		url:url,
-		data:query,
-		dataType:"json",
-		success:function(data) {
-			fn(data);
-		},
-		error:function(e){
-			console.log(e.responseText);
-		}
-	});
-}
-document.addEventListener("DOMContentLoaded",function(){
-	var areas = new Array(); 
-	
-	
-	<c:forEach items="${weather}" var="weather">
-	 areas.push(["${weather.city}","${weather.gridX}","${weather.gridY}","${weather.latitude}","${weather.longitude}"]);
-	</c:forEach>
-		for(var i=0; i<24; i++){
-			(function(){
-				weather(areas[i][0],areas[i][1],areas[i][2],imageSrc, imageSize, imageOption);
-				// 마커가 지도 위에 표시되도록 설정합니다
-			})(i)
-		};
-		
-});
-function maps(){
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-	center: new kakao.maps.LatLng(34.97385, 126.97021), // 이미지 지도의 중심좌표
-    level: 11,  // 지도의 확대 레벨
-    };
-	var imageSrc = sky, // 마커이미지의 주소입니다    
-	imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-	imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	markerPosition = new kakao.maps.LatLng(35.156974999999996,	126.85336388888888); // 마커가 표시될 위치입니다
-	// 마커를 생성합니다
-	var marker = new kakao.maps.Marker({
-	position: markerPosition, 
-	image: markerImage // 마커이미지 설정 
-	});
-	marker.setMap(map);
-}
-function weather(area,nx,ny){
+		$.ajax({
+			type:type,
+			url:url,
+			data:query,
+			dataType:"json",
+			success:function(data) {
+				fn(data);
+			},
+			error:function(e){
+				console.log(e.responseText);
+			}
+		});
+	}
+document.addEventListener("DOMContentLoaded", function() {
+	var areas = new Array();
 	var date = new Date(); 
 	var year = date.getFullYear(); 
 	var month = new String(date.getMonth()+1); 
 	var day = new String(date.getDate()); 
 	var hours = date.getHours();
-	
 	if(20<hours){
 		hours="2100";
 	}else if(17<hours){
@@ -140,7 +101,6 @@ function weather(area,nx,ny){
 	}else if(0<hours){
 		hours="0600";
 	}
-
 	if(month.length == 1){ 
 	  month = "0" + month; 
 	} 
@@ -148,109 +108,112 @@ function weather(area,nx,ny){
 	  day = "0" + day; 
 	}
 	var d_day = year+month+day;
+	<c:forEach items="${weather}" var="weather">
+		areas.push([ "${weather.city}", "${weather.gridX}","${weather.gridY}" ]);
+	</c:forEach>
+	for (var i = 0; i < 24; i++) {
+		weather(areas[i][0], areas[i][1], areas[i][2],d_day,hours);
+			}
+		});
+function weather(area,nx,ny,d_day,hours){
 	var url="<%=cp%>/weather/search2";
 	var base_date = d_day;
 	var base_time = "0200";
 	var area;
-	
-	var query = "base_date=" + base_date + "&base_time=" + base_time
-				+ "&nx=" + nx + "&ny=" + ny;
-	
-
-	var fn = function(data){
-			// console.log(data);
-		var latitude;
-		var longitude;	
+	var out = "";
+	var query = "base_date=" + base_date + "&base_time="
+	+ base_time + "&nx=" + nx + "&ny=" + ny;
+	var fn = function(data) {
 		var category;
 		var fcstDate, fcstTime; // 발표일자, 시간
 		var fcstValue;
-		var sky;
-			if (!data.response.body) {
-				alert("등록된 정보가 없습니다.");
-				return false;
+		if (!data.response.body) {
+			alert("등록된 정보가 없습니다.");
+			return false;
+		}
+		var list = data.response.body.items.item;
+		out += "<tr>"
+		out += "<td>" + area + "</td>"
+		for (var j = 0; j < 64; j++) {
+			if (list[j].category === "POP") {
+				if (list[j].fcstTime == hours) {
+					var pop = "<td>" + list[j].fcstValue + "%" + "</td>"
+					var fcstTime = "<td>" + list[j].fcstTime + "</td>"
+					var fcstDate = "<td>" + list[j].fcstDate + "</td>"
+					/* out += "<td>" + list[j].fcstValue + "%" + "</td>" */
+					}
+				}
+			if (list[j].category == "PTY") {
+				if (list[j].fcstTime == hours) {
+					fcstValue = list[j].fcstValue;
+					pty = list[j].fcstValue
+					if (fcstValue == "0") {
+						var pty = "<td>" + "없음" + "</td>";
+					} else if (fcstValue == "1") {
+						var pty = "<td>" + "비" + "</td>";
+					} else if (fcstValue == "2") {
+						var pty = "<td>" + "비/눈" + "</td>";
+					} else if (fcstValue == "3") {
+						var pty = "<td>" + "눈" + "</td>";
+					} else if (fcstValue == "4") {
+						var pty = "<td>" + "소나기" + "</td>";
+					} else if (fcstValue == "5") {
+						var pty = "<td>" + "빗방울" + "</td>";
+					} else if (fcstValue == "6") {
+						pty = "<td>" + "빗방울/눈날림" + "</td>";
+					} else if (fcstValue == "7") {
+						var pty = "<td>" + "눈날림" + "</td>";
+					}
+				}
 			}
-			var list = data.response.body.items.item;
-
-			for (var j = 0; j < 64; j++) {
-
-				if (list[j].category === "POP") {
-					if (list[j].fcstTime == hours) {
-						pop=list[j].fcstValue
-						/* out += "<td>" + list[j].fcstValue + "%" + "</td>" */
-					}
-				}
-				if (list[j].category == "PTY") {
-					if (list[j].fcstTime == hours) {
-						fcstValue = list[j].fcstValue;
-						pty=list[j].fcstValue
-/* 						if (fcstValue == "0") {
-							out += "<td>" + "없음" + "</td>";
-						} else if (fcstValue == "1") {
-							out += "<td>" + "비" + "</td>";
-						} else if (fcstValue == "2") {
-							out += "<td>" + "비/눈" + "</td>";
-						} else if (fcstValue == "3") {
-							out += "<td>" + "눈" + "</td>";
-						} else if (fcstValue == "4") {
-							out += "<td>" + "소나기" + "</td>";
-						} else if (fcstValue == "5") {
-							out += "<td>" + "빗방울" + "</td>";
-						} else if (fcstValue == "6") {
-							out += "<td>" + "빗방울/눈날림" + "</td>";
-						} else if (fcstValue == "7") {
-							out += "<td>" + "눈날림" + "</td>";
-						} */
-					}
-				}
-				if (list[j].category == "REH") {
-					if (list[j].fcstTime == hours) {
-						fcstValue = list[j].fcstValue;
-						reh=list[j].fcstValue
+			if (list[j].category == "REH") {
+				if (list[j].fcstTime == hours) {
+					fcstValue = list[j].fcstValue;
+					var reh = "<td>" + fcstValue + "%" + "</td>"
 /* 						out += "<td>" + fcstValue + "%" + "</td>" */
-					}
 				}
-				if (list[j].category == "SKY") {
-					if (list[j].fcstTime == hours) {
-						fcstValue = list[j].fcstValue;
- 						if (fcstValue == "1") {
-							sky='../resources/img/1.png';
-							maps();
-						} else if (fcstValue == "3") {
-							sky='../resources/img/1.png';
-							maps();
-						} else if (fcstValue == "4") {
-							sky='../resources/img/1.png';
-							maps();
-						} 
-					}
-				}
-				if (list[j].category == "T3H") {
-					if (list[j].fcstTime == hours) {
-						t3h=list[j].fcstValue
-/* 						out += "<td>" + list[j].fcstValue + "℃" + "</td>" */
-					}
-				}
-				if (list[j].category == "TMN") {
-					tmn=list[j].fcstValue
-		/* 			out += "<td>" + "최저기온" + list[j].fcstValue + "℃" + "</td>" */
-				}
-				if (list[j].category == "UUU") {
-					if (list[j].fcstTime == hours) {
-						uuu=list[j].fcstValue
-						/* out += "<td>" + list[j].fcstValue + "m/s" + "</td>" */
-					}
-				}
-				if (list[j].category === "TMX") {
-					tmx=list[j].fcstValue
-					/* out += "<td>" + "최고기온" + list[j].fcstValue + "℃" + "</td>"
- */				}
 			}
-		};
-		ajaxJSON(url, "post", query, fn);
-		
+			if (list[j].category == "SKY") {
+				if (list[j].fcstTime == hours) {
+					fcstValue = list[j].fcstValue;
+					if (fcstValue == "1") {
+						var sky ="<td>"+'맑음'+"</td>";
+					} else if (fcstValue == "3") {
+						var sky ="<td>"+'흐림'+"</td>";
+					} else if (fcstValue == "4") {
+						var sky ="<td>"+'구름많음'+"</td>";
+					}
+				}
+			}
+			if (list[j].category == "T3H") {
+				if (list[j].fcstTime == hours) {
+					var t3h = "<td>" + list[j].fcstValue + "℃"+ "</td>"
+/* 						out += "<td>" + list[j].fcstValue + "℃" + "</td>" */
+				}
+			}
+			if (list[j].category == "TMN") {
+				var tmn = "<td>" + "최저기온" + list[j].fcstValue + "℃"+ "</td>"
+/* 			out += "<td>" + "최저기온" + list[j].fcstValue + "℃" + "</td>" */
+			}
+			if (list[j].category == "UUU") {
+				if (list[j].fcstTime == hours) {
+					var uuu = "<td>" + list[j].fcstValue + "m/s"+ "</td>"
+/* out += "<td>" + list[j].fcstValue + "m/s" + "</td>" */
+				}
+			}
+			if (list[j].category === "TMX") {
+				var tmx = "<td>" + "최고기온" + list[j].fcstValue + "℃"+ "</td>"
+/* out += "<td>" + "최고기온" + list[j].fcstValue + "℃" + "</td>" */
+			}
+		}
+		out += fcstDate+fcstTime+pop + pty + reh + sky + t3h + tmn + uuu + tmx;
+		out += "</tr>"
+		document.getElementById("resultLayout").innerHTML += out;
+		console.log(list);
 	};
-
-</script>
+	ajaxJSON(url, "post", query, fn);
+}
+	</script>
 </body>
 </html>
 <!-- {
