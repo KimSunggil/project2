@@ -113,6 +113,14 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              	
+              	<sec:authorize access="hasRole('ADMIN')">
+	              	<a class="dropdown-item" href="<c:url value='/admin'/>">
+	              		<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+	              		Admin Page
+	              	</a>
+	             </sec:authorize>
+                
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
