@@ -101,7 +101,7 @@
 				</ul>
 
 				<sec:authorize access="isAnonymous()">
-					<a href="<c:url value='/auth/login' />"><button>LOGIN</button></a>
+					<a href="<c:url value='/auth/login' />"><button class="btn btn-outline-light btn-sm">LOGIN</button></a>
 				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">

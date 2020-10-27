@@ -55,12 +55,12 @@
 			<hr/>
 			<!-- 좋아요 싫어요 -->
 			<div style="display:flex; justify-content: space-around; ">
-				<form action="<c:url value='/board/favor'/>" method="post">
+				<form action="<c:url value='/board/favor_${pages}'/>" method="post">
 					<input type="hidden" name="favor" value="LIKE"/>
 					<input type="hidden" name="postId" value="${posts.postId}">
 					<input type="submit" value="좋아요">
 				</form>
-				<form action="<c:url value='/board/favor'/>" method="post">
+				<form action="<c:url value='/board/favor_${pages }'/>" method="post">
 					<input type="hidden" name="favor" value="DISLIKE"/>
 					<input type="hidden" name="postId" value="${posts.postId}"/>
 					<input type="submit" value="싫어요">

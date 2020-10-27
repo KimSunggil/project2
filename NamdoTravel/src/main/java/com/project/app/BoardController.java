@@ -136,8 +136,8 @@ public class BoardController {
 	}
 	
 	//좋아요 싫어요
-	@RequestMapping(value="/favor", method=RequestMethod.POST)
-	public String favor(Principal principal, @ModelAttribute FavorVO fav, Model model ) {
+	@RequestMapping(value="/favor_{page}", method=RequestMethod.POST)
+	public String favor(Principal principal, @ModelAttribute FavorVO fav, @PathVariable int page, Model model ) {
 		
 		String errors;
 		
@@ -154,7 +154,7 @@ public class BoardController {
 				model.addAttribute("errorLog", errors);
 			}
 		}
-		return "redirect: /view" + fav.getPostId();
+		return "redirect: /view" + fav.getPostId() + "_page" + page;
 	}
 	
 	// ===================== 멋글 관련 ==============================
