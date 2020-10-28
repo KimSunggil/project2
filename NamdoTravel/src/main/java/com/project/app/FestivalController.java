@@ -35,13 +35,14 @@ public class FestivalController {
 	@RequestMapping(value = "/festival", method = RequestMethod.GET)
 	public String Festival(Model model) {
 		List<FestivalVO> festival = festivalService.festivalList();
-		JSONArray jsonArray = new JSONArray();
+		JSONArray festivalArray = new JSONArray();
 		festival.stream().forEach((ele) -> {
-			JSONObject jsonObject = new JSONObject();
-			
-			jsonObject.put("address", ele.getLocationNmAddress());
-			jsonArray.add(jsonObject);
+			JSONObject festivalObject = new JSONObject();			
+			festivalObject.put("area", ele.getArea());
+			festivalObject.put("address", ele.getLocationNmAddress());
+			festivalArray.add(festivalObject);
 		});
+		model.addAttribute("json", festivalArray.toJSONString());
 		model.addAttribute("festival", festival);
 		return "festival";
 	}
