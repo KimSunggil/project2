@@ -12,9 +12,9 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.css' />" >
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />">
 <style>
-	.table > tbody > tr > td {
-     vertical-align: middle;
-}
+	.displayInactive{
+		display:none;'
+	}
 </style>
 
 </head>
@@ -50,17 +50,36 @@
 						<td>${post.like }</td>
 						<td>${post.dislike }</td>
 						<td>
-						<form>
+						<form action="<c:url value='/admin/deletePost_${post.postId}'/>" method="post">
 							<input type="submit" class="btn btn-danger btn-sm" value="삭제">
 						</form>
 						</td>
 					</tr>
-					<tr id="postContent${post.postId }" class="post-content" style="display:none;">
+					<tr id="postContent${stats.index }" class="post-content displayInactive">
 						<td colspan='9'>${post.content}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<nav>
+			<ul id="pagination" class="pagination justify-content-center">
+				<li id="prePage" class="page-item"><a id="preA" class="page-link" href="#"
+						tabindex="-1">Previous</a></li>
+					
+				<c:forEach var="pageIndex" begin="${blockStartNums}" end="${blockLastNums}" varStatus="state">
+					<c:choose>
+						<c:when test="${pageIndex <= allPages}">
+							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/page1_${pageIndex}'/>">${pageIndex}</a></li>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<li id="nextPage" class="page-item"><a id="nextA" class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
 	</div>
 
 
@@ -71,23 +90,35 @@
 	<script>
 		document.addEventListener("DOMContentLoaded",function(){
 			
-			document.querySelector("#board > tbody").addEventListener("click",function(e){
-				var src = e.target;
+			for(var i=0; i<${postCount};i++){
+				document.querySelector("#postInfo"+i).addEventListener("click",function(e){
+					e.target.parentNode.nextSibling.nextSibling.classList.toggle("displayInactive");
+				})
+			}
+			
+			(function() {	
+				document.getElementById("page${postPages}").classList.add('active');
 				
-				console.log(src);
-		
-				if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
+				if(${blockStartNums} <= 1){
+					document.getElementById("prePage").classList.add('disabled');
+				}else{
+					document.getElementById("preA").addEventListener("click",function(){
+						window.location.href = "/app/admin/page" + 1 +"_" + (${blockLastNums} - 10);
+					});
+				}
 				
-				for(var i=0 ; i<${postCount};i++)
-					if(e.target && e.target.id == 'postInfo'+i){
-				          //do something
-				    	//document.getElementById("postInfo"+i).style.display === 'none' ? '' : 'none';
-				        alert("inter");
+				if(${blockLastNums} >= ${allPages} ){
+					document.getElementById("nextPage").classList.add('disabled');
+				}else{
+					document.getElementById("nextA").addEventListener("click",function(){
+						window.location.href = "/app/board/" + 1 +"_" + (${blockStartNums} + 10);
+					});
 
-				     }
-				 });
+				}
 				
-			})
+			})()
+			
+		})
 	</script>
 
 </body>
