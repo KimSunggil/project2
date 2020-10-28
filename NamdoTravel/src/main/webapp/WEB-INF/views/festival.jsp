@@ -164,8 +164,8 @@ tr:nth-child(even) {
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
-			center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
-			level : 10
+			center : new kakao.maps.LatLng(34.9438702, 127.5022322), // 지도의 중심좌표
+			level : 6
 		// 지도의 확대 레벨
 		};
 
@@ -211,8 +211,8 @@ tr:nth-child(even) {
 			var select_area_btn = $("#area_select option:selected").val();
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = {
-				center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
-				level : 10
+				center : new kakao.maps.LatLng(34.9438702, 127.5022322), // 지도의 중심좌표
+				level : 6
 			// 지도의 확대 레벨
 			};
 

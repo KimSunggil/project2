@@ -56,7 +56,7 @@ tr:nth-child(even) {
 			<!-- /.col-md-4 -->
 
 		</div>
-		
+
 		<div>
 			<div id="map" style="width: 100%; height: 350px;"></div>
 
@@ -68,7 +68,7 @@ tr:nth-child(even) {
 			</select> <input type="button" id="button1" onclick="area_click();"
 				value="지역선택" />
 		</div>
-		
+
 		<!-- /.row -->
 
 		<div style="width: 100%; height: 500px; overflow: auto">
@@ -85,19 +85,20 @@ tr:nth-child(even) {
 
 				<tbody>
 					<c:forEach items="${food}" var="food">
-						<td style="width: 100px;">${food.area}</td>
-						<td style="width: 300px;">${food.tourismNm}</td>
-						<td style="width: 300px;">${food.locationNmAddress}</td>
-						<td style="width: 100px;">${food.parking}</td>
-						<td style="width: 200px; cursor: hand;" align="center"
-							onClick="location.href='${food.tourismHp}'">${food.tourismHp}</td>
+						<tr>
+							<td style="width: 100px;">${food.area}</td>
+							<td style="width: 300px;">${food.tourismNm}</td>
+							<td style="width: 300px;">${food.locationNmAddress}</td>
+							<td style="width: 100px;">${food.parking}</td>
+							<td style="width: 200px; cursor: hand;" align="center"
+								onClick="location.href='${food.tourismHp}'">${food.tourismHp}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		
-		
+
+
 
 
 
@@ -154,15 +155,15 @@ tr:nth-child(even) {
 		</div>
 		<!-- /.container -->
 	</footer>
-	
-		<script type="text/javascript"
+
+	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7cb307437cf02090b0b5c00c3eb40d9&libraries=services"></script>
 
 	<script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
       mapOption = {
-         center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
-         level : 10
+    	  center : new kakao.maps.LatLng(34.9438702, 127.5022322), // 지도의 중심좌표
+			level : 6
       // 지도의 확대 레벨
       };
 
@@ -213,8 +214,8 @@ tr:nth-child(even) {
       		var select_area_btn = $("#area_select option:selected").val();
       		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
-               center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
-               level : 10
+      			center : new kakao.maps.LatLng(34.9438702, 127.5022322), // 지도의 중심좌표
+    			level : 6
             // 지도의 확대 레벨
             };
 
