@@ -163,109 +163,105 @@ tr:nth-child(even) {
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7cb307437cf02090b0b5c00c3eb40d9&libraries=services"></script>
 
 	<script>
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-      mapOption = {
-         center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
-         level : 10
-      // 지도의 확대 레벨
-      };
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
+			level : 10
+		// 지도의 확대 레벨
+		};
 
-      var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-      var geocoder = new kakao.maps.services.Geocoder();
-      var roomAddress = JSON.parse('${json}');
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		var roomAddress = JSON.parse('${json}');
 
-       
-      
-      for (var i = 0; i < roomAddress.length; i++) {
-          
+		for (var i = 0; i < roomAddress.length; i++) {
 
-            geocoder.addressSearch(roomAddress[i].address, function(result,
-                  status, data) {
+			geocoder.addressSearch(roomAddress[i].address,
+					function(result, status, data) {
 
-               if (status === kakao.maps.services.Status.OK) {
+						if (status === kakao.maps.services.Status.OK) {
 
-                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
 
-                     
-           /* -----------------------------------------------전체마커 ----------------------------------------------------
-                  // 결과값으로 받은 위치를 마커로 표시합니다
-                  var marker = new kakao.maps.Marker({
-                     map : map,
-                     position : coords
-                  });
+							/* -----------------------------------------------전체마커 ----------------------------------------------------
+							       // 결과값으로 받은 위치를 마커로 표시합니다
+							       var marker = new kakao.maps.Marker({
+							          map : map,
+							          position : coords
+							       });
 
-                  // 마커를 지도에 표시합니다.
-                  marker.setMap(map);
+							       // 마커를 지도에 표시합니다.
+							       marker.setMap(map);
 
-                  // 커스텀 오버레이를 생성합니다
-                  var customOverlay = new daum.maps.CustomOverlay({
-                     position : coords,
-                  });
-                  // 커스텀 오버레이를 지도에 표시합니다
-                  customOverlay.setMap(map);
+							       // 커스텀 오버레이를 생성합니다
+							       var customOverlay = new daum.maps.CustomOverlay({
+							          position : coords,
+							       });
+							       // 커스텀 오버레이를 지도에 표시합니다
+							       customOverlay.setMap(map);
 
-                  // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                  map.setCenter(coords); */
+							       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							       map.setCenter(coords); */
 
-               }
+						}
 
-            });
+					});
 
-         
-      }
-      	function area_click(){
-      		var select_area_btn = $("#area_select option:selected").val();
-      		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = {
-               center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
-               level : 10
-            // 지도의 확대 레벨
-            };
+		}
+		function area_click() {
+			var select_area_btn = $("#area_select option:selected").val();
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = {
+				center : new kakao.maps.LatLng(34.9139283, 127.3620026), // 지도의 중심좌표
+				level : 10
+			// 지도의 확대 레벨
+			};
 
-            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-            var geocoder = new kakao.maps.services.Geocoder();
-            var roomAddress = JSON.parse('${json}');
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			var roomAddress = JSON.parse('${json}');
 
-             
-            
-            for (var i = 0; i < roomAddress.length; i++) {
-                if (roomAddress[i].area == select_area_btn) {  
+			for (var i = 0; i < roomAddress.length; i++) {
+				if (roomAddress[i].area == select_area_btn) {
 
-                  
+					geocoder.addressSearch(roomAddress[i].address, function(
+							result, status, data) {
 
-                  geocoder.addressSearch(roomAddress[i].address, function(result,
-                        status, data) {
+						if (status === kakao.maps.services.Status.OK) {
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
 
-                     if (status === kakao.maps.services.Status.OK) {var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
+							});
 
-                        // 결과값으로 받은 위치를 마커로 표시합니다
-                        var marker = new kakao.maps.Marker({
-                           map : map,
-                           position : coords
-                        });
+							// 마커를 지도에 표시합니다.
+							marker.setMap(map);
 
-                        // 마커를 지도에 표시합니다.
-                        marker.setMap(map);
+							/* var content = '<div>'+ result[0].address_name '</div>'; */
 
-                        // 커스텀 오버레이를 생성합니다
-                        var customOverlay = new daum.maps.CustomOverlay({
-                           position : coords,
-                        });
-                        // 커스텀 오버레이를 지도에 표시합니다
-                        customOverlay.setMap(map);
+							// 커스텀 오버레이를 생성합니다
+							var customOverlay = new daum.maps.CustomOverlay({
+							/* 	position : coords,
+								content : content */
+							});
+							// 커스텀 오버레이를 지도에 표시합니다
+							customOverlay.setMap(map);
 
-                        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                        map.setCenter(coords);
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map.setCenter(coords);
 
-                     }
+						}
 
-                  });
+					});
 
-                }
-            }
-         }
-         
-   </script>
+				}
+			}
+		}
+	</script>
 
 
 

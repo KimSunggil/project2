@@ -33,9 +33,19 @@ public class TourController {
 	/**
 	 * Simply selects the tour view to render by returning its name.
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/tour", method = RequestMethod.GET)
 	public String Tour(Model model) {
 		List<TourVO> tour = tourService.tourList();
+		JSONArray tourArray = new JSONArray();
+		tour.stream().forEach((ele) -> {
+			JSONObject tourObject = new JSONObject();
+			tourObject.put("area", ele.getArea());
+			tourObject.put("tourismNm", ele.getTourismNm());
+			tourObject.put("address", ele.getLocationNmAddress());
+			tourArray.add(tourObject);
+		});
+		model.addAttribute("json", tourArray.toJSONString());
 		model.addAttribute("tour", tour);
 		
 		return "tour";
@@ -59,10 +69,19 @@ public class TourController {
 		return "room";
 
 	}
-
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/food", method = RequestMethod.GET)
 	public String Food(Model model) {
 		List<TourVO> food = tourService.foodList();
+		JSONArray foodArray = new JSONArray();
+		food.stream().forEach((ele) -> {
+			JSONObject foodObject = new JSONObject();
+			foodObject.put("area", ele.getArea());
+			foodObject.put("tourismNm", ele.getTourismNm());
+			foodObject.put("address", ele.getLocationNmAddress());
+			foodArray.add(foodObject);
+		});
+		model.addAttribute("json", foodArray.toJSONString());
 		model.addAttribute("food", food);
 		return "food";
 	}

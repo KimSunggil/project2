@@ -5,7 +5,7 @@ import java.sql.Date;
 public class FestivalVO {
 	
 	private String area;
-	private String festivalNnm;
+	private String festivalNm;
 	private Date startDt;
 	private Date endDt;
 	private String festivalContent;
@@ -19,11 +19,11 @@ public class FestivalVO {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public String getFestivalNnm() {
-		return festivalNnm;
+	public String getFestivalNm() {
+		return festivalNm;
 	}
-	public void setFestivalNnm(String festivalNnm) {
-		this.festivalNnm = festivalNnm;
+	public void setFestivalNm(String festivalNm) {
+		this.festivalNm = festivalNm;
 	}
 	public Date getStartDt() {
 		return startDt;
@@ -63,7 +63,7 @@ public class FestivalVO {
 	}
 	@Override
 	public String toString() {
-		return "FestivalVO [area=" + area + ", festivalNnm=" + festivalNnm + ", startDt=" + startDt + ", endDt=" + endDt
+		return "FestivalVO [area=" + area + ", festivalNnm=" + festivalNm + ", startDt=" + startDt + ", endDt=" + endDt
 				+ ", festivalContent=" + festivalContent + ", locationNmAddress=" + locationNmAddress
 				+ ", festivalPNum=" + festivalPNum + ", festivalHp=" + festivalHp + "]";
 	}
