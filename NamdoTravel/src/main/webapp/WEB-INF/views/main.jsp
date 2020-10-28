@@ -13,59 +13,60 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title></title>
-<link href="./resources/css/weather.css" rel="stylesheet">
 <style>
-#weatherTb {
-	border-color: black;
-	border: 1px;
-	border-style: solid;
-	width: 100%;
-	text-align: center;
-	color: black;
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    animation-iteration-count: 2;
+	animation-direction: alternate-reverse;
+  }
+  th, td {
+  	font:bold 30px;
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    text-align: center;
+  }
+  th:nth-child(2n), td:nth-child(2n) {
+    background-color: #bbdefb;
+  }
+  th:nth-child(2n+1), td:nth-child(2n+1) {
+    background-color: #e3f2fd;
+  }
+#sky, #pty{
+	width:100%;
+	height:100%;
 }
 
-thead {
-	text-align: center;
-}
-
-th {
-	text-align: center;
-	border-color: black;
-	border: 1px;
-	border-style: solid;
-}
-
-td {
-	text-align: center;
-	border-color: black;
-	border: 1px;
-	border-style: solid;
-}
 img[usemap] {
 	border: none;
 	height: auto;
 	max-width: 100%;
 	width: auto;
 	}
+area{
+	cursor: pointer;
+}
+area:hover{
+	
+}
 </style>
 </head>
 <body>
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	<div>
 		<div class="container" id="container">
-			<h1>동네예보</h1>
+			<h1>오늘의 날씨!</h1>
 			<hr>
 			<div class="bg-white rounded shadow-sm">
 			<div>
-				<a href="#" id="yesD" class="btn btn-primary btn-sm">어제</a>
-				<a href="#" id="toD" class="btn btn-primary btn-sm">오늘</a>
-				<a href="#" id="tomD" class="btn btn-primary btn-sm">내일</a>
-			</div>
+
+				</div>
 				<table id="weatherTb">
-				<tbody id="resultLayout">
-				</tbody>
+					<tbody id="resultLayout">
+					</tbody>
 				</table>
-				<img id="Image-Maps-Com-image-maps-2020-10-27-064121" src="https://www.image-maps.com/m/private/0/b8uufhongbr0cnq99idbkrm037_.jpg" border="0" width="1024" height="768" orgWidth="1024" orgHeight="768" usemap="#image-maps-2020-10-27-064121" alt="" />
+				<img id="Image-Maps-Com-image-maps-2020-10-27-064121" src="https://www.image-maps.com/m/private/0/b8uufhongbr0cnq99idbkrm037_.jpg" border="0" width="1024" height="768" usemap="#image-maps-2020-10-27-064121" alt="" />
 			<map name="image-maps-2020-10-27-064121" id="ImageMapsCom-image-maps-2020-10-27-064121">
 			
 			
@@ -99,8 +100,7 @@ img[usemap] {
 		</div>
 	</div>
 	<jsp:include page="includejsp/footer.jsp"></jsp:include>
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript"src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 function ajaxJSON(url, type, query, fn) {
 		$.ajax({
@@ -117,32 +117,32 @@ function ajaxJSON(url, type, query, fn) {
 		});
 	}
 function weatherBtn(i) {
-	var areas = new Array();
-	var date = new Date(); 
-	var year = date.getFullYear(); 
-	var month = new String(date.getMonth()+1); 
-	var day = new String(date.getDate()); 
-	var hours = date.getHours();
-	if(20<hours){
-		hours="2100";
-	}else if(17<hours){
-		hours="1800";
-	}else if(14<hours){
-		hours="1500";
-	}else if(11<hours){
-		hours="1200";
-	}else if(8<hours){
-		hours="0900";
-	}else if(0<hours){
-		hours="0600";
-	}
-	if(month.length == 1){ 
-	  month = "0" + month; 
-	} 
-	if(day.length == 1){ 
-	  day = "0" + day; 
-	}
-	var d_day = year+month+day;
+		 var areas = new Array();
+			var date = new Date(); 
+			var year = date.getFullYear(); 
+			var month = new String(date.getMonth()+1); 
+			var day = new String(date.getDate());
+			var hours = date.getHours();
+			if(20<hours){
+				hours="2100";
+			}else if(17<hours){
+				hours="1800";
+			}else if(14<hours){
+				hours="1500";
+			}else if(11<hours){
+				hours="1200";
+			}else if(8<hours){
+				hours="0900";
+			}else if(0<hours){
+				hours="0600";
+			}
+			if(month.length == 1){ 
+			  month = "0" + month; 
+			} 
+			if(day.length == 1){ 
+			  day = "0" + day; 
+			}
+			var d_day = year+month+day;
 		<c:forEach items="${weather}" var="weather">
 		areas.push([ "${weather.city}", "${weather.gridX}","${weather.gridY}" ]);
 		</c:forEach>
@@ -165,11 +165,12 @@ function weatherBtn(i) {
 			}
 			var list = data.response.body.items.item;
 			out += "<tr>"
-			out += "<td>" + area + "</td>"
+			out += "<td>" + area + "</td>";
 			for (var j = 0; j < 64; j++) {
+				if(d_day == list[j].fcstDate){
 				if (list[j].category === "POP") {
 					if (list[j].fcstTime == hours) {
-						var pop = "<td>" + list[j].fcstValue + "%" + "</td>"
+						var pop = "<td>"+"강수확률 : " + list[j].fcstValue + "%" + "</td>"
 						var fcstTime = "<td>" + list[j].fcstTime + "</td>"
 						var fcstDate = "<td>" + list[j].fcstDate + "</td>"
 						/* out += "<td>" + list[j].fcstValue + "%" + "</td>" */
@@ -178,45 +179,44 @@ function weatherBtn(i) {
 				if (list[j].category == "PTY") {
 					if (list[j].fcstTime == hours) {
 						fcstValue = list[j].fcstValue;
-						pty = list[j].fcstValue
 						if (fcstValue == "0") {
-							var pty = "<td>" + '<img src="../resources/img/Clear.gif">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/clear.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "1") {
-							var pty = "<td>" + '<img src="../resources/img/rain.png">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/rain.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "2") {
-							var pty = "<td>" + '<img src="../resources/img/rain-or-snow.ico">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/rain-or-snow.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "3") {
-							var pty = "<td>" + '<img src="../resources/img/snow.png">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/snow.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "4") {
-							var pty = "<td>" + '<img src="../resources/img/rain.png">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/rain.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "5") {
-							var pty = "<td>" + '<img src="../resources/img/rain.png">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/rain.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "6") {
-							var pty = "<td>" + '<img src="../resources/img/rain-or-snow.ico">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/rain-or-snow.jpg" id="pty">' + "</td>";
 						} else if (fcstValue == "7") {
-							var pty = "<td>" + '<img src="../resources/img/snow.png">' + "</td>";
+							var pty = "<td>" + '<img src="../resources/img/snow.jpg" id="pty">' + "</td>";
 						}
 					}
 				}
 				if (list[j].category == "REH") {
 					if (list[j].fcstTime == hours) {
 						fcstValue = list[j].fcstValue;
-						var reh = "<td>" + fcstValue + "%" + "</td>"
+						var reh = "<td>" +"습도 : "+ fcstValue + "%" + "</td>"
 	/* 						out += "<td>" + fcstValue + "%" + "</td>" */
 					}
 				}
-				if (list[j].category == "SKY") {
+				/* if (list[j].category == "SKY") {
 					if (list[j].fcstTime == hours) {
 						fcstValue = list[j].fcstValue;
 						if (fcstValue == "1") {
-							var sky ="<td>"+'<img src="../resources/img/Clear.gif">'+"</td>";
+							var sky ="<td>"+'<img src="../resources/img/Clear.gif" id="sky">'+"</td>";
 						} else if (fcstValue == "3") {
-							var sky ="<td>"+'<img src="../resources/img/cloud.png">'+"</td>";
+							var sky ="<td>"+'<img src="../resources/img/cloud.png" id="sky">'+"</td>";
 						} else if (fcstValue == "4") {
-							var sky ="<td>"+'<img src="../resources/img/cloudy.png">'+"</td>";
+							var sky ="<td>"+'<img src="../resources/img/cloudy.png" id="sky">'+"</td>";
 						}
 					}
-				}
+				} */
 				if (list[j].category == "T3H") {
 					if (list[j].fcstTime == hours) {
 						var t3h = "<td>" + list[j].fcstValue + "℃"+ "</td>"
@@ -237,12 +237,14 @@ function weatherBtn(i) {
 					var tmx = "<td>" + "최고기온" + list[j].fcstValue + "℃"+ "</td>"
 	/* out += "<td>" + "최고기온" + list[j].fcstValue + "℃" + "</td>" */
 				}
-			}
-			out += fcstDate+fcstTime+pop + pty + reh + sky + t3h + tmn + uuu + tmx;
+				};
+			};
+			out += pty+fcstDate+fcstTime+pop + reh + t3h + tmn + uuu + tmx;
 			out += "</tr>"
 			document.getElementById("resultLayout").innerHTML = out;
 		};
 		ajaxJSON(url, "post", query, fn);
+		
 	};
 };
 	</script>
@@ -253,6 +255,45 @@ $(function(e){
 	$('img[usemap]').rwdImageMaps();
 	$("#img").width("100%");
 });
+
+	function ajaxJSON(url, type, query, fn) {
+		$.ajax({
+			type:type,
+			url:url,
+			data:query,
+			dataType:"json",
+			success:function(data) {
+				fn(data);
+			},
+			error:function(e){
+				console.log(e.responseText);
+			}
+		});
+	}
+	document.addEventListener("DOMContentLoaded",function(){
+		var url="<%=cp%>/weather/search";
+		var tmFc ="202010280600";
+		var stnId = "156";
+		var out = "";
+		var query = "tmFc=" + tmFc + "&stnId="
+		+ stnId
+		var fn = function(data) {
+			var category;
+			var fcstDate, fcstTime; // 발표일자, 시간
+			var fcstValue;
+			if (!data.response.body) {
+				alert("등록된 정보가 없습니다.");
+				return false;
+			}
+			var list = data.response.body.items.item;
+			for (var j = 0; j < 10; j++) {
+				console.log(list[j])
+			};
+		};
+		ajaxJSON(url, "post", query, fn);
+		
+	});
+
 </script>
 </body>
 </html>

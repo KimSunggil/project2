@@ -66,5 +66,33 @@ public class WeatherController {
 		
 		return result;
 	}
-	
+	@RequestMapping(value="search", produces="appliction/json;charset=utf-8")
+	@ResponseBody
+	public String search(
+			@RequestParam String tmFc,
+			@RequestParam String stnId
+			) throws Exception {
+		String result="";
+		// 초단기 예보
+		String urlDef="http://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst";
+		// 키
+		String serviceKey="mdCptxvVYDgerO2kQkkuIFXuPM8%2FLFH6gcxsiUFfV0uU%2FvG1W4qL85BRYIQap5BfxfheIqd0l3a2PcjgyjI7Gg%3D%3D";
+		// 한페이지 결과수
+		int numOfRows=10;
+		// 페이지
+		int pageNo=1;
+		// 타입(XML/JSON)
+		String dataType="JSON";
+		
+		urlDef += "?serviceKey="+serviceKey;
+		urlDef += "&numOfRows="+numOfRows;
+		urlDef += "&pageNo="+pageNo;
+		urlDef += "&stnId"+stnId;
+		urlDef += "&tmFc="+tmFc;
+		urlDef += "&dataType="+dataType;
+		
+		result = api.receiveToString(urlDef);
+		
+		return result;
+	}
 }
