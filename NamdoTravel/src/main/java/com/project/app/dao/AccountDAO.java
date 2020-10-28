@@ -4,4 +4,5 @@ import com.project.app.vo.AccountVO;
 
 public interface AccountDAO {
 	public int addAccount(AccountVO acc);
+	public void updateAccount(AccountVO acc);
 }

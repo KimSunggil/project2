@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.project.app.admin">
+		
+	<select id="getAllUserDetail" resultType="AccountVO">
+		SELECT A.USER_ID, A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE 
+			FROM NAMDODB.USER A;	
+	</select>
+	
+	<update id="resetPassword" parameterType="String">
+		UPDATE NAMDODB.USER
+			SET PASSWORD = '12345'
+			WHERE USER_ID = #{id}
+	</update>
+
+</mapper>

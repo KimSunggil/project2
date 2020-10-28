@@ -17,4 +17,9 @@ public class AccountDAOImpl implements AccountDAO {
 	public int addAccount(AccountVO acc) {
 		return sqlSession.insert("com.project.app.account.addAccount",acc);
 	}
+	
+	@Override
+	public void updateAccount(AccountVO acc) {
+		sqlSession.update("com.project.app.account.updateAccount",acc);
+	}
 }
