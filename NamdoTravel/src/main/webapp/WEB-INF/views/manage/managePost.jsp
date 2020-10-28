@@ -16,12 +16,13 @@
      vertical-align: middle;
 }
 </style>
+
 </head>
 
 <body class="margin100px">
 	<div class="mangement-post">
 		<h5>게시글 관리</h5>
-		<table class="table text-center">
+		<table id="board" class="table text-center table-hover">
 			<thead>
 				<tr>
 					<th>게시판</th>
@@ -37,22 +38,26 @@
 				</tr>
 			</thead>
 			<tbody>				
-				<c:forEach var="post" items="${posts}">
-				<tr>
-					<td>${post.boardId }</td>
-					<td>${post.postId }</td>
-					<td>${post.postNm }</td>
-					<td>${post.userNm }</td>
-					<td>${post.postDate }</td>
-					<td>${post.hits }</td>
-					<td>${post.like }</td>
-					<td>${post.dislike }</td>
-					<td>
-					<form>
-						<input type="submit" class="btn btn-danger btn-sm" value="삭제">
-					</form>
-					</td>
-				</tr>
+				<c:forEach var="post" items="${posts}" varStatus="stats">
+					<c:set var="postCount" value="${stats.count }"/>
+					<tr id="postInfo${stats.index }" class="post-info">
+						<td>${post.boardId }</td>
+						<td>${post.postId }</td>
+						<td>${post.postNm }</td>
+						<td>${post.userNm }</td>
+						<td>${post.postDate }</td>
+						<td>${post.hits }</td>
+						<td>${post.like }</td>
+						<td>${post.dislike }</td>
+						<td>
+						<form>
+							<input type="submit" class="btn btn-danger btn-sm" value="삭제">
+						</form>
+						</td>
+					</tr>
+					<tr id="postContent${post.postId }" class="post-content" style="display:none;">
+						<td colspan='9'>${post.content}</td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
@@ -63,6 +68,27 @@
 		src="<c:url value='/resources/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
 	<script
 		src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.js'/>"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded",function(){
+			
+			document.querySelector("#board > tbody").addEventListener("click",function(e){
+				var src = e.target;
+				
+				console.log(src);
+		
+				if(!(src.nodeType === 1 && src.nodeName === "TD")) return;
+				
+				for(var i=0 ; i<${postCount};i++)
+					if(e.target && e.target.id == 'postInfo'+i){
+				          //do something
+				    	//document.getElementById("postInfo"+i).style.display === 'none' ? '' : 'none';
+				        alert("inter");
+
+				     }
+				 });
+				
+			})
+	</script>
 
 </body>
 </html>

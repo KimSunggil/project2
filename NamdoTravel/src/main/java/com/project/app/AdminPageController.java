@@ -42,14 +42,15 @@ public class AdminPageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mainAdminPage(Model model) {
-		List<AccountVO> allUser = adminService.getAllUserDetail();
 		Map<String,Object> map = new HashMap<String,Object>();
-				
 		map.put("boardId",1);
 		map.put("pageIndex",(1-1)*10);
 		
+		
+		
+		List<AccountVO> allUser = adminService.getAllUserDetail();
 		List<PostVO> post = boardService.getPostList(map);
 			
 		model.addAttribute("users",allUser);
@@ -58,14 +59,14 @@ public class AdminPageController {
 	    return "admin" ;
 	}
 	
-	@RequestMapping(value="/updateAcc", method = {RequestMethod.POST})
+	@RequestMapping(value="/updateAcc", method = RequestMethod.POST)
 	public String updateAccount(@ModelAttribute AccountVO acc, Model model) {
 		accountService.updateAccont(acc);
 		
 		return "redirect: /";
 	}
 	
-	@RequestMapping(value="/resetPass", method = {RequestMethod.POST})
+	@RequestMapping(value="/resetPass", method = RequestMethod.POST)
 	public String resetPassword(@ModelAttribute AccountVO acc, Model model) {
 		System.out.println(acc.getUserId());
 		System.out.println("resetPass");
