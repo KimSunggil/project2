@@ -18,6 +18,9 @@
 		background-color:white;
 		padding:40px;
 	}
+	.jumbotron{
+		background-color:red;
+	}
 </style>
 
 <script>
@@ -43,15 +46,15 @@
 	<section class="container whiteBoard">
 		<article>
 			<table id="board" class="table table-hover">
-				<thead>
+				<thead class="thead-dark">
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>조회수</th>
-						<th>좋아요</th>
-						<th>싫어요</th>
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">작성자</th>
+						<th scope="col">날짜</th>
+						<th scope="col">조회수</th>
+						<th scope="col">좋아요</th>
+						<th scope="col">싫어요</th>
 					</tr>
 				</thead>
 				<tbody>

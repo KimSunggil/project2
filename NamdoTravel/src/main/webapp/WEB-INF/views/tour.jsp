@@ -49,67 +49,70 @@ tr:nth-child(even) {
     <div class="row align-items-center my-5">
       
       <!-- /.col-lg-8 -->
-      <div class="col-lg-5">
-        <h1 class="fst_title">전라남도 관광지정보</h1>
-      </div>
-     
-   
-    </div>
-    <!-- /.row -->
+      <div class="card bg-light mb-3" style="width:100%;">
+        <div class="card-header">
+	        <h1 class="text-center">전라남도 관광지정보</h1>
+        </div>
+        	</div>
 
-	<div style="width: 100%; height: 300px; overflow: auto">
-	   <table>
-	   	<thead>
-	   		<tr style="text-align: center;">
-		      	<th>지역</th>
-		      	<th>관광지</th>
-		      	<th>관광지 주소</th>
-		      	<th>주차여부</th>
-		      	<th>홈페이지</th>
-	      	</tr>
-      	</thead>
+    <!-- /.row -->
+		<div class="card bg-light mb-3" style="width: 100%; height: 300px; overflow: auto">
+		   <table class="table">
+	   		<thead class="thead-dark">
+	   			<tr style="text-align: center;">
+		  	    	<th scope="col">지역</th>
+		 	     	<th scope="col">관광지</th>
+		 	     	<th scope="col">관광지 주소</th>
+		  	    	<th scope="col">주차여부</th>
+		 	     	<th scope="col">홈페이지</th>
+	     	 	</tr>
+      		</thead>
 	      	
-      	<tbody>    		
-			<c:forEach items="${tour}" var="tour">
-				<tr>
-					<td style="width: 100px;">${tour.area}</td>
-					<td>${tour.tourism_nm}</td>
-					<td>${tour.location_nm_address}</td>
-					<td style="width: 100px;">${tour.parking}</td>
-					<td style="width: 200px;" align="center" onClick="location.href='${tour.tourism_hp}'" style="cursor:hand;">${tour.tourism_hp}</td>
-				</tr>
-			</c:forEach>
-   		</tbody>
-      </table>
-	</div>
+      		<tbody>    		
+				<c:forEach items="${tour}" var="tour">
+					<tr>
+						<td style="width: 100px;">${tour.area}</td>
+						<td>${tour.tourism_nm}</td>
+						<td>${tour.location_nm_address}</td>
+						<td style="width: 100px;">${tour.parking}</td>
+						<td style="width: 200px;" align="center" onClick="location.href='${tour.tourism_hp}'" style="cursor:hand;">${tour.tourism_hp}</td>
+					</tr>
+				</c:forEach>
+   			</tbody>
+    	  </table>
+		</div>
+      <div class="card bg-light mb-3" style="width:100%;">
+        <div class="card-header">
+	        <h1 class="text-center">전라남도 먹거리 정보</h1>
+        </div>
+        	</div>
 	
-	<h1>전라남도 먹거리 정보</h1>
-	
-	<div style="width: 100%; height: 300px; overflow: auto">
-	   <table>
-	   	<thead>
-	   		<tr style="text-align: center;">
-		      	<th>지역</th>
-		      	<th>식당이름</th>
-		      	<th>식당 주소</th>
-		      	<th>주차여부</th>
-		      	<th>홈페이지</th>
-	      	</tr>
-      	</thead>
+		<div class="card bg-light mb-3" style="width: 100%; height: 300px; overflow: auto">
+	  	 <table class="table">
+	   		<thead class="thead-dark">
+	   			<tr style="text-align: center;">
+		      		<th>지역</th>
+		      		<th>식당이름</th>
+		      		<th>식당 주소</th>
+		    	  	<th>주차여부</th>
+		   		   	<th>홈페이지</th>
+	      		</tr>
+      		</thead>
 	      	
-      	<tbody>    		
-			<c:forEach items="${food}" var="food">
-				<tr>
-					<td style="width: 100px;">${food.area}</td>
-					<td>${food.tourism_nm}</td>
-					<td>${food.location_nm_address}</td>
-					<td style="width: 100px;">${food.parking}</td>
-					<td style="width: 200px;" align="center" onClick="location.href='${food.tourism_hp}'" style="cursor:hand;">${food.tourism_hp}</td>
-				</tr>
-			</c:forEach>
-   		</tbody>
-      </table>
-	</div>
+      		<tbody>    		
+				<c:forEach items="${food}" var="food">
+					<tr>
+						<td style="width: 100px;">${food.area}</td>
+						<td>${food.tourism_nm}</td>
+						<td>${food.location_nm_address}</td>
+						<td style="width: 100px;">${food.parking}</td>
+						<td style="width: 200px;" align="center" onClick="location.href='${food.tourism_hp}'" style="cursor:hand;">${food.tourism_hp}</td>
+					</tr>
+				</c:forEach>
+   			</tbody>
+      	</table>
+		</div>
+</div>	
 	
     
 

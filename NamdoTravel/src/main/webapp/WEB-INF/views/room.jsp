@@ -55,16 +55,18 @@ tr:nth-child(even) {
 		<div class="row align-items-center my-5">
 
 			<!-- /.col-lg-8 -->
-			<div class="col-lg-5">
-				<h1>전라남도 숙박시설정보</h1>
+			<div class="card bg-light mb-3" style="width:100%;">
+			<div class="card-header">
+				<h1 class="text-center">전라남도 숙박시설정보</h1>
+				</div>
 			</div>
 			<!-- /.col-md-4 -->
 
-		</div>
 
-		<div>
-			<p style="margin-top: -12px">
-				<em class="link"> <a href="javascript:void(0);"
+		<div class="card bg-secondary mb-3" style="width:100%;">
+			<p style="margin-top: -12px" class="text-center">
+			<br>
+				<em class="btn btn-light"> <a href="javascript:void(0);"
 					onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
 						혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
 				</em>
@@ -134,18 +136,19 @@ tr:nth-child(even) {
 				}
 			</script>
 		</div>
+		</div>
 
 		<!-- /.row -->
 
-		<div style="width: 100%; height: 500px; overflow: auto">
-			<table>
-				<thead>
+		<div class="card bg-light mb-3" style="width: 100%; height: 400px; overflow: auto">
+			<table class="talbe">
+				<thead class="thead-dark">
 					<tr style="text-align: center;">
-						<th>지역</th>
-						<th>숙소이름</th>
-						<th>숙소 주소</th>
-						<th>주차여부</th>
-						<th>홈페이지</th>
+						<th scope="col">지역</th>
+						<th scope="col">숙소이름</th>
+						<th scope="col">숙소 주소</th>
+						<th scope="col">주차여부</th>
+						<th scope="col">홈페이지</th>
 					</tr>
 				</thead>
 
