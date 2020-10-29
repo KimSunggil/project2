@@ -96,6 +96,25 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<nav>
+			<ul id="pagination" class="pagination justify-content-center">
+				<li id="prePage" class="page-item"><a id="preA" class="page-link" href="#"
+						tabindex="-1">Previous</a></li>
+					
+				<c:forEach var="pageIndex" begin="${userBlockStartNums}" end="${userBlockLastNums}" varStatus="state">
+					<c:choose>
+						<c:when test="${pageIndex <= userAllPages}">
+							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/userpage1_${pageIndex}'/>">${pageIndex}</a></li>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<li id="nextPage" class="page-item"><a id="nextA" class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
 	</div>
 
 
@@ -103,6 +122,41 @@
 		src="<c:url value='/resources/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
 	<script
 		src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.js'/>"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded",function(){
+			
+			(function(){
+				for(var i=0; i<${postCount};i++){
+					document.querySelector("#postInfo"+i).addEventListener("click",function(e){
+						e.target.parentNode.nextSibling.nextSibling.classList.toggle("displayInactive");
+					})
+				}
+			})()
+			
+			(function() {	
+				document.getElementById("page${postPages}").classList.add('active');
+				
+				if(${postBlockStartNums} <= 1){
+					document.getElementById("prePage").classList.add('disabled');
+				}else{
+					document.getElementById("preA").addEventListener("click",function(){
+						window.location.href = "/app/admin/userpage" + 1 +"_" + (${postBlockLastNums} - 10);
+					});
+				}
+				
+				if(${postBlockLastNums} >= ${postAllPages} ){
+					document.getElementById("nextPage").classList.add('disabled');
+				}else{
+					document.getElementById("nextA").addEventListener("click",function(){
+						window.location.href = "/app/admin/userpage" + 1 +"_" + (${postBlockStartNums} + 10);
+					});
+
+				}
+				
+			})()
+			
+		})
+	</script>
 
 </body>
 </html>

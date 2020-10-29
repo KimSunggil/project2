@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.project.app.vo.AccountVO;
+import com.project.app.vo.PostVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -16,15 +17,32 @@ public class AdminDAOImpl implements AdminDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<AccountVO> getAllUserDetail() {
+	public List<AccountVO> getAllUserDetail(int pageIndex) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.project.app.admin.getAllUserDetail");
+		return sqlSession.selectList("com.project.app.admin.getAllUserDetail",pageIndex);
+	}
+	
+	@Override
+	public List<PostVO> getAllPostDetail(int pageIndex) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.project.app.admin.getAllPostListDetail",pageIndex);
 	}
 
+	@Override
+	public int getUserPaging() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.project.app.admin.getUserPaging");
+	}
+
+	@Override
+	public int getPostPaging() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.project.app.admin.getPostPaging");
+	}
+	
 	@Override
 	public void resetPassword(String id) {
 		// TODO Auto-generated method stub
 		sqlSession.update("com.project.app.admin.resetPassword",id);
 	}
-
 }

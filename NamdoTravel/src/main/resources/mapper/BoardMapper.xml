@@ -12,7 +12,7 @@
 															FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID
 										 INNER JOIN NAMDODB.POST_CONTENT D ON B.POST_ID = D.POST_ID
 															WHERE A.BOARD_ID = 1 ORDER BY B.POST_ID DESC)A 
-										 WHERE (@rownum:=0)=0)A limit ${pageIndex}, 10
+										 WHERE (@rownum:=0)=0)A limit #{pageIndex}, 10
 	</select>
 	
 	<select id="getPaging" parameterType="int" resultType="int">
@@ -41,7 +41,7 @@
 	<select id="seachPostFavor" parameterType="FavorVO" resultType="String">
 		SELECT A.FAVOR
 			FROM NAMDODB.POST_FAVOR A
-			WHERE A.POST_ID = ${postId} AND A.USER_ID = '${userId}' 
+			WHERE A.POST_ID = #{postId} AND A.USER_ID = #{userId}
 	</select>
 	
 	<!-- 		insert		 -->

@@ -47,38 +47,51 @@ public class AdminPageController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mainAdminPage(Model model) {
 		
-	    return "redirect: /page1_1" ;
+	    return "redirect: /userpage1_1" ;
 	}
 	
-	@RequestMapping(value = "/page{userPage}_{postPage}", method = RequestMethod.GET)
-	public String mainAdminPage(@PathVariable("userPage") int userPage, @PathVariable("postPage") int postPage, Model model) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("boardId",1);
-		map.put("pageIndex",(1-1)*10);
+	@RequestMapping(value = "/{currentTab}page{userPage}_{postPage}", method = RequestMethod.GET)
+	public String mainAdminPage(@PathVariable("currentTab") String currentTab, @PathVariable("userPage") int userPage, @PathVariable("postPage") int postPage, Model model) {
 		
 		Paging paging = new Paging();
 		
-		int allPage = boardService.getPaging(1);
+		int postAllPage = adminService.getPostPaging();
+		int userAllPage = adminService.getUserPaging();
 		
 		paging.makePage(postPage);
-		paging.makeLastPageNum(allPage);
+		paging.makeLastPageNum(postAllPage);
 		
-		Integer blockStartNum = paging.getPageStartNum();
-		Integer blockLastNum = paging.getPageEndNum();
-		Integer lastPageNum = paging.getLastPageNum();
+		Integer postBlockStartNum = paging.getPageStartNum();
+		Integer postBlockLastNum = paging.getPageEndNum();
+		Integer postLastPageNum = paging.getLastPageNum();
 		
-		List<AccountVO> allUser = adminService.getAllUserDetail();
-		List<PostVO> post = boardService.getPostList(map);
-			
+		paging.makePage(userPage);
+		paging.makeLastPageNum(postAllPage);
+		
+		Integer userBlockStartNum = paging.getPageStartNum();
+		Integer userBlockLastNum = paging.getPageEndNum();
+		Integer userLastPageNum = paging.getLastPageNum();
+		
+		List<AccountVO> allUser = adminService.getAllUserDetail((userPage-1)*10);
+		List<PostVO> post = adminService.getAllPostListDetail((postPage-1)*10);
+		
+		//리스트 출력
 		model.addAttribute("users",allUser);
 		model.addAttribute("posts", post);
 		
+		//게시글 관리 페이징 관련
 		model.addAttribute("postPages",postPage);
-
-		model.addAttribute("allPages",allPage);
-		model.addAttribute("blockStartNums", blockStartNum);
-		model.addAttribute("blockLastNums", blockLastNum);
-		model.addAttribute("lastPageNums", lastPageNum);
+		model.addAttribute("postAllPages",postAllPage);
+		model.addAttribute("postBlockStartNums", postBlockStartNum);
+		model.addAttribute("postBlockLastNums", postBlockLastNum);
+		model.addAttribute("postLastPageNums", postLastPageNum);
+		
+		//유저 관리 페이징 관련
+		model.addAttribute("userPages",userPage);
+		model.addAttribute("userAllPages",userAllPage);
+		model.addAttribute("userBlockStartNums", userBlockStartNum);
+		model.addAttribute("userBlockLastNums", userBlockLastNum);
+		model.addAttribute("userLastPageNums", userLastPageNum);
 		
 	    return "admin" ;
 	}
