@@ -49,9 +49,8 @@ tr:nth-child(even) {
     <div class="row align-items-center my-5">
       
       <!-- /.col-lg-8 -->
-      <div class="card bg-lihgt mb-3" style='width:100%; margin:5px;'>
-      <div class="card-header">
-        <h1 class="text-center">전라남도 축제정보</h1>
+      <div class="col-lg-5">
+        <h1 class="fst_title">전라남도 축제정보</h1>
       </div>
       <!-- /.col-md-4 -->
       </div>
@@ -75,17 +74,17 @@ tr:nth-child(even) {
     </div>
     <!-- /.row -->
 
-	<div class="card bg-light mb-3" style=" height: 500px; overflow: auto">
-	   <table class="table">
-	   	<thead class="thead-dark">
+	<div style=" height: 500px; overflow: auto">
+	   <table>
+	   	<thead>
 	   		<tr style="text-align: center;">
-		      	<th scope="col">지역</th>
-		      	<th scope="col">축제정보</th>
-		      	<th scope="col">축제기간</th>
-		      	<th scope="col">행사 내용</th>
-		      	<th scope="col">행사장 위치</th>
-		      	<th scope="col">전화번호</th>
-		      	<th scope="col">홈페이지</th>
+		      	<th>지역</th>
+		      	<th>축제정보</th>
+		      	<th>축제기간</th>
+		      	<th>행사 내용</th>
+		      	<th>행사장 위치</th>
+		      	<th>전화번호</th>
+		      	<th>홈페이지</th>
 	      	</tr>
       	</thead>
 	      	
@@ -103,7 +102,6 @@ tr:nth-child(even) {
 			</c:forEach>
    		</tbody>
       </table>
-      </div>
 	</div>
 	
     
