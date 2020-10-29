@@ -15,29 +15,25 @@
 <title></title>
 <style>
   table {
+  	height:400px;
     width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-    animation-iteration-count: 2;
-	animation-direction: alternate-reverse;
+    border: 1px bold black; 
   }
-  th, td {
+td {
   	font:bold 30px;
-    border-bottom: 1px solid #444444;
     padding: 10px;
     text-align: center;
   }
-  th:nth-child(2n), td:nth-child(2n) {
-    background-color: #bbdefb;
+  tr{
+  	 border: 1px bold black; 
   }
-  th:nth-child(2n+1), td:nth-child(2n+1) {
-    background-color: #e3f2fd;
-  }
-#sky, #pty{
+.pty{
 	width:100%;
 	height:100%;
 }
-
+#area{
+	color:black;
+}
 img[usemap] {
 	border: none;
 	height: auto;
@@ -60,40 +56,62 @@ area:hover{
 			<hr>
 			<div class="bg-white rounded shadow-sm">
 			<div>
-
-				</div>
 				<table id="weatherTb">
-					<tbody id="resultLayout">
-					</tbody>
-				</table>
+				<tbody>
+					<tr>
+						<td id="area" colspan="8">1</td>
+					</tr>
+					<tr>
+						<td rowspan="2" id="pty">1</td>
+						<td>강수확률</td>
+						<td>습도</td>
+						<td>하늘상태</td>
+						<td>기온</td>
+						<td>아침 최저기온</td>
+						<td>낮 최고기온</td>
+						<td>풍속(동서)</td>
+					</tr>
+					<tr>
+						<td id="pop"></td>
+						<td id="reh"></td>
+						<td id="sky"></td>
+						<td id="t3h"></td>
+						<td id="tmn"></td>
+						<td id="tmx"></td>
+						<td id="uuu"></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+				
 				<img id="Image-Maps-Com-image-maps-2020-10-27-064121" src="https://www.image-maps.com/m/private/0/b8uufhongbr0cnq99idbkrm037_.jpg" border="0" width="1024" height="768" usemap="#image-maps-2020-10-27-064121" alt="" />
 			<map name="image-maps-2020-10-27-064121" id="ImageMapsCom-image-maps-2020-10-27-064121">
 			
 			
 			
-			<area  onclick="weatherBtn(8)" shape="rect" coords="820,151,870,201" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(5)" shape="rect" coords="874,233,924,283" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(2)" shape="rect" coords="873,339,923,389" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(3)" shape="rect" coords="755,250,805,300" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(7)" shape="rect" coords="691,145,741,195" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(11)"shape="rect" coords="581,241,631,291" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(10)"shape="rect" coords="651,320,701,370" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(9)" shape="rect" coords="712,418,762,467" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(12)" shape="rect" coords="533,349,583,398" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(4)" shape="rect" coords="438,235,488,284" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(0)" shape="rect" coords="500,180,550,229" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(6)" shape="rect" coords="572,118,622,167" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(13)" shape="rect" coords="460,381,510,430" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(14)" shape="rect" coords="360,468,410,517" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(20)" shape="rect" coords="434,548,484,597" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(21)" shape="rect" coords="216,490,266,539" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(15)" shape="rect" coords="399,328,449,377" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(16)" shape="rect" coords="307,280,357,329" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(1)" shape="rect" coords="245,308,295,357" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(17)" shape="rect" coords="356,197,406,246" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(19)" shape="rect" coords="454,119,504,168" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(18)" shape="rect" coords="324,111,374,160" style="outline:none;" target="_self"     />
-			<area  onclick="weatherBtn(22)" shape="rect" coords="143,315,193,364" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(8)" shape="rect" coords="820,151,870,201" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(5)" shape="rect" coords="874,233,924,283" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(2)" shape="rect" coords="873,339,923,389" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(3)" shape="rect" coords="755,250,805,300" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(7)" shape="rect" coords="691,145,741,195" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(11)"shape="rect" coords="581,241,631,291" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(10)"shape="rect" coords="651,320,701,370" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(9)" shape="rect" coords="712,418,762,467" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(12)" shape="rect" coords="533,349,583,398" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(4)" shape="rect" coords="438,235,488,284" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(0)" shape="rect" coords="500,180,550,229" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(6)" shape="rect" coords="572,118,622,167" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(13)" shape="rect" coords="460,381,510,430" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(14)" shape="rect" coords="360,468,410,517" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(20)" shape="rect" coords="434,548,484,597" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(21)" shape="rect" coords="216,490,266,539" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(15)" shape="rect" coords="399,328,449,377" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(16)" shape="rect" coords="307,280,357,329" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(1)" shape="rect" coords="245,308,295,357" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(17)" shape="rect" coords="356,197,406,246" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(19)" shape="rect" coords="454,119,504,168" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(18)" shape="rect" coords="324,111,374,160" style="outline:none;" target="_self"     />
+			<area  onmouseover="weatherBtn(22)" shape="rect" coords="143,315,193,364" style="outline:none;" target="_self"     />
 			<area shape="rect" coords="1022,766,1024,768" alt="Image Map" style="outline:none;" title="Image Map" href="http://www.image-maps.com/index.php?aff=mapped_users_0" />
 			</map>
 			</div>
@@ -117,12 +135,14 @@ function ajaxJSON(url, type, query, fn) {
 		});
 	}
 function weatherBtn(i) {
+	
 		 var areas = new Array();
-			var date = new Date(); 
-			var year = date.getFullYear(); 
-			var month = new String(date.getMonth()+1); 
-			var day = new String(date.getDate());
-			var hours = date.getHours();
+		var date = new Date(); 
+		var year = date.getFullYear(); 
+		var month = new String(date.getMonth()+1); 
+		var day = new String(date.getDate());
+		var hours = date.getHours();
+		var body = document.getElementsByTagName("body");
 			if(20<hours){
 				hours="2100";
 			}else if(17<hours){
@@ -164,13 +184,13 @@ function weatherBtn(i) {
 				return false;
 			}
 			var list = data.response.body.items.item;
-			out += "<tr>"
-			out += "<td>" + area + "</td>";
+			document.getElementById("area").innerHTML = "<h1>"+area+"</h1>";
 			for (var j = 0; j < 64; j++) {
 				if(d_day == list[j].fcstDate){
 				if (list[j].category === "POP") {
 					if (list[j].fcstTime == hours) {
-						var pop = "<td>"+"강수확률 : " + list[j].fcstValue + "%" + "</td>"
+						var pop = list[j].fcstValue + "%"
+						document.getElementById("pop").innerHTML = pop;
 						var fcstTime = "<td>" + list[j].fcstTime + "</td>"
 						var fcstDate = "<td>" + list[j].fcstDate + "</td>"
 						/* out += "<td>" + list[j].fcstValue + "%" + "</td>" */
@@ -180,68 +200,82 @@ function weatherBtn(i) {
 					if (list[j].fcstTime == hours) {
 						fcstValue = list[j].fcstValue;
 						if (fcstValue == "0") {
-							var pty = "<td>" + '<img src="../resources/img/clear.jpg" id="pty">' + "</td>";
+							var pty = '<img src="../resources/img/clear.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "1") {
-							var pty = "<td>" + '<img src="../resources/img/rain.jpg" id="pty">' + "</td>";
+							var pty ='<img src="../resources/img/rain.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "2") {
-							var pty = "<td>" + '<img src="../resources/img/rain-or-snow.jpg" id="pty">' + "</td>";
+							var pty = '<img src="../resources/img/rain-or-snow.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "3") {
-							var pty = "<td>" + '<img src="../resources/img/snow.jpg" id="pty">' + "</td>";
+							var pty = '<img src="../resources/img/snow.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "4") {
-							var pty = "<td>" + '<img src="../resources/img/rain.jpg" id="pty">' + "</td>";
+							var pty ='<img src="../resources/img/rain.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "5") {
-							var pty = "<td>" + '<img src="../resources/img/rain.jpg" id="pty">' + "</td>";
+							var pty = '<img src="../resources/img/rain.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "6") {
-							var pty = "<td>" + '<img src="../resources/img/rain-or-snow.jpg" id="pty">' + "</td>";
+							var pty ='<img src="../resources/img/rain-or-snow.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						} else if (fcstValue == "7") {
-							var pty = "<td>" + '<img src="../resources/img/snow.jpg" id="pty">' + "</td>";
+							var pty = '<img src="../resources/img/snow.jpg" class="pty">';
+							document.getElementById("pty").innerHTML = pty;
 						}
 					}
 				}
 				if (list[j].category == "REH") {
 					if (list[j].fcstTime == hours) {
 						fcstValue = list[j].fcstValue;
-						var reh = "<td>" +"습도 : "+ fcstValue + "%" + "</td>"
+						var reh = fcstValue + "%";
+						document.getElementById("reh").innerHTML = reh;
 	/* 						out += "<td>" + fcstValue + "%" + "</td>" */
 					}
 				}
-				/* if (list[j].category == "SKY") {
+				if (list[j].category == "SKY") {
 					if (list[j].fcstTime == hours) {
 						fcstValue = list[j].fcstValue;
 						if (fcstValue == "1") {
-							var sky ="<td>"+'<img src="../resources/img/Clear.gif" id="sky">'+"</td>";
+							var sky ='맑음';
+							document.getElementById("sky").innerHTML = sky;
 						} else if (fcstValue == "3") {
-							var sky ="<td>"+'<img src="../resources/img/cloud.png" id="sky">'+"</td>";
+							var sky ='흐림';
+							document.getElementById("sky").innerHTML = sky;
 						} else if (fcstValue == "4") {
-							var sky ="<td>"+'<img src="../resources/img/cloudy.png" id="sky">'+"</td>";
+							var sky ='구름많음';
+							document.getElementById("sky").innerHTML = sky;
 						}
 					}
-				} */
+				} 
 				if (list[j].category == "T3H") {
-					if (list[j].fcstTime == hours) {
-						var t3h = "<td>" + list[j].fcstValue + "℃"+ "</td>"
+					if (list[j].fcstTime == hours+300) {
+						var t3h = list[j].fcstValue + "℃"
+						document.getElementById("t3h").innerHTML = t3h;
 	/* 						out += "<td>" + list[j].fcstValue + "℃" + "</td>" */
 					}
 				}
 				if (list[j].category == "TMN") {
-					var tmn = "<td>" + "최저기온" + list[j].fcstValue + "℃"+ "</td>"
+					var tmn = list[j].fcstValue + "℃"
+					document.getElementById("tmn").innerHTML = tmn;
 	/* 			out += "<td>" + "최저기온" + list[j].fcstValue + "℃" + "</td>" */
 				}
 				if (list[j].category == "UUU") {
 					if (list[j].fcstTime == hours) {
-						var uuu = "<td>" + list[j].fcstValue + "m/s"+ "</td>"
+						var uuu = list[j].fcstValue + "m/s"
+						document.getElementById("uuu").innerHTML = uuu;
 	/* out += "<td>" + list[j].fcstValue + "m/s" + "</td>" */
 					}
 				}
 				if (list[j].category === "TMX") {
-					var tmx = "<td>" + "최고기온" + list[j].fcstValue + "℃"+ "</td>"
+					var tmx =list[j].fcstValue + "℃"
+					document.getElementById("tmx").innerHTML = tmx;
 	/* out += "<td>" + "최고기온" + list[j].fcstValue + "℃" + "</td>" */
 				}
 				};
 			};
 			out += pty+fcstDate+fcstTime+pop + reh + t3h + tmn + uuu + tmx;
-			out += "</tr>"
-			document.getElementById("resultLayout").innerHTML = out;
 		};
 		ajaxJSON(url, "post", query, fn);
 		
@@ -255,46 +289,7 @@ $(function(e){
 	$('img[usemap]').rwdImageMaps();
 	$("#img").width("100%");
 });
-
-	function ajaxJSON(url, type, query, fn) {
-		$.ajax({
-			type:type,
-			url:url,
-			data:query,
-			dataType:"json",
-			success:function(data) {
-				fn(data);
-			},
-			error:function(e){
-				console.log(e.responseText);
-			}
-		});
-	}
-	document.addEventListener("DOMContentLoaded",function(){
-		var url="<%=cp%>/weather/search";
-		var tmFc ="202010280600";
-		var stnId = "156";
-		var out = "";
-		var query = "tmFc=" + tmFc + "&stnId="
-		+ stnId
-		var fn = function(data) {
-			var category;
-			var fcstDate, fcstTime; // 발표일자, 시간
-			var fcstValue;
-			if (!data.response.body) {
-				alert("등록된 정보가 없습니다.");
-				return false;
-			}
-			var list = data.response.body.items.item;
-			for (var j = 0; j < 10; j++) {
-				console.log(list[j])
-			};
-		};
-		ajaxJSON(url, "post", query, fn);
-		
-	});
-
-</script>
+</script> 
 </body>
 </html>
 
