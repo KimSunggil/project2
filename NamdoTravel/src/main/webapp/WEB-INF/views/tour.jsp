@@ -1,20 +1,22 @@
-<%@ page contentType = "text/html;charset=utf-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="kr">
 <html>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title>관광</title>
+<title>관광</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="./resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="./resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="./resources/css/small-business.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="./resources/css/small-business.css" rel="stylesheet">
 
 </head>
 
@@ -39,7 +41,7 @@ tr:nth-child(even) {
 
 <body>
 
-  <!-- Navigation -->
+	<!-- Navigation -->
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 
   <!-- Page Content -->

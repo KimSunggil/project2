@@ -1,7 +1,9 @@
 package com.project.app;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.app.method.Paging;
 import com.project.app.service.BoardService;
 import com.project.app.vo.AddPostVO;
 import com.project.app.vo.FavorVO;
@@ -37,17 +40,38 @@ public class BoardController {
 	// 게시판 게시글 목록
 	@RequestMapping(value = "/{boardId}_page{page}", method = RequestMethod.GET)
 	public String board(@PathVariable("boardId") int boardId, @PathVariable("page") int page, Model model) {
-		List<PostVO> post = boardService.getPostList(boardId);
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("boardId",boardId);
+		map.put("pageIndex",(page-1)*10);
+		
+		List<PostVO> post = boardService.getPostList(map);
+		int allPage = boardService.getPaging(boardId);
+		
+		Paging paging = new Paging();
+		
+		paging.makePage(page);
+		paging.makeLastPageNum(allPage);
+		
+		Integer blockStartNum = paging.getPageStartNum();
+		Integer blockLastNum = paging.getPageEndNum();
+		Integer lastPageNum = paging.getLastPageNum();
+		
 		model.addAttribute("posts",post);
 		model.addAttribute("pages",page);
+		model.addAttribute("allPages",allPage);
 		model.addAttribute("boardIds",boardId);
+		
+		model.addAttribute("blockStartNums", blockStartNum);
+		model.addAttribute("blockLastNums", blockLastNum);
+		model.addAttribute("lastPageNums", lastPageNum);
 		
 		return "board";
 	}
 	
 	// 게시글 본문 화면
-	@RequestMapping(value="/view{postId}", method=RequestMethod.GET)
-	public String view(Principal principal, @PathVariable("postId") int postId, Model model) {
+	@RequestMapping(value="/view{postId}_page{page}", method=RequestMethod.GET)
+	public String view(Principal principal, @PathVariable("postId") int postId, @PathVariable("page") int page, Model model) {
 		
 		boardService.plusHits(postId);
 		
@@ -58,6 +82,7 @@ public class BoardController {
 			model.addAttribute("principals", principal.getName());
 		
 		model.addAttribute("posts",post);
+		model.addAttribute("pages",page);
 		
 		//댓글 내용 소환
 		List<ReplyVO> reply = boardService.getReplyList(postId);
@@ -79,7 +104,7 @@ public class BoardController {
 		boardService.addPost(addPost);
 		System.out.println("Insert Active!  " + addPost.getBoardId());
 		
-		return "redirect: /" + addPost.getBoardId();
+		return "redirect: /" + addPost.getBoardId() + "_page1";
 	}
 	
 	// 게시글 수정 화면
@@ -99,7 +124,7 @@ public class BoardController {
 		boardService.modifyPost(addPost);
 		System.out.println("Update Active!" + addPost.getBoardId());
 		
-		return "redirect: /" + addPost.getBoardId();
+		return "redirect: /" + addPost.getBoardId()+"_page1";
 	}
 	
 	// 게시글 삭제 요청
@@ -107,12 +132,12 @@ public class BoardController {
 	public String deletePost(@PathVariable("boardId") int boardId, @PathVariable("postId") int postId, Model model){
 		boardService.deletePost(postId);
 		
-		return "redirect: /" + boardId;
+		return "redirect: /" + boardId + "_page1";
 	}
 	
 	//좋아요 싫어요
-	@RequestMapping(value="/favor", method=RequestMethod.POST)
-	public String favor(Principal principal, @ModelAttribute FavorVO fav, Model model ) {
+	@RequestMapping(value="/favor_{page}", method=RequestMethod.POST)
+	public String favor(Principal principal, @ModelAttribute FavorVO fav, @PathVariable int page, Model model ) {
 		
 		String errors;
 		
@@ -129,32 +154,32 @@ public class BoardController {
 				model.addAttribute("errorLog", errors);
 			}
 		}
-		return "redirect: /view" + fav.getPostId();
+		return "redirect: /view" + fav.getPostId() + "_page" + page;
 	}
 	
 	// ===================== 멋글 관련 ==============================
 	//댓글 업로드 요청
-	@RequestMapping(value="/write_reply", method=RequestMethod.POST)
-	public String writeReply(@ModelAttribute ReplyVO reply, Model model){
+	@RequestMapping(value="/write_reply{page}", method=RequestMethod.POST)
+	public String writeReply(@ModelAttribute ReplyVO reply, @PathVariable("page") int page , Model model){
 		boardService.addReply(reply);
 		
-		return "redirect: /view" + reply.getPostId();
+		return "redirect: /view" + reply.getPostId() + "_page" + page;
 	}
 	
 	//댓글 수정 요청
-	@RequestMapping(value="/write_reply{postId}", method=RequestMethod.POST)
-	public String writeRelply(@PathVariable("postId") int postId, @ModelAttribute ReplyVO reply, Model model) {
+	@RequestMapping(value="/modify_reply_{postId}_{page}", method=RequestMethod.POST)
+	public String writeRelply(@ModelAttribute ReplyVO reply, @PathVariable("postId") int postId, @PathVariable("page") int page, Model model) {
 		boardService.modifyReply(reply);
 		
-		return "redirect: /view" + postId;
+		return "redirect: /view" + postId  + "_page" + page;
 	}
 	
 	//댓글 삭제 요청
-	@RequestMapping(value="/delete_reply", method=RequestMethod.POST)
-	public String deleteReply(@ModelAttribute("reply") ReplyVO reply, Model model)
+	@RequestMapping(value="/delete_reply_page{page}", method=RequestMethod.POST)
+	public String deleteReply(@ModelAttribute("reply") ReplyVO reply, @PathVariable("page") int page, Model model)
 	{
 		int way = reply.getPostId();
 		boardService.deleteReply(reply.getReplyId());
-		return "redirect: /view" + way;
+		return "redirect: /view" + way + "_page" + page;
 	}
 }

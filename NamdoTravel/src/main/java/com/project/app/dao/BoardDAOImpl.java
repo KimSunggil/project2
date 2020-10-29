@@ -1,6 +1,7 @@
 package com.project.app.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -19,9 +20,14 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<PostVO> getPostList(int boardId) {
+	public List<PostVO> getPostList(Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.project.app.board.getPostList", boardId);
+		return sqlSession.selectList("com.project.app.board.getPostList", map);
+	}
+	
+	@Override
+	public int getPaging(int boardId) {
+		return sqlSession.selectOne("com.project.app.board.getPaging", boardId);
 	}
 	
 	@Override
@@ -33,8 +39,9 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void addPost(AddPostVO addPost) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("com.project.app.board.addPost", addPost);
 		sqlSession.insert("com.project.app.board.addPostContent", addPost);
+		sqlSession.insert("com.project.app.board.addPost", addPost);
+
 	}
 
 	@Override

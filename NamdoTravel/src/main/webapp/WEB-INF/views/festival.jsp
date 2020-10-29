@@ -54,6 +54,23 @@ tr:nth-child(even) {
         <h1 class="text-center">전라남도 축제정보</h1>
       </div>
       <!-- /.col-md-4 -->
+      </div>
+      
+      <div>
+			<div id="map" style="width: 100%; height: 350px;"></div>
+
+
+			<select id="area_select">
+				<c:forEach items="${festival}" var="list">
+					<option value="${list.area}">${list.area}</option>
+				</c:forEach>
+			</select> <input type="button" id="button1" onclick="area_click();"
+				value="지역선택" />
+		</div>
+	
+
+	
+		
    
     </div>
     <!-- /.row -->
@@ -76,12 +93,12 @@ tr:nth-child(even) {
 			<c:forEach items="${festival}" var="festival">
 				<tr>
 					<td style="width:100px;">${festival.area}</td>
-					<td style="width:400px;">${festival.festival_nm}</td>
-					<td style="width:200px;">${festival.start_dt} <br> ~ ${festival.end_dt}</td>
-					<td style="width:400px;">${festival.festival_content}</td>
-					<td style="width:400px;">${festival.location_nm_address}</td>
-					<td style="width:200px;">${festival.festival_p_num}</td>
-					<td align="center" onClick="location.href='${festival.festival_hp}'" style="cursor:hand;">${festival.festival_hp}</td>
+					<td style="width:400px;">${festival.festivalNm}</td>
+					<td style="width:200px;">${festival.startDt} <br> ~ ${festival.endDt}</td>
+					<td style="width:400px;">${festival.festivalContent}</td>
+					<td style="width:400px;">${festival.locationNmAddress}</td>
+					<td style="width:200px;">${festival.festivalPNum}</td>
+					<td align="center" onClick="location.href='${festival.festivalHp}'" style="cursor:hand;">${festival.festivalHp}</td>
 				</tr>
 			</c:forEach>
    		</tbody>
@@ -133,7 +150,7 @@ tr:nth-child(even) {
     </div>
     <!-- /.row -->
 
-  </div>
+  
   <!-- /.container -->
 
   <!-- Footer -->
@@ -143,6 +160,109 @@ tr:nth-child(even) {
     </div>
     <!-- /.container -->
   </footer>
+  <script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a7cb307437cf02090b0b5c00c3eb40d9&libraries=services"></script>
+
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(34.9438702, 127.5022322), // 지도의 중심좌표
+			level : 6
+		// 지도의 확대 레벨
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		var festivalAddress = JSON.parse('${json}');
+
+		for (var i = 0; i < festivalAddress.length; i++) {
+
+			geocoder.addressSearch(festivalAddress[i].address, function(result, status, data) {
+
+						if (status === kakao.maps.services.Status.OK) {
+
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+
+							/* -----------------------------------------------전체마커 ----------------------------------------------------
+							       // 결과값으로 받은 위치를 마커로 표시합니다
+							       var marker = new kakao.maps.Marker({
+							          map : map,
+							          position : coords
+							       });
+
+							       // 마커를 지도에 표시합니다.
+							       marker.setMap(map);
+
+							       // 커스텀 오버레이를 생성합니다
+							       var customOverlay = new daum.maps.CustomOverlay({
+							          position : coords,
+							       });
+							       // 커스텀 오버레이를 지도에 표시합니다
+							       customOverlay.setMap(map);
+
+							       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							       map.setCenter(coords); */
+
+						}
+
+					});
+
+		}
+		function area_click() {
+			var select_area_btn = $("#area_select option:selected").val();
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = {
+				center : new kakao.maps.LatLng(34.9438702, 127.5022322), // 지도의 중심좌표
+				level : 6
+			// 지도의 확대 레벨
+			};
+
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			var festivalAddress = JSON.parse('${json}');
+
+			for (var i = 0; i < festivalAddress.length; i++) {
+				if (festivalAddress[i].area == select_area_btn) {
+
+					geocoder.addressSearch(festivalAddress[i].address, function(
+							result, status, data) {
+
+						if (status === kakao.maps.services.Status.OK) {
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
+							});
+
+							// 마커를 지도에 표시합니다.
+							marker.setMap(map);
+
+							/* var content = '<div>'+ result[0].address_name '</div>'; */
+
+							// 커스텀 오버레이를 생성합니다
+							var customOverlay = new daum.maps.CustomOverlay({
+							/* 	position : coords,
+								content : content */
+							});
+							// 커스텀 오버레이를 지도에 표시합니다
+							customOverlay.setMap(map);
+
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map.setCenter(coords);
+
+						}
+
+					});
+
+				}
+			}
+		}
+	</script>
+  
 
   <!-- Bootstrap core JavaScript -->
   <script src="./resources/vendor/jquery/jquery.min.js"></script>

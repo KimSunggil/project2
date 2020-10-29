@@ -1,7 +1,12 @@
 package com.project.app;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.app.jsondb.APISerializer;
+import com.project.app.service.WeatherService;
+import com.project.app.vo.WeatherVO;
 
 @Controller("weather.weatherController")
 @RequestMapping("/weather/*")
@@ -16,8 +23,13 @@ public class WeatherController {
 	@Autowired
 	private APISerializer api;
 	
+	@Resource
+	WeatherService weatherService;
+	
 	@RequestMapping(value="main", method=RequestMethod.GET)
-	public ModelAndView main(ModelAndView mav) throws Exception {
+	public ModelAndView main(ModelAndView mav , Model model) throws Exception {
+		List<WeatherVO> weather = weatherService.getWeather();
+		model.addAttribute("weather", weather);
 		mav.setViewName("main");
 		return mav;
 	}
@@ -54,5 +66,4 @@ public class WeatherController {
 		
 		return result;
 	}
-	
 }

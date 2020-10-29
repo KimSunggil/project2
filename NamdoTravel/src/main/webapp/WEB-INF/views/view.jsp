@@ -55,12 +55,12 @@
 			<hr/>
 			<!-- 좋아요 싫어요 -->
 			<div style="display:flex; justify-content: space-around; ">
-				<form action="<c:url value='/board/favor'/>" method="post">
+				<form action="<c:url value='/board/favor_${pages}'/>" method="post">
 					<input type="hidden" name="favor" value="LIKE"/>
 					<input type="hidden" name="postId" value="${posts.postId}">
 					<input type="submit" value="좋아요">
 				</form>
-				<form action="<c:url value='/board/favor'/>" method="post">
+				<form action="<c:url value='/board/favor_${pages }'/>" method="post">
 					<input type="hidden" name="favor" value="DISLIKE"/>
 					<input type="hidden" name="postId" value="${posts.postId}"/>
 					<input type="submit" value="싫어요">
@@ -77,7 +77,7 @@
 				<button type="submit" class="btn btn-sm btn-primary">삭제</button>
 				</form>
 			</c:if>
-				<a href="<c:url value='/board/${posts.boardId}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
+				<a href="<c:url value='/board/${posts.boardId}_page${pages}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
 		</article>
 		<br>
 		
@@ -111,7 +111,7 @@
 										<c:when test="${reply.userId == principals }">
 											<td><button id="modifyReplyA${status.index}"> 수정 </button></td>
 											<td>
-												<form action="<c:url value ='/board/delete_reply' />" method="post">
+												<form action="<c:url value ='/board/delete_reply_page${pages }' />" method="post">
 													<input type="hidden" name="replyId" value="${reply.replyId }">
 													<input type="hidden" name="postId" value="${reply.postId }">
 													<input type="submit" value="삭제">
@@ -127,7 +127,7 @@
 								<!-- 수정 활성화 시 -->
 								<tr id="relplyUpdateBox${status.index}" class="displayActive">
 									<td colspan='6'>
-										<form action="<c:url value="/board/write_reply${reply.postId}" />" method="post">
+										<form action="<c:url value="/board/modify_reply_${reply.postId}_${pages}" />" method="post">
 											<input type="hidden" name="replyId" value="${reply.replyId}">
 											<textarea name="content"> <c:out value = "${reply.content}"/> </textarea> <input type="submit">
 										</form>
@@ -140,9 +140,10 @@
 				</div>
 			</section>
 			
-			<sec:authorize access="isAuthenticated()">
+			<!-- 댓글 작성 (로그인시 보임) -->
+			<sec:authorize access="isAuthenticated()"> 
 				<section class="post-reply">
-					<form action="<c:url value ='/board/write_reply'/>" method="post">
+					<form action="<c:url value ='/board/write_reply${pages}'/>" method="post">
 						<input type="hidden" name="postId" value="${posts.postId }">
 						<input type="hidden" name="userId" value="${principals}">
 						<textarea id="inputReply" name="content" style="width:50%;"></textarea> <input type="submit">
@@ -163,7 +164,7 @@
 			document.getElementById("contentDiv").innerHTML = `${posts.content}`;
 			
 			document.addEventListener('click',function(e){
-				for(var i=0; i<${replyIndex};i++)
+				for(var i=0; i<=${replyIndex}; i++)
 					{
 						if(e.target && e.target.id== 'modifyReplyA'+i){
 					          //do something

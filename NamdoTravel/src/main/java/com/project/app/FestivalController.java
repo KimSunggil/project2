@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,9 +31,18 @@ public class FestivalController {
 	/**
 	 * Simply selects the festival view to render by returning its name.
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/festival", method = RequestMethod.GET)
-	public String registerOrder(Model model) {
+	public String Festival(Model model) {
 		List<FestivalVO> festival = festivalService.festivalList();
+		JSONArray festivalArray = new JSONArray();
+		festival.stream().forEach((ele) -> {
+			JSONObject festivalObject = new JSONObject();			
+			festivalObject.put("area", ele.getArea());
+			festivalObject.put("address", ele.getLocationNmAddress());
+			festivalArray.add(festivalObject);
+		});
+		model.addAttribute("json", festivalArray.toJSONString());
 		model.addAttribute("festival", festival);
 		return "festival";
 	}

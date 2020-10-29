@@ -17,4 +17,10 @@ public class AccountServiceImpl implements AccountService{
 	public int addAccount(AccountVO acc) {
 		return accountDao.addAccount(acc);
 	}
+
+	@Override
+	public void updateAccont(AccountVO acc) {
+		// TODO Auto-generated method stub
+		accountDao.updateAccount(acc);
+	}
 }

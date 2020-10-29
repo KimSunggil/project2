@@ -4,19 +4,13 @@
 		
 	<insert id="addAccount" parameterType="AccountVO">
 		INSERT INTO NAMDODB.USER(USER_ID, PASSWORD, EMAIL, NICKNAME, AUTHORITY, REG_DATE, LAST_LOGIN, ENABLE, NAME, PHONE_NO, ADDRESS)
-		VALUES(
-		    #{userId},
-		    #{password},
-		    #{email},
-		    #{nickName},
-		    "USER",
-		    NOW(),
-		    NOW(),
-		    1,
-		    #{name},
-		    #{phoneNo},
-		    #{address}
-		)
+		VALUES(#{userId}, #{password}, #{email}, #{nickName}, "USER", NOW(), NOW(), 1, #{name}, #{phoneNo}, #{address})
 	</insert>
+	
+	<update id="updateAccount" parameterType="AccountVO">
+		Update NAMDODB.USER
+			SET PASSWORD = #{password}, EMAIL = #{email}, NICKNAME = #{nickName}, AUTHORITY = #{authority},ENABLE = #{enable}, NAME = #{name}, PHONE_NO = #{phoneNo}, ADDRESS = #{address}
+			WHERE USER_ID = #{userId}
+	</update>
 		
 </mapper>

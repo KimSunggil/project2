@@ -2,48 +2,54 @@ package com.project.app.vo;
 
 public class TourVO {
 	
-	private String tourArea;
-	private String tourNm;
-	private String tourAddress;
+	private String area;
+	private String tourismNm;
+	private String locationNmAddress;
 	private String parking;
-	private String tourHp;
-	
-	public String gettourArea() {
-		return tourArea;
+	private String tourismHp;
+	public String getArea() {
+		return area;
 	}
-	public void settourArea(String tourArea) {
-		this.tourArea = tourArea;
+
+	public void setArea(String area) {
+		this.area = area;
 	}
-	public String gettourNm() {
-		return tourNm;
+
+	public String getTourismNm() {
+		return tourismNm;
 	}
-	public void settourNm(String tourNm) {
-		this.tourNm = tourNm;
+
+	public void setTourismNm(String tourismNm) {
+		this.tourismNm = tourismNm;
 	}
-	public String gettourAddress() {
-		return tourAddress;
+
+	public String getLocationNmAddress() {
+		return locationNmAddress;
 	}
-	public void settourAddress(String tourAddress) {
-		this.tourAddress = tourAddress;
+
+	public void setLocationNmAddress(String locationNmAddress) {
+		this.locationNmAddress = locationNmAddress;
 	}
+
 	public String getParking() {
 		return parking;
 	}
+
 	public void setParking(String parking) {
 		this.parking = parking;
 	}
-	public String gettourHp() {
-		return tourHp;
+
+	public String getTourismHp() {
+		return tourismHp;
 	}
-	public void settourHp(String tourHp) {
-		this.tourHp = tourHp;
+
+	public void setTourismHp(String tourismHp) {
+		this.tourismHp = tourismHp;
 	}
+
 	@Override
 	public String toString() {
-		return "tourVO [tourArea=" + tourArea + ", tourNm=" + tourNm + ", tourAddress=" + tourAddress + ", parking="
-				+ parking + ", tourHp=" + tourHp + "]";
+		return "TourVO [area=" + area + ", tourismNm=" + tourismNm + ", locationNmAddress=" + locationNmAddress
+				+ ", parking=" + parking + ", tourismHp=" + tourismHp + "]";
 	}
-	
-	
-	
 }

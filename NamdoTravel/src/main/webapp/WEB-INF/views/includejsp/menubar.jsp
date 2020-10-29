@@ -37,14 +37,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/app/room">숙박 업소</a></li>
-					<li class="nav-item"><a class="nav-link" href="/app/tour">관광지</a></li>
-					<li class="nav-item"><a class="nav-link" href="/app/festival">지역별 축제</a></li>
-					<li class="nav-item"><a class="nav-link" href="/app/weather/main">전남지역 날씨(미완)</a>
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="/app/room">숙박 업소</a></li>
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="/app/tour">관광지</a></li>
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="/app/food">맛집</a></li>
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="/app/festival">지역별 축제</a></li>
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="/app/weather/main">전남지역 날씨(미완)</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">리뷰/신규
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="#">리뷰/신규
 							여행지추천</a></li>
-					<li class="nav-item"><a class="nav-link" href="<c:url value='/board/1_page1'/>">자유게시판</a></li>
+					<li class="nav-item"><a class="nav-link" id="nav-link" href="<c:url value='/board/1_page1'/>">자유게시판</a></li>
 					<sec:authorize access="isAuthenticated()">
 						<li class="nav-item dropdown no-arrow mx-1"><a class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -100,7 +101,7 @@
 				</ul>
 
 				<sec:authorize access="isAnonymous()">
-					<a href="<c:url value='/auth/login' />"><button>LOGIN</button></a>
+					<a href="<c:url value='/auth/login' />"><button class="btn btn-outline-light btn-sm">LOGIN</button></a>
 				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
@@ -112,6 +113,14 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              	
+              	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	              	<a class="dropdown-item" href="<c:url value='/admin/'/>">
+	              		<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+	              		Admin Page
+	              	</a>
+	             </sec:authorize>
+                
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
