@@ -52,7 +52,6 @@ public class AuthController {
 	public String loginError(ModelMap model) {
 		model.addAttribute("error", "true");
 		return "login";
-
 	}
 	
 	@RequestMapping(value = "/logouts", method = RequestMethod.GET)

@@ -16,60 +16,25 @@
 		background-color:white;
 		padding:30px;
 	}
-	.margin100px{
-		margin:100px 10px;
-	}
+	
 </style>
 
-<script>
-	function categoryTab(){
-		var userDiv = document.getElementById("userDiv"); 
-		var postDiv = document.getElementById("postDiv");
-				
-		document.getElementById('userA').addEventListener("click",function (){
-			userDiv.style.display = 'block';
-			postDiv.style.display = 'none';
-		})
-		
-		document.getElementById('postA').addEventListener("click",function (){
-			userDiv.style.display = 'none';
-			postDiv.style.display = 'block';
-		})	
-	}
-	
-	document.addEventListener("DOMContentLoaded",function(){
-		categoryTab();
-	})
-</script>
 
 </head>
 
 <body class="margin100px">
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	
-	<section class="container whiteBoard">
-		<nav>
-			<ul class="nav">
+		<nav class="container whiteBoard">
+			<ul class="nav nav-pills">
 				<li class="nav-item">
-					<a id="userA" class="nav-link" href="#">유저관리</a>
+					<a id="userA" class="nav-link" href="<c:url value="/admin/userPage_1"/>">유저관리</a>
 				</li>
 				<li class="nav-item">
-					<a id="postA" class="nav-link" href="#">게시글 관리</a>
+					<a id="postA" class="nav-link" href="<c:url value="/admin/postPage_1"/>">게시글 관리</a>
 				</li>
 			</ul>
 		</nav>
-		<br>
-		<article>
-			<div id="userDiv">
-				<jsp:include page="manage/manageUser.jsp"/>
-			</div>
-			
-			<div id="postDiv" style="display:none;">
-				<jsp:include page="manage/managePost.jsp"/>
-			</div>
-			
-		</article>
-	</section>	
 	
 	<script src="<c:url value='/resources/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.js'/>"></script>

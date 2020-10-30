@@ -3,7 +3,7 @@
 <mapper namespace="com.project.app.admin">
 		
 	<select id="getAllUserDetail" parameterType="int" resultType="AccountVO">
-		SELECT A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE
+		SELECT A.USER_ID, A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE
 			FROM (SELECT @rownum:=@rownum+1 rownum, A.* FROM (SELECT A.USER_ID, A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE 
 																FROM NAMDODB.USER A)A 
 			WHERE (@rownum:=0)=0)A limit #{pageIndex}, 10
