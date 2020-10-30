@@ -47,44 +47,27 @@ public class AdminPageController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mainAdminPage(Model model) {
 		
-	    return "redirect: /userpage1_1" ;
+	    return "redirect: /userPage_1" ;
 	}
 	
-	@RequestMapping(value = "/{currentTab}page{userPage}_{postPage}", method = RequestMethod.GET)
-	public String mainAdminPage(@PathVariable("currentTab") String currentTab, @PathVariable("userPage") int userPage, @PathVariable("postPage") int postPage, Model model) {
+	// 유저 관리 화면
+	@RequestMapping(value = "/userPage_{userPage}", method = RequestMethod.GET)
+	public String adminUserPage(@PathVariable("userPage") int userPage, Model model) {
 		
 		Paging paging = new Paging();
 		
-		int postAllPage = adminService.getPostPaging();
 		int userAllPage = adminService.getUserPaging();
 		
-		paging.makePage(postPage);
-		paging.makeLastPageNum(postAllPage);
-		
-		Integer postBlockStartNum = paging.getPageStartNum();
-		Integer postBlockLastNum = paging.getPageEndNum();
-		Integer postLastPageNum = paging.getLastPageNum();
-		
 		paging.makePage(userPage);
-		paging.makeLastPageNum(postAllPage);
 		
 		Integer userBlockStartNum = paging.getPageStartNum();
 		Integer userBlockLastNum = paging.getPageEndNum();
 		Integer userLastPageNum = paging.getLastPageNum();
 		
 		List<AccountVO> allUser = adminService.getAllUserDetail((userPage-1)*10);
-		List<PostVO> post = adminService.getAllPostListDetail((postPage-1)*10);
 		
 		//리스트 출력
 		model.addAttribute("users",allUser);
-		model.addAttribute("posts", post);
-		
-		//게시글 관리 페이징 관련
-		model.addAttribute("postPages",postPage);
-		model.addAttribute("postAllPages",postAllPage);
-		model.addAttribute("postBlockStartNums", postBlockStartNum);
-		model.addAttribute("postBlockLastNums", postBlockLastNum);
-		model.addAttribute("postLastPageNums", postLastPageNum);
 		
 		//유저 관리 페이징 관련
 		model.addAttribute("userPages",userPage);
@@ -93,38 +76,73 @@ public class AdminPageController {
 		model.addAttribute("userBlockLastNums", userBlockLastNum);
 		model.addAttribute("userLastPageNums", userLastPageNum);
 		
-	    return "admin" ;
+	    return "manage/manageUser" ;
 	}
 	
-	@RequestMapping(value="/updateAcc", method = RequestMethod.POST)
-	public String updateAccount(@ModelAttribute AccountVO acc, Model model) {
+	
+	// 게시글 관리 화면
+	@RequestMapping(value = "/postPage_{postPage}", method = RequestMethod.GET)
+	public String mainPostPage(@PathVariable("postPage") int postPage, Model model) {
+		
+		Paging paging = new Paging();
+		
+		int postAllPage = adminService.getPostPaging();
+		
+		paging.makePage(postPage);
+		paging.makeLastPageNum(postAllPage);
+		
+		Integer postBlockStartNum = paging.getPageStartNum();
+		Integer postBlockLastNum = paging.getPageEndNum();
+		Integer postLastPageNum = paging.getLastPageNum();
+		
+		List<PostVO> post = adminService.getAllPostListDetail((postPage-1)*10);
+		
+		//리스트 출력
+		model.addAttribute("posts", post);
+		
+		//게시글 관리 페이징 관련
+		model.addAttribute("postPages",postPage);
+		model.addAttribute("postAllPages",postAllPage);
+		model.addAttribute("postBlockStartNums", postBlockStartNum);
+		model.addAttribute("postBlockLastNums", postBlockLastNum);
+		model.addAttribute("postLastPageNums", postLastPageNum);
+
+	    return "manage/managePost" ;
+	}
+	
+	//======================= 계정 ================================
+	
+	@RequestMapping(value="/updateAcc_{page}", method = RequestMethod.POST)
+	public String updateAccount(@ModelAttribute AccountVO acc, @PathVariable int page, Model model) {
 		accountService.updateAccont(acc);
 		
-		return "redirect: /";
+		return "redirect: /adminUserPage_" + page;
 	}
 	
-	@RequestMapping(value="/resetPass", method = RequestMethod.POST)
-	public String resetPassword(@ModelAttribute AccountVO acc, Model model) {
+	@RequestMapping(value="/resetPass_{page}", method = RequestMethod.POST)
+	public String resetPassword(@ModelAttribute AccountVO acc, @PathVariable("page") int page, Model model) {
 		System.out.println(acc.getUserId());
 		System.out.println("resetPass");
 		adminService.resetPassword(acc.getUserId());
 		
-		return "redirect: /";
+		return "redirect: /adminUserPage_" + page;
 	}
 	
-	@RequestMapping(value="/deleteAccount", method=RequestMethod.POST)
-	public String deleteAccount(Model model) {
+	@RequestMapping(value="/deleteAccount_{page}", method=RequestMethod.POST)
+	public String deleteAccount(@PathVariable("page") int page, Model model) {
 		System.out.println("Account Delete");
 		
-		return "redirect: /";
+		return "redirect: /adminUserPage_" + page;
 	}
 	
+	//======================= 게시글 ==============================
+	
 	// 게시글 삭제 요청
-	@RequestMapping(value="/deletePost_{postId}", method=RequestMethod.POST)
-	public String deletePost(@PathVariable("postId") int postId, Model model){
+	@RequestMapping(value="/deletePost{postId}_{page}", method=RequestMethod.POST)
+	public String deletePost(@PathVariable("postId") int postId, @PathVariable("page") int page, Model model){
 		boardService.deletePost(postId);
 		
-		return "redirect: /";
+		return "redirect: /adminPostPage_" + page;
 	}
 }
 

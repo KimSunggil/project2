@@ -15,14 +15,27 @@
 	.displayInactive{
 		display:none;'
 	}
+	.backboard{
+		background-color:#eeeeee;
+	}
+	.whiteBoard{
+		background-color:#eeeeee;
+		padding:30px;
+	}
+	.margin100px{
+		margin:100px 10px;
+	}
 </style>
 
 </head>
 
-<body class="margin100px">
-	<div class="mangement-post">
+<body class="">
+
+	<jsp:include page="../admin.jsp"></jsp:include>
+
+	<div class="mangement-post container ">
 		<h5>게시글 관리</h5>
-		<table id="board" class="table text-center table-hover">
+		<table id="board" class="table text-center table-hover backboard">
 			<thead>
 				<tr>
 					<th>게시판</th>
@@ -50,7 +63,7 @@
 						<td>${post.like }</td>
 						<td>${post.dislike }</td>
 						<td>
-						<form action="<c:url value='/admin/deletePost_${post.postId}'/>" method="post">
+						<form action="<c:url value='/admin/deletePost_${post.postId}_${postPages}'/>" method="post">
 							<input type="submit" class="btn btn-danger btn-sm" value="삭제">
 						</form>
 						</td>
@@ -70,7 +83,7 @@
 				<c:forEach var="pageIndex" begin="${postBlockStartNums}" end="${postBlockLastNums}" varStatus="state">
 					<c:choose>
 						<c:when test="${pageIndex <= postAllPages}">
-							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/postpage1_${pageIndex}'/>">${pageIndex}</a></li>
+							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/postPage_${pageIndex}'/>">${pageIndex}</a></li>
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>
@@ -105,7 +118,7 @@
 					document.getElementById("prePage").classList.add('disabled');
 				}else{
 					document.getElementById("preA").addEventListener("click",function(){
-						window.location.href = "/app/admin/postpage" + 1 +"_" + (${postBlockLastNums} - 10);
+						window.location.href = "/app/admin/postPage_" + (${postBlockLastNums} - 10);
 					});
 				}
 				
@@ -113,7 +126,7 @@
 					document.getElementById("nextPage").classList.add('disabled');
 				}else{
 					document.getElementById("nextA").addEventListener("click",function(){
-						window.location.href = "/app/admin/postpage" + 1 +"_" + (${postBlockStartNums} + 10);
+						window.location.href = "/app/admin/postPage_" + (${postBlockStartNums} + 10);
 					});
 
 				}

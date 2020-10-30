@@ -15,13 +15,26 @@
 	.table > tbody > tr > td {
      vertical-align: middle;
 }
+	.backboard{
+		background-color:#eeeeee;
+	}
+	.whiteBoard{
+		background-color:#eeeeee;
+		padding:30px;
+	}
+	.margin100px{
+		margin:100px 10px;
+	}
 </style>
 </head>
 
-<body class="margin100px">
-	<div class="mangement-user">
+<body class="">
+
+	<jsp:include page="../admin.jsp"></jsp:include>
+
+	<div class="mangement-user container ">
 		<h5>유저 관리</h5>
-		<table class="table text-center">
+		<table class="table text-center backboard">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -39,7 +52,7 @@
 			<tbody>				
 				<c:forEach var="user" items="${users}">
 				<tr>
-					<form action="<c:url value="/admin/updateAcc" />" method="post">
+					<form action="<c:url value="/admin/updateAcc_${userPages}" />" method="post">
 						<input type="hidden" name="userId" value="${user.userId}">
 						<input type="hidden" name="password" value="${user.password }">
 						<input type="hidden" name="nickName" value="${user.nickName}">
@@ -80,13 +93,13 @@
 						<td><input type="submit" class="btn btn-primary btn-sm" value="수정"></td>
 						</form>
 						<td>
-							<form action="<c:url value="/admin/resetPass"/>" method="post">
+							<form action="<c:url value="/admin/resetPass_${userPages}"/>" method="post">
 								<input type="hidden" name="userId" value="${user.userId }">
 								<input type="submit" value="초기화" class="btn btn-warning btn-sm">
 							</form>
 						</td>
 						<td>
-							<form action="<c:url value="/admin/deleteAccount"/>" method="post">
+							<form action="<c:url value="/admin/deleteAccount_${userPages}"/>" method="post">
 								<input type="hidden" name="userId" value="${user.userId }">
 								<input type="submit" value="삭제" class="btn btn-danger btn-sm">
 							</form>
@@ -105,7 +118,7 @@
 				<c:forEach var="pageIndex" begin="${userBlockStartNums}" end="${userBlockLastNums}" varStatus="state">
 					<c:choose>
 						<c:when test="${pageIndex <= userAllPages}">
-							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/userpage1_${pageIndex}'/>">${pageIndex}</a></li>
+							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/userpage_${pageIndex}'/>">${pageIndex}</a></li>
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>
@@ -140,7 +153,7 @@
 					document.getElementById("prePage").classList.add('disabled');
 				}else{
 					document.getElementById("preA").addEventListener("click",function(){
-						window.location.href = "/app/admin/userpage" + 1 +"_" + (${postBlockLastNums} - 10);
+						window.location.href = "/app/admin/userPage_" + (${postBlockLastNums} - 10);
 					});
 				}
 				
@@ -148,7 +161,7 @@
 					document.getElementById("nextPage").classList.add('disabled');
 				}else{
 					document.getElementById("nextA").addEventListener("click",function(){
-						window.location.href = "/app/admin/userpage" + 1 +"_" + (${postBlockStartNums} + 10);
+						window.location.href = "/app/admin/userpage_" + (${postBlockStartNums} + 10);
 					});
 
 				}
