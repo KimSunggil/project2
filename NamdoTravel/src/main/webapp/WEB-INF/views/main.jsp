@@ -115,10 +115,12 @@ area:hover{
 			<area shape="rect" coords="1022,766,1024,768" alt="Image Map" style="outline:none;" title="Image Map" href="http://www.image-maps.com/index.php?aff=mapped_users_0" />
 			</map>
 			</div>
+			<div id="map" style="width:100%;height:350px;"></div>
 		</div>
 	</div>
 	<jsp:include page="includejsp/footer.jsp"></jsp:include>
 	<script type="text/javascript"src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c731503805ccfcc41946121c0050cfc"></script>
 	<script type="text/javascript">
 function ajaxJSON(url, type, query, fn) {
 		$.ajax({
@@ -143,6 +145,7 @@ function weatherBtn(i) {
 		var day = new String(date.getDate());
 		var hours = date.getHours();
 		var body = document.getElementsByTagName("body");
+		
 			if(20<hours){
 				hours="2100";
 			}else if(17<hours){
@@ -164,9 +167,10 @@ function weatherBtn(i) {
 			}
 			var d_day = year+month+day;
 		<c:forEach items="${weather}" var="weather">
-		areas.push([ "${weather.city}", "${weather.gridX}","${weather.gridY}" ]);
+		areas.push([ "${weather.city}", "${weather.gridX}","${weather.gridY}","{weather.latitude}","${weatehr.longitude}" ]);
 		</c:forEach>
 		weather(areas[i][0], areas[i][1], areas[i][2],d_day,hours);
+		
 	function weather(area,nx,ny,d_day,hours){
 		var url="<%=cp%>/weather/search2";
 		var base_date = d_day;
@@ -250,7 +254,7 @@ function weatherBtn(i) {
 					}
 				} 
 				if (list[j].category == "T3H") {
-					if (list[j].fcstTime == hours+300) {
+					if (list[j].fcstTime == hours) {
 						var t3h = list[j].fcstValue + "℃"
 						document.getElementById("t3h").innerHTML = t3h;
 	/* 						out += "<td>" + list[j].fcstValue + "℃" + "</td>" */
@@ -264,7 +268,7 @@ function weatherBtn(i) {
 				if (list[j].category == "UUU") {
 					if (list[j].fcstTime == hours) {
 						var uuu = list[j].fcstValue + "m/s"
-						document.getElementById("uuu").innerHTML = uuu;
+						document.getElementById("uuu").innerHTML = uuu;0
 	/* out += "<td>" + list[j].fcstValue + "m/s" + "</td>" */
 					}
 				}
