@@ -67,10 +67,10 @@
 				<li id="prePage" class="page-item"><a id="preA" class="page-link" href="#"
 						tabindex="-1">Previous</a></li>
 					
-				<c:forEach var="pageIndex" begin="${blockStartNums}" end="${blockLastNums}" varStatus="state">
+				<c:forEach var="pageIndex" begin="${postBlockStartNums}" end="${postBlockLastNums}" varStatus="state">
 					<c:choose>
-						<c:when test="${pageIndex <= allPages}">
-							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/page1_${pageIndex}'/>">${pageIndex}</a></li>
+						<c:when test="${pageIndex <= postAllPages}">
+							<li id="page${pageIndex}" class="page-item"><a class="page-link" href="<c:url value='/admin/postpage1_${pageIndex}'/>">${pageIndex}</a></li>
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>
@@ -90,28 +90,30 @@
 	<script>
 		document.addEventListener("DOMContentLoaded",function(){
 			
-			for(var i=0; i<${postCount};i++){
-				document.querySelector("#postInfo"+i).addEventListener("click",function(e){
-					e.target.parentNode.nextSibling.nextSibling.classList.toggle("displayInactive");
-				})
-			}
+			(function(){
+				for(var i=0; i<${postCount};i++){
+					document.querySelector("#postInfo"+i).addEventListener("click",function(e){
+						e.target.parentNode.nextSibling.nextSibling.classList.toggle("displayInactive");
+					})
+				}
+			})()
 			
 			(function() {	
 				document.getElementById("page${postPages}").classList.add('active');
 				
-				if(${blockStartNums} <= 1){
+				if(${postBlockStartNums} <= 1){
 					document.getElementById("prePage").classList.add('disabled');
 				}else{
 					document.getElementById("preA").addEventListener("click",function(){
-						window.location.href = "/app/admin/page" + 1 +"_" + (${blockLastNums} - 10);
+						window.location.href = "/app/admin/postpage" + 1 +"_" + (${postBlockLastNums} - 10);
 					});
 				}
 				
-				if(${blockLastNums} >= ${allPages} ){
+				if(${postBlockLastNums} >= ${postAllPages} ){
 					document.getElementById("nextPage").classList.add('disabled');
 				}else{
 					document.getElementById("nextA").addEventListener("click",function(){
-						window.location.href = "/app/board/" + 1 +"_" + (${blockStartNums} + 10);
+						window.location.href = "/app/admin/postpage" + 1 +"_" + (${postBlockStartNums} + 10);
 					});
 
 				}

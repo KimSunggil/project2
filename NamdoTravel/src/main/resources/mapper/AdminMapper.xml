@@ -2,9 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.project.app.admin">
 		
-	<select id="getAllUserDetail" resultType="AccountVO">
-		SELECT A.USER_ID, A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE 
-			FROM NAMDODB.USER A;	
+	<select id="getAllUserDetail" parameterType="int" resultType="AccountVO">
+		SELECT A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE
+			FROM (SELECT @rownum:=@rownum+1 rownum, A.* FROM (SELECT A.USER_ID, A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE 
+																FROM NAMDODB.USER A)A 
+			WHERE (@rownum:=0)=0)A limit #{pageIndex}, 10
+	</select>
+	
+	<select id="getAllPostListDetail" parameterType="int" resultType="PostVO">
+		SELECT A.BOARD_ID, A.POST_ID, A.POST_NM, A.USER_NM, A.POST_DATE, A.HITS, A.LIKE, A.DISLIKE, A.CONTENT
+			FROM (SELECT @rownum:=@rownum+1 rownum, A.* FROM (SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, C.LIKE, C.DISLIKE, D.CONTENT
+					FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B ON A.BOARD_ID = B.BOARD_ID
+										 LEFT OUTER JOIN (SELECT A.POST_ID POST_ID, COUNT(CASE WHEN A.FAVOR='LIKE' THEN 1 END) AS 'LIKE', COUNT(CASE WHEN A.FAVOR='DISLIKE' THEN 1 END) AS 'DISLIKE'
+															FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID
+										 INNER JOIN NAMDODB.POST_CONTENT D ON B.POST_ID = D.POST_ID
+															ORDER BY B.POST_ID DESC)A 
+										 WHERE (@rownum:=0)=0)A limit #{pageIndex}, 10
+	</select>
+	
+	<select id="getUserPaging" resultType="int">
+		SELECT CEIL(COUNT(A.USER_ID)/10)
+			FROM(SELECT A.USER_ID, A.PASSWORD, A.NICKNAME, A.EMAIL, A.REG_DATE, A.LAST_LOGIN, A.AUTHORITY, A.ENABLE 
+					FROM NAMDODB.USER A)A		
+	</select>
+	<select id="getPostPaging" resultType="int">
+		SELECT CEIL(COUNT(A.BOARD_ID) / 10)
+			FROM (SELECT A.BOARD_ID, B.POST_ID, B.POST_NM, B.USER_NM, B.POST_DATE, B.HITS, C.LIKE, C.DISLIKE
+					FROM NAMDODB.BOARD A INNER JOIN NAMDODB.POST B ON A.BOARD_ID = B.BOARD_ID
+										 LEFT OUTER JOIN (SELECT A.POST_ID POST_ID, COUNT(CASE WHEN A.FAVOR='LIKE' THEN 1 END) AS 'LIKE', COUNT(CASE WHEN A.FAVOR='DISLIKE' THEN 1 END) AS 'DISLIKE'
+															FROM NAMDODB.POST_FAVOR A GROUP BY A.POST_ID)C ON B.POST_ID = C.POST_ID
+															ORDER BY B.POST_ID DESC) A
 	</select>
 	
 	<update id="resetPassword" parameterType="String">
