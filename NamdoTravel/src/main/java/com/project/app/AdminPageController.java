@@ -25,7 +25,7 @@ import com.project.app.vo.PostVO;
 /**
  * Handles requests for the application home page.
  */
-
+	
 @Controller
 @RequestMapping(value="/admin")
 public class AdminPageController {
@@ -116,7 +116,7 @@ public class AdminPageController {
 	public String updateAccount(@ModelAttribute AccountVO acc, @PathVariable int page, Model model) {
 		accountService.updateAccont(acc);
 		
-		return "redirect: /adminUserPage_" + page;
+		return "redirect: /userPage_" + page;
 	}
 	
 	@RequestMapping(value="/resetPass_{page}", method = RequestMethod.POST)
@@ -125,14 +125,14 @@ public class AdminPageController {
 		System.out.println("resetPass");
 		adminService.resetPassword(acc.getUserId());
 		
-		return "redirect: /adminUserPage_" + page;
+		return "redirect: /userPage_" + page;
 	}
 	
 	@RequestMapping(value="/deleteAccount_{page}", method=RequestMethod.POST)
 	public String deleteAccount(@PathVariable("page") int page, Model model) {
 		System.out.println("Account Delete");
 		
-		return "redirect: /adminUserPage_" + page;
+		return "redirect: /userPage_" + page;
 	}
 	
 	//======================= 게시글 ==============================
@@ -142,7 +142,7 @@ public class AdminPageController {
 	public String deletePost(@PathVariable("postId") int postId, @PathVariable("page") int page, Model model){
 		boardService.deletePost(postId);
 		
-		return "redirect: /adminPostPage_" + page;
+		return "redirect: /postPage_" + page;
 	}
 }
 

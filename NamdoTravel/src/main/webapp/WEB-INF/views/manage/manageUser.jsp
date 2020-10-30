@@ -34,7 +34,7 @@
 
 	<div class="mangement-user container ">
 		<h5>유저 관리</h5>
-		<table class="table text-center backboard">
+		<table class="table text-center">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -53,12 +53,11 @@
 				<c:forEach var="user" items="${users}">
 				<tr>
 					<form action="<c:url value="/admin/updateAcc_${userPages}" />" method="post">
-						<input type="hidden" name="userId" value="${user.userId}">
 						<input type="hidden" name="password" value="${user.password }">
 						<input type="hidden" name="nickName" value="${user.nickName}">
 						<input type="hidden" name="email" value="${user.email}">
-						<td >${user.userId}</td>
-						<td>${user.nickName }</td>
+						<td>${user.userId} <input type="hidden" name="userId" value="${user.userId}"> </td>
+						<td>${user.nickName} </td>
 						<td>${user.email }</td>
 						<td style="font-size:0.8rem; width:5vw;">${user.regDate }</td>
 						<td style="font-size:0.8rem; width:5vw;">${user.lastLogin }</td>
@@ -89,9 +88,10 @@
 										<option value="0" selected="selected">비활성</option>
 									</c:when>	
 								</c:choose>
-							</select></td>
+							</select>
+						</td>
 						<td><input type="submit" class="btn btn-primary btn-sm" value="수정"></td>
-						</form>
+					</form>
 						<td>
 							<form action="<c:url value="/admin/resetPass_${userPages}"/>" method="post">
 								<input type="hidden" name="userId" value="${user.userId }">

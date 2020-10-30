@@ -35,7 +35,7 @@
 
 	<div class="mangement-post container ">
 		<h5>게시글 관리</h5>
-		<table id="board" class="table text-center table-hover backboard">
+		<table id="board" class="table text-center table-hover">
 			<thead>
 				<tr>
 					<th>게시판</th>
@@ -63,7 +63,7 @@
 						<td>${post.like }</td>
 						<td>${post.dislike }</td>
 						<td>
-						<form action="<c:url value='/admin/deletePost_${post.postId}_${postPages}'/>" method="post">
+						<form action="<c:url value='/admin/deletePost${post.postId}_${postPages}'/>" method="post">
 							<input type="submit" class="btn btn-danger btn-sm" value="삭제">
 						</form>
 						</td>

@@ -58,12 +58,12 @@
 				<form action="<c:url value='/board/favor_${pages}'/>" method="post">
 					<input type="hidden" name="favor" value="LIKE"/>
 					<input type="hidden" name="postId" value="${posts.postId}">
-					<input type="submit" value="좋아요">
+					<input type="submit" class="btn btn-primary" value="좋아요">
 				</form>
 				<form action="<c:url value='/board/favor_${pages }'/>" method="post">
 					<input type="hidden" name="favor" value="DISLIKE"/>
 					<input type="hidden" name="postId" value="${posts.postId}"/>
-					<input type="submit" value="싫어요">
+					<input type="submit" class="btn btn-secondary" value="싫어요">
 				</form>
 			</div>
 		</article>
@@ -71,10 +71,10 @@
 		<!-- 게시글 수정 삭제 목록 -->
 		<article style="margin-top : 20px;">
 			<c:if test="${posts.userId == principals }">
-				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button> </a>
+				<a href="<c:url value='/board/write_post${posts.postId}'/>"> <button type="button" class="btn btn-sm btn-info" id="btnUpdate">수정</button> </a>
 				
 				<form style="display:inline;" id='tmpForm' action="<c:url value='/board/delete_Post${posts.boardId}_${posts.postId}'/>" method="POST">
-				<button type="submit" class="btn btn-sm btn-primary">삭제</button>
+				<button type="submit" class="btn btn-sm btn-danger">삭제</button>
 				</form>
 			</c:if>
 				<a href="<c:url value='/board/${posts.boardId}_page${pages}'/> "><button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button></a>
@@ -109,12 +109,12 @@
 									<td> 답글 </td>
 									<c:choose>
 										<c:when test="${reply.userId == principals }">
-											<td><button id="modifyReplyA${status.index}"> 수정 </button></td>
+											<td><button id="modifyReplyA${status.index}" class="btn btn-link btn-sm"> 수정 </button></td>
 											<td>
 												<form action="<c:url value ='/board/delete_reply_page${pages }' />" method="post">
 													<input type="hidden" name="replyId" value="${reply.replyId }">
 													<input type="hidden" name="postId" value="${reply.postId }">
-													<input type="submit" value="삭제">
+													<input type="submit" class="btn btn-link btn-sm" value="삭제">
 												</form>
 											</td>
 										</c:when>
@@ -129,7 +129,15 @@
 									<td colspan='6'>
 										<form action="<c:url value="/board/modify_reply_${reply.postId}_${pages}" />" method="post">
 											<input type="hidden" name="replyId" value="${reply.replyId}">
-											<textarea name="content"> <c:out value = "${reply.content}"/> </textarea> <input type="submit">
+											<div class="input-group mb-3">
+											  <div class="input-group-prepend">
+											    <span class="input-group-text" id="inputGroup-sizing-default">댓글 수정</span>
+											  </div>
+											  <input type="text" name="content" value="${reply.content }" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+												  <div class="input-group-append">
+												  	<input class="btn btn-outline-secondary" type="submit">
+												  </div>
+											</div>
 										</form>
 									</td>
 								</tr>
@@ -144,9 +152,18 @@
 			<sec:authorize access="isAuthenticated()"> 
 				<section class="post-reply">
 					<form action="<c:url value ='/board/write_reply${pages}'/>" method="post">
-						<input type="hidden" name="postId" value="${posts.postId }">
+						<input type="hidden" name="postId" value="${posts.postId }"> 
 						<input type="hidden" name="userId" value="${principals}">
-						<textarea id="inputReply" name="content" style="width:50%;"></textarea> <input type="submit">
+						<div class="input-group mb-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="inputGroup-sizing-default">댓글</span>
+						  </div>
+						  <input type="text" name="content" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+							  <div class="input-group-append">
+							  	<input class="btn btn-outline-secondary" type="submit">
+							  </div>
+						</div>
+					 
 					</form>
 				</section>
 			</sec:authorize>
