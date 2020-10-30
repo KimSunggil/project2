@@ -16,7 +16,7 @@
 		display:none;'
 	}
 	.backboard{
-		background-color:#eeeeee;
+		background-color:#cfcfcf;
 	}
 	.whiteBoard{
 		background-color:#eeeeee;

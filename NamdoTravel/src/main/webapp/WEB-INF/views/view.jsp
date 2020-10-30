@@ -49,7 +49,7 @@
 				</div>
 				<br>
 				<div id="contentDiv" class="board_content float-none">
-					<c:out value="${posts.content}"/>
+					${posts.content }
 				</div>
 			</div>
 			<hr/>
@@ -158,11 +158,12 @@
 		
 	<script src="<c:url value='/resources/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.js'/>"></script>
+	
 	<script>	
 		document.addEventListener("DOMContentLoaded",function(){
 			
-			document.getElementById("contentDiv").innerHTML = `${posts.content}`;
-			
+			//document.getElementById("contentDiv").innerHTML = ${posts.content};
+
 			document.addEventListener('click',function(e){
 				for(var i=0; i<=${replyIndex}; i++)
 					{
@@ -178,5 +179,6 @@
 			}
 		})
 	</script>
+
 </body>
 </html>

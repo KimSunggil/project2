@@ -16,7 +16,7 @@
      vertical-align: middle;
 }
 	.backboard{
-		background-color:#eeeeee;
+		background-color:#cfcfcf;
 	}
 	.whiteBoard{
 		background-color:#eeeeee;
