@@ -53,54 +53,59 @@
   <!-- Navigation -->
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 
-  <!-- Page Content -->
-  <div class="card text-white py-4 text-center" style="height:100%">
-	<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-  </ol>
-  <div id="screenfull" class="carousel-inner">
-    <div class="carousel-item active">
-      <img id="firstimg" src="./resources/img/sunsun1.jpg" class="d-block w-100" alt="순천 국가정원 핑크뮬리 사진">
-      <div class="carousel-caption d-none d-md-block">
-        <h2>여행을 시작하세요</h2>
-        <p class="font-weight-bolder">순천만 국가정원 핑크뮬리</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img id="secondimg" src="./resources/img/screen2.jpg" class="d-block w-100" alt="순천만 갈대 숲 사진">
-      <div class="carousel-caption d-none d-md-block">
-        <h2>여행을 즐기세요</h2>
-        <p class="font-weight-bolder">순천만 슾지 갈대 숲</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img id="threeimg" src="./resources/img/screen333333333.PNG" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h2 style="color:black;">여행지를 공유하세요</h2>        
-        <p class="font-weight-bolder" style="color:black;">SNS 인증은 필수 !!! </p>
-      </div>
-    </div>
-    </div>
-    <div>
-    
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+		<!-- Page Content -->
+		<div class="card text-white py-4 text-center" style="height: 100%">
+			<div id="carouselExampleCaptions" class="carousel slide"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleCaptions" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+					<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+				</ol>
+				<div id="screenfull" class="carousel-inner">
+					<div class="carousel-item active">
+						<img id="firstimg" src="./resources/img/sunsun1.jpg"
+							class="d-block w-100" alt="순천 국가정원 핑크뮬리 사진">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>여행을 시작하세요</h2>
+							<p class="font-weight-bolder">순천만 국가정원 핑크뮬리</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img id="secondimg" src="./resources/img/screen2.jpg"
+							class="d-block w-100" alt="순천만 갈대 숲 사진">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>여행을 즐기세요</h2>
+							<p class="font-weight-bolder">순천만 슾지 갈대 숲</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img id="threeimg" src="./resources/img/screen333333333.PNG"
+							class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h2 style="color: black;">여행지를 공유하세요</h2>
+							<p class="font-weight-bolder" style="color: black;">SNS 인증은
+								필수 !!!</p>
+						</div>
+					</div>
+				</div>
+				<div></div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleCaptions"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
 
-  
 
-    <!-- Content Row -->
+
+		<!-- Content Row -->
 <div class="card text-white bg-secondary my-5 py-4 text-center">
     <div class="row">
       <div class="col-md-4 mb-5">
