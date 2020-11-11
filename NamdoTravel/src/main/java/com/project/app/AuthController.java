@@ -41,15 +41,6 @@ public class AuthController {
 		return "register";
 	}
 	
-	@RequestMapping(value = "/setting", method = RequestMethod.GET)
-	public String setting(Model model) {
-		
-		
-		return "Setting";
-	}
-	
-	
-	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerAccount(@ModelAttribute AccountVO account, Model model) {
 		accountService.addAccount(account);
