@@ -26,6 +26,8 @@
 <body class="margin100px">
 	<jsp:include page="includejsp/menubar.jsp"></jsp:include>
 	
+	<br>
+	
 	<section class="container">
 		<article>
 			<h5>정보 수정</h5>
