@@ -7,6 +7,8 @@ public class TourVO {
 	private String locationNmAddress;
 	private String parking;
 	private String tourismHp;
+	private String sortation;
+	
 	public String getArea() {
 		return area;
 	}
@@ -51,5 +53,13 @@ public class TourVO {
 	public String toString() {
 		return "TourVO [area=" + area + ", tourismNm=" + tourismNm + ", locationNmAddress=" + locationNmAddress
 				+ ", parking=" + parking + ", tourismHp=" + tourismHp + "]";
+	}
+
+	public String getSortation() {
+		return sortation;
+	}
+
+	public void setSortation(String sortation) {
+		this.sortation = sortation;
 	}
 }

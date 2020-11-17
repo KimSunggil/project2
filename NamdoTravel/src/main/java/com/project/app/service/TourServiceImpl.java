@@ -33,4 +33,10 @@ public class TourServiceImpl implements TourService{
 		return tourDao.foodList();
 	}
 
+	@Override
+	public List<TourVO> getTourismList() {
+		// TODO Auto-generated method stub
+		return tourDao.getTourismList();
+	}
+
 }

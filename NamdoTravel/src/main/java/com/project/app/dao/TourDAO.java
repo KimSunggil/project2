@@ -8,4 +8,5 @@ public interface TourDAO {
 	public List<TourVO> tourList();
 	public List<TourVO> roomList();
 	public List<TourVO> foodList();
+	public List<TourVO> getTourismList();
 }

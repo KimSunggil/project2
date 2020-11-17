@@ -16,6 +16,16 @@
 			select area, tourism_nm, location_nm_address, parking, tourism_hp
 			from  NAMDODB.tourism where sortation like '%먹거리%'
 		</select>
+		
+		<select id="getTourismList" resultType="TourVO">
+			select area, tourism_nm, location_nm_address, parking, tourism_hp, sortation
+				from  NAMDODB.tourism
+		</select>
+		
+		<select id="getSearchCategory" resultType="TourVO" parameterType="hashmap">
+			select area, tourism_nm, location_nm_address, parking, tourism_hp
+				from  NAMDODB.tourism where sortation = #{category}
+		</select>
 	
 	
 	

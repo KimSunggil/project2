@@ -57,6 +57,14 @@ public class AuthController {
 		return "redirect: login";
 	}
 	
+	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
+	public String updateProfile(@ModelAttribute AccountVO acc, Model model) {
+		accountService.updateAccont(acc);
+		
+		return "redirect: ";
+	}
+	
+	
 	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 		model.addAttribute("error", "true");
