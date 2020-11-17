@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.project.app.account">
 		
+	<select id="getAccountDetail" parameterType="String" resultType="AccountVO">
+		SELECT A.*
+			FROM NAMDODB.USER A WHERE USER_ID = #{userId}
+	</select>
+		
 	<insert id="addAccount" parameterType="AccountVO">
 		INSERT INTO NAMDODB.USER(USER_ID, PASSWORD, EMAIL, NICKNAME, AUTHORITY, REG_DATE, LAST_LOGIN, ENABLE, NAME, PHONE_NO, ADDRESS)
 		VALUES(#{userId}, #{password}, #{email}, #{nickName}, "USER", NOW(), NOW(), 1, #{name}, #{phoneNo}, #{address})

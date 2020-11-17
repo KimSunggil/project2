@@ -1,5 +1,7 @@
 package com.project.app;
 
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +43,6 @@ public class AuthController {
 		return "register";
 	}
 	
-	@RequestMapping(value = "/setting", method = RequestMethod.GET)
-	public String setting(Model model) {
-		
-		
-		return "Setting";
-	}
-	
-	
-	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerAccount(@ModelAttribute AccountVO account, Model model) {
 		accountService.addAccount(account);
@@ -57,11 +50,19 @@ public class AuthController {
 		return "redirect: login";
 	}
 	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String setting(Principal principal, Model model) {
+		
+		model.addAttribute("users",accountService.getAccountDetail(principal.getName()));
+		
+		return "profile";
+	}
+	
 	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
 	public String updateProfile(@ModelAttribute AccountVO acc, Model model) {
 		accountService.updateAccont(acc);
 		
-		return "redirect: ";
+		return "redirect: /profile";
 	}
 	
 	

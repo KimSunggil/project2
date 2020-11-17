@@ -16,9 +16,7 @@
 		background-color:white;
 		padding:30px;
 	}
-	.modifyDiv{
-		width:1vw;
-	}
+
 	
 </style>
 
@@ -32,7 +30,7 @@
 		<article>
 			<h5>정보 수정</h5>
 			<div class="modifyDiv">
-				<form action="<c:url value="auth/updateProfile"/>" method="POST">
+				<form action="updateProfile" method="POST">
 				
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">

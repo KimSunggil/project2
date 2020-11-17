@@ -14,6 +14,12 @@ public class AccountServiceImpl implements AccountService{
 	private AccountDAO accountDao;
 	
 	@Override
+	public AccountVO getAccountDetail(String userId) {
+		// TODO Auto-generated method stub
+		return accountDao.getAccountDetail(userId);
+	}
+	
+	@Override
 	public int addAccount(AccountVO acc) {
 		return accountDao.addAccount(acc);
 	}
@@ -23,4 +29,6 @@ public class AccountServiceImpl implements AccountService{
 		// TODO Auto-generated method stub
 		accountDao.updateAccount(acc);
 	}
+
+
 }
