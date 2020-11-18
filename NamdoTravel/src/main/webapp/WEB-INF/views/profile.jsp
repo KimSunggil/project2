@@ -15,9 +15,7 @@
 	.whiteBoard{
 		background-color:white;
 		padding:30px;
-	}
-
-	
+	}	
 </style>
 
 
