@@ -9,4 +9,6 @@ public interface TourService {
 	public List<TourVO> roomList();
 	public List<TourVO> foodList();
 	public List<TourVO> getTourismList();
+	public List<String> getAreaList();
+	public List<String> getSortationList();
 }

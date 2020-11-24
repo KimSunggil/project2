@@ -39,4 +39,16 @@ public class TourServiceImpl implements TourService{
 		return tourDao.getTourismList();
 	}
 
+	@Override
+	public List<String> getAreaList() {
+		// TODO Auto-generated method stub
+		return tourDao.getAreaList();
+	}
+
+	@Override
+	public List<String> getSortationList() {
+		// TODO Auto-generated method stub
+		return tourDao.getSortationList();
+	}
+
 }

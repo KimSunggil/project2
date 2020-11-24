@@ -36,5 +36,15 @@ public class TourDAOImpl implements TourDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("com.project.app.tour.getTourismList");
 	}
+	@Override
+	public List<String> getAreaList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.project.app.tour.getAreaList");
+	}
+	@Override
+	public List<String> getSortationList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.project.app.tour.getSortationList");
+	}
 
 }

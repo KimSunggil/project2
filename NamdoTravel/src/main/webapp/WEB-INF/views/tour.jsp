@@ -221,38 +221,7 @@ tr:nth-child(even) {
 			for (var i = 0; i < tourAddress.length; i++) {
 				if (tourAddress[i].area == select_area_btn) {
 
-					geocoder.addressSearch(tourAddress[i].address, function(
-							result, status, data) {
 
-						if (status === kakao.maps.services.Status.OK) {
-							var coords = new kakao.maps.LatLng(result[0].y,
-									result[0].x);
-
-							// 결과값으로 받은 위치를 마커로 표시합니다
-							var marker = new kakao.maps.Marker({
-								map : map,
-								position : coords
-							});
-
-							// 마커를 지도에 표시합니다.
-							marker.setMap(map);
-
-							/* var content = '<div>'+ result[0].address_name '</div>'; */
-
-							// 커스텀 오버레이를 생성합니다
-							var customOverlay = new daum.maps.CustomOverlay({
-							/* 	position : coords,
-								content : content */
-							});
-							// 커스텀 오버레이를 지도에 표시합니다
-							customOverlay.setMap(map);
-
-							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-							map.setCenter(coords);
-
-						}
-
-					});
 
 				}
 			}

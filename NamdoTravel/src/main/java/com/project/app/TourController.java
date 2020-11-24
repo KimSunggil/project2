@@ -8,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,8 @@ import com.project.app.vo.TourVO;
 @Controller
 public class TourController {
 
-	@Resource
+	@Autowired
+	@Qualifier("tourServiceImpl")
 	TourService tourService;
 
 	private static final Logger logger = LoggerFactory.getLogger(TourController.class);
@@ -37,6 +40,24 @@ public class TourController {
 	@RequestMapping(value = "/tour", method = RequestMethod.GET)
 	public String Tour(Model model) {
 		List<TourVO> tour = tourService.tourList();
+		List<TourVO> tourism = tourService.getTourismList();
+		
+		List<String> areaList = tourService.getAreaList();
+		
+		JSONArray tourismList = new JSONArray();
+		tourism.stream().forEach((ele) -> {
+			JSONObject tourismObject = new JSONObject();
+			tourismObject.put("area", ele.getArea());
+			tourismObject.put("tourismNm", ele.getTourismNm());
+			tourismObject.put("locationNmAddress", ele.getLocationNmAddress());
+			tourismObject.put("parking", ele.getParking());
+			tourismObject.put("tourismHp", ele.getTourismHp());
+			tourismObject.put("sortation", ele.getSortation());
+			tourismList.add(tourismObject);
+
+		});
+		
+		
 		JSONArray tourArray = new JSONArray();
 		tour.stream().forEach((ele) -> {
 			JSONObject tourObject = new JSONObject();
@@ -45,8 +66,10 @@ public class TourController {
 			tourObject.put("address", ele.getLocationNmAddress());
 			tourArray.add(tourObject);
 		});
+		
 		model.addAttribute("json", tourArray.toJSONString());
-		model.addAttribute("tour", tour);
+		model.addAttribute("tour", tourismList.toJSONString());
+		model.addAttribute("areaLists", areaList);
 		
 		return "tour";
 	}
@@ -63,8 +86,10 @@ public class TourController {
 			jsonObject.put("address", ele.getLocationNmAddress());
 			jsonArray.add(jsonObject);
 		});
+		
+		System.out.println("asdf");
+		
 		model.addAttribute("json", jsonArray.toJSONString());
-
 		model.addAttribute("room", room);
 		return "room";
 
